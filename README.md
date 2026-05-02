@@ -34,6 +34,22 @@ form-maker/
 └── package.json            # Dependencies and versioning
 ```
 
+## Development and CI
+
+GitHub Actions runs the same checks as below on every push and pull request to `main` / `master` (see `.github/workflows/ci.yml`).
+
+**Requirements:** Node.js **22** (matches CI).
+
+**Reproduce CI locally** (recommended before pushing):
+
+```bash
+npm ci
+npm run lint
+npm run build
+```
+
+`npm ci` installs exactly what is in `package-lock.json`. If you change `package.json`, refresh the lockfile with `npm install` and commit the updated `package-lock.json`; otherwise CI will fail at install time.
+
 ## Architecture Conventions
 
 Every component in this library MUST adhere to the following 8 rules:
