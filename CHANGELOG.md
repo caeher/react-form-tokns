@@ -1,3 +1,21 @@
+# [1.1.0](https://github.com/caeher/form-maker/compare/v1.0.0...v1.1.0) (2026-05-02)
+
+
+### Bug Fixes
+
+* configure npm dist ([a25eeb4](https://github.com/caeher/form-maker/commit/a25eeb483de084f52584ce8771934281795ba030))
+* remove editor component ([628b239](https://github.com/caeher/form-maker/commit/628b23967bd108b3b19d2f9d02c261c572a07b7d))
+
+
+### Features
+
+* **editor:** add bubble menu for contextual formatting ([b070ed1](https://github.com/caeher/form-maker/commit/b070ed145521d050150da75bce0cc60ecad92844))
+* **editor:** add Editor shell component and public exports ([9a02214](https://github.com/caeher/form-maker/commit/9a022146c1f2fc5479c79cf874603d7534a087e8))
+* **editor:** add fixed toolbar with formatting controls ([7ee9b43](https://github.com/caeher/form-maker/commit/7ee9b43c3d2bdc04f7e4c5d85e70127d0f32149d))
+* **editor:** add link popover for URL editing ([1516381](https://github.com/caeher/form-maker/commit/151638119c690ce1f69f45dab1b6d2627c60aff6))
+* **editor:** add TipTap extensions, markdown, and slash command plugin ([0d817dc](https://github.com/caeher/form-maker/commit/0d817dc8e8c833fc41d47e22a5eb7d4e77722f16))
+* **editor:** integrate editor demo and dark theme for Shiki ([7153adb](https://github.com/caeher/form-maker/commit/7153adb983edd930d6e22660c9f3d2efd722045e))
+
 # 1.0.0 (2026-05-02)
 
 
