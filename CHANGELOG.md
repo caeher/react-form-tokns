@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/caeher/form-maker/compare/v1.1.0...v1.2.0) (2026-05-02)
+
+
+### Features
+
+* add docs merge script ([ab55bf8](https://github.com/caeher/form-maker/commit/ab55bf82f3b63888c8111e02467e231295db91d9))
+
 # [1.1.0](https://github.com/caeher/form-maker/compare/v1.0.0...v1.1.0) (2026-05-02)
 
 
