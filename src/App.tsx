@@ -34,8 +34,37 @@ import {
   DatetimeField,
   ColorPickerField
 } from './components/forms';
+import { Editor } from './components/editor';
+import { FileEdit } from 'lucide-react';
+
+const INITIAL_EDITOR_MARKDOWN = `# Form Maker rich editor
+
+A **Notion-style** surface powered by TipTap — toolbars, bubble menu, slash commands (\`/\`), markdown I/O, tables, tasks, and Shiki code blocks.
+
+## Try it
+
+- Use the **fixed toolbar** or select text for the **bubble menu**
+- Type \`/\` anywhere for quick blocks
+- Insert a table from the toolbar or slash menu
+
+| Feature | Status |
+| ------- | ------ |
+| Markdown | ✅ |
+| Tables | ✅ |
+
+\`\`\`ts
+const greeting: string = 'Hello, TipTap';
+console.log(greeting);
+\`\`\`
+
+---
+
+> Edits serialize to markdown via \`onChange\`.
+`;
 
 function App() {
+  const [editorMarkdown, setEditorMarkdown] = useState(INITIAL_EDITOR_MARKDOWN);
+
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -107,6 +136,25 @@ function App() {
             Enhanced accessible form components with inline layouts, flexible date parsing, and deep Lucide icon integration.
           </p>
         </div>
+
+        <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-2xl shadow-slate-950/40 backdrop-blur md:p-8">
+          <div className="mb-6 flex flex-col gap-2 border-b border-white/10 pb-4 text-left">
+            <div className="flex items-center gap-2">
+              <FileEdit size={22} className="text-cyan-400" />
+              <h2 className="text-xl font-semibold">Rich text editor</h2>
+            </div>
+            <p className="text-sm text-slate-400">
+              TipTap + markdown — toolbars, bubble menu, and slash commands (<kbd className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-xs">/</kbd>
+              ).
+            </p>
+          </div>
+          <Editor
+            content={editorMarkdown}
+            onChange={setEditorMarkdown}
+            placeholder="Write something, or type / for commands…"
+            className="max-w-4xl"
+          />
+        </section>
 
         <div className="grid gap-8 xl:grid-cols-2">
           {/* Default State Preview */}
