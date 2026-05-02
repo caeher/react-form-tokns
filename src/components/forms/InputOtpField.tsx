@@ -1,4 +1,4 @@
-import { useId, forwardRef, useState, useRef, useEffect, ClipboardEvent, KeyboardEvent } from 'react';
+import { useId, forwardRef, useState, useRef, useEffect, ClipboardEvent, KeyboardEvent, RefObject } from 'react';
 
 export interface InputOtpFieldProps {
   id?: string;
@@ -112,7 +112,8 @@ export const InputOtpField = forwardRef<HTMLInputElement, InputOtpFieldProps>(({
               ref={(el) => {
                 inputRefs.current[i] = el;
                 if (i === 0 && typeof ref === 'function') ref(el);
-                else if (i === 0 && ref) (ref as any).current = el;
+                else if (i === 0 && ref && typeof ref === 'object')
+                  (ref as RefObject<HTMLInputElement | null>).current = el;
               }}
               type="text"
               inputMode="numeric"

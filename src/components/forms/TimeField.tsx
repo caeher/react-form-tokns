@@ -1,4 +1,4 @@
-import { useId, forwardRef, useState, ElementType, useRef, useEffect } from 'react';
+import { useId, forwardRef, useState, ElementType } from 'react';
 import { Clock } from 'lucide-react';
 import { Popover } from '../ui/Popover';
 import { parseTimeValue } from './utils/parseTimeValue';
@@ -40,8 +40,6 @@ export const TimeField = forwardRef<HTMLInputElement, TimeFieldProps>(({
   placeholder = 'Select time...',
   showSeconds = false,
   use24Hour = true,
-  min,
-  max,
   minuteStep = 1,
 }, ref) => {
   const generatedId = useId();
@@ -112,8 +110,6 @@ export const TimeField = forwardRef<HTMLInputElement, TimeFieldProps>(({
     const ss = String(p.seconds).padStart(2, '0');
     return showSeconds ? `${h12}:${mm}:${ss} ${ampm}` : `${h12}:${mm} ${ampm}`;
   };
-
-  const columnRef = useRef<HTMLDivElement>(null);
 
   const renderColumn = (label: string, items: number[] | string[], current: number | string, type: 'hours' | 'minutes' | 'seconds' | 'ampm') => (
     <div className="flex flex-col items-center">
@@ -188,7 +184,6 @@ export const TimeField = forwardRef<HTMLInputElement, TimeFieldProps>(({
         name={name}
         disabled={disabled}
         value={currentTime}
-        {...props}
       />
 
       {hint && !error && (

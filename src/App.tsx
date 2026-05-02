@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, type ChangeEvent } from 'react';
 import { 
   Mail, 
   User, 
@@ -16,10 +16,6 @@ import {
   Italic,
   Underline,
   Type,
-  Hash,
-  Activity,
-  Clock,
-  Calendar,
   Layers
 } from 'lucide-react';
 import {
@@ -61,11 +57,31 @@ function App() {
     accentColor: '#06b6d4'
   });
 
-  const handleChange = (e: any) => {
-    const { name, value, type, checked } = e.target;
+  type AppChangeEvent =
+    | ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    | {
+        target: {
+          name: string;
+          value: string | number | (string | number)[];
+          type?: string;
+          checked?: boolean;
+        };
+        persist: () => void;
+      };
+
+  const handleChange = (e: AppChangeEvent) => {
+    const t = e.target;
+    if (t && 'type' in t && t.type === 'checkbox' && 'checked' in t) {
+      setFormData((prev) => ({
+        ...prev,
+        [t.name]: t.checked
+      }));
+      return;
+    }
+    const { name, value } = t;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: value
     }));
   };
 

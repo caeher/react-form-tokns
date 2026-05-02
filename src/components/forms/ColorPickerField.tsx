@@ -1,4 +1,4 @@
-import { useId, forwardRef, useState, useRef, useEffect, MouseEvent as ReactMouseEvent } from 'react';
+import { useId, forwardRef, useState, useEffect, MouseEvent as ReactMouseEvent } from 'react';
 import { Popover } from '../ui/Popover';
 import { 
   ColorFormat, 
@@ -118,9 +118,11 @@ export const ColorPickerField = forwardRef<HTMLInputElement, ColorPickerFieldPro
                 style={{ backgroundColor: currentColor }} 
               />
             </div>
-            <span className={`font-mono ${disabled ? 'text-slate-500' : 'text-slate-200'}`}>
-              {currentColor}
-            </span>
+            {showInput && (
+              <span className={`font-mono ${disabled ? 'text-slate-500' : 'text-slate-200'}`}>
+                {currentColor}
+              </span>
+            )}
           </div>
         }
         content={() => (

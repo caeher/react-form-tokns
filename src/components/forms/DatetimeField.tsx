@@ -1,5 +1,5 @@
 import { useId, forwardRef, useState, ElementType, useMemo } from 'react';
-import { Calendar as CalendarIcon, Clock } from 'lucide-react';
+import { Calendar as CalendarIcon } from 'lucide-react';
 import { 
   CalendarDate, 
   getLocalTimeZone, 
@@ -204,7 +204,6 @@ export const DatetimeField = forwardRef<HTMLInputElement, DatetimeFieldProps>(({
         name={name}
         disabled={disabled}
         value={currentValue}
-        {...props}
       />
 
       {hint && !error && (

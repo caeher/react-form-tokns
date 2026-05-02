@@ -91,12 +91,14 @@ export const Popover = ({
 
   useEffect(() => {
     if (!isOpen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- reset readiness when popover closes
       setReady(false);
     }
   }, [isOpen]);
 
   useEffect(() => {
     if (disabled && isOpen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- sync closed state when disabled
       setIsOpen(false);
     }
   }, [disabled, isOpen]);

@@ -21,9 +21,10 @@ export function hsvToRgb(h: number, s: number, v: number): [number, number, numb
 export function rgbToHsv(r: number, g: number, b: number): [number, number, number] {
   r /= 255; g /= 255; b /= 255;
   const max = Math.max(r, g, b), min = Math.min(r, g, b);
-  let h = 0, s = 0, v = max;
+  let h = 0;
+  const v = max;
   const d = max - min;
-  s = max === 0 ? 0 : d / max;
+  const s = max === 0 ? 0 : d / max;
   if (max !== min) {
     switch (max) {
       case r: h = (g - b) / d + (g < b ? 6 : 0); break;
@@ -51,7 +52,8 @@ export function hexToRgb(hex: string): [number, number, number] | null {
 export function rgbToHsl(r: number, g: number, b: number): [number, number, number] {
   r /= 255; g /= 255; b /= 255;
   const max = Math.max(r, g, b), min = Math.min(r, g, b);
-  let h = 0, s = 0, l = (max + min) / 2;
+  let h = 0, s = 0;
+  const l = (max + min) / 2;
   if (max !== min) {
     const d = max - min;
     s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
