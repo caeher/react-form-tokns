@@ -1,0 +1,18 @@
+# Source code
+src/
+public/
+
+# Config files
+*.config.ts
+*.config.js
+tsconfig*.json
+.eslintrc*
+.releaserc*
+
+# Dev files
+index.html
+README.md
+CHANGELOG.md
+.github/
+.git/
+node_modules/

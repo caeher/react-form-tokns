@@ -1,9 +1,9 @@
 import { useState, type ChangeEvent } from 'react';
-import { 
-  Mail, 
-  User, 
-  Lock, 
-  Search, 
+import {
+  Mail,
+  User,
+  Lock,
+  Search,
   MessageSquare,
   Globe,
   Bell,
@@ -60,14 +60,14 @@ function App() {
   type AppChangeEvent =
     | ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
     | {
-        target: {
-          name: string;
-          value: string | number | (string | number)[];
-          type?: string;
-          checked?: boolean;
-        };
-        persist: () => void;
+      target: {
+        name: string;
+        value: string | number | (string | number)[];
+        type?: string;
+        checked?: boolean;
       };
+      persist: () => void;
+    };
 
   const handleChange = (e: AppChangeEvent) => {
     const t = e.target;
@@ -98,7 +98,7 @@ function App() {
         {/* Header Section */}
         <div className="flex flex-col gap-4 text-center">
           <p className="text-sm font-medium uppercase tracking-[0.3em] text-cyan-300">
-            Form Maker v2.0
+            React Form Tonks
           </p>
           <h1 className="text-4xl font-semibold tracking-tight sm:text-6xl bg-gradient-to-r from-white to-slate-500 bg-clip-text text-transparent">
             Design System Evolution
@@ -118,7 +118,7 @@ function App() {
               </div>
               <p className="text-sm text-slate-400">Components with icons and standard vertical layout.</p>
             </div>
-            
+
             <form className="space-y-6 flex-1" onSubmit={(e) => e.preventDefault()}>
               <div className="grid gap-6 sm:grid-cols-2">
                 <TextField
@@ -218,7 +218,7 @@ function App() {
                 </div>
                 <p className="text-sm text-slate-400">Advanced interaction and data types.</p>
               </div>
-              
+
               <div className="space-y-6">
                 <ToggleField
                   name="formatting"
@@ -296,7 +296,7 @@ function App() {
                 </div>
                 <p className="text-sm text-slate-400">Horizontal alignment for compact forms.</p>
               </div>
-              
+
               <div className="space-y-6">
                 <TextField
                   inline
@@ -304,7 +304,7 @@ function App() {
                   placeholder="Type to search..."
                   icon={Search}
                 />
-                
+
                 <CalendarField
                   inline
                   label="Appointment"
@@ -339,7 +339,7 @@ function App() {
                 <h2 className="text-xl font-semibold text-red-400">Error States</h2>
                 <p className="text-sm text-slate-400">Visual feedback for validation failures.</p>
               </div>
-              
+
               <div className="space-y-6">
                 <TextField
                   label="Email"
