@@ -103,7 +103,7 @@ export const RadioGroupField = forwardRef<HTMLInputElement, RadioGroupFieldProps
       aria-labelledby={label ? `${groupId}-label` : undefined}
     >
       {label && (
-        <div className={`flex items-center gap-2 mb-1 ${inline ? 'pt-0.5 min-w-[120px] shrink-0' : ''} ${iconPosition === 'right' ? 'flex-row-reverse justify-end' : ''}`}>
+        <div className={`flex items-center gap-2 mb-1 ${inline ? 'sm:pt-0.5 sm:min-w-[120px] sm:shrink-0' : ''} ${iconPosition === 'right' ? 'flex-row-reverse justify-end' : ''}`}>
           {Icon && <Icon size={16} className={disabled ? 'text-slate-600' : 'text-slate-400'} />}
           <FieldLabel
             as="span"

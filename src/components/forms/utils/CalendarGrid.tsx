@@ -78,8 +78,8 @@ export const CalendarGrid = ({
   }, [minDate, maxDate]);
 
   return (
-    <div className="p-4 w-[300px] select-none">
-      <div className="flex items-center justify-between mb-4 gap-2">
+    <div className="w-[min(300px,calc(100vw-2rem))] p-3 sm:p-4 select-none">
+      <div className="mb-4 flex items-center justify-between gap-2">
         <div className="flex gap-0.5">
           <button 
             type="button"
@@ -107,7 +107,7 @@ export const CalendarGrid = ({
               matchTriggerWidth={false}
             />
           </div>
-          <div className="w-[85px] shrink-0">
+          <div className="w-20 shrink-0 sm:w-[85px]">
             <SelectField
               value={viewDate.year}
               onChange={(e) => onViewDateChange(viewDate.set({ year: parseInt(e.target.value as string) }))}
@@ -136,7 +136,7 @@ export const CalendarGrid = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-7 mb-2">
+      <div className="mb-2 grid grid-cols-7">
         {weekDays.map(day => (
           <div key={day} className="text-[10px] font-bold text-center text-slate-500 uppercase">
             {day}
@@ -158,7 +158,7 @@ export const CalendarGrid = ({
               disabled={isDisabled}
               onClick={() => onDateSelect(date)}
               className={`
-                relative h-9 w-9 text-xs rounded-lg transition-all flex items-center justify-center
+                relative aspect-square w-full text-xs rounded-lg transition-all flex items-center justify-center
                 ${isSelected ? 'bg-cyan-500 text-slate-950 font-bold' : 'hover:bg-white/10 text-slate-300'}
                 ${!isCurrentMonth ? 'opacity-20' : ''}
                 ${isTodayDate && !isSelected ? 'text-cyan-400 ring-1 ring-inset ring-cyan-500/30' : ''}

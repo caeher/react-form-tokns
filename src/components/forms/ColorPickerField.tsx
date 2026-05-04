@@ -125,14 +125,14 @@ export const ColorPickerField = forwardRef<HTMLInputElement, ColorPickerFieldPro
               />
             </div>
             {showInput && (
-              <span className={`font-mono ${disabled ? 'text-slate-500' : 'text-slate-200'}`}>
+              <span className={`min-w-0 truncate font-mono ${disabled ? 'text-slate-500' : 'text-slate-200'}`}>
                 {currentColor}
               </span>
             )}
           </div>
         }
         content={() => (
-          <div className="p-4 w-[240px] flex flex-col gap-4 select-none">
+          <div className="flex w-[min(240px,calc(100vw-2rem))] flex-col gap-4 p-4 select-none">
             {/* Saturation/Value Area */}
             <div 
               className="relative h-40 w-full rounded-lg cursor-crosshair overflow-hidden"

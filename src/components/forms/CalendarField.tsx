@@ -105,7 +105,7 @@ export const CalendarField = forwardRef<HTMLInputElement, CalendarFieldProps>(({
                     : 'border-white/10 hover:border-white/20 cursor-pointer'
               } ${Icon && iconPosition === 'left' ? 'pl-10' : ''} ${Icon && iconPosition === 'right' ? 'pr-10' : ''}`}
             >
-              <span className={currentDate ? (disabled ? 'text-slate-400' : 'text-slate-50') : 'text-slate-500'}>
+              <span className={`block min-w-0 truncate ${currentDate ? (disabled ? 'text-slate-400' : 'text-slate-50') : 'text-slate-500'}`}>
                 {currentDate ? currentDate.toString() : placeholder}
               </span>
             </div>

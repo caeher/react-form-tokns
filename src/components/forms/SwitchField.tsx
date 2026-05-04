@@ -88,14 +88,14 @@ export const SwitchField = forwardRef<HTMLInputElement, SwitchFieldProps>(({
         inline
         disabled={disabled}
         className={className}
-        inlineClassName="items-center gap-4"
+        inlineClassName="flex-col gap-2 sm:flex-row sm:items-center sm:gap-4"
         disabledClassName="opacity-50 cursor-not-allowed"
       >
         <FieldLabel
           as="span"
           inline
           disabled={disabled}
-          inlineClassName="min-w-[120px] shrink-0"
+          inlineClassName="sm:min-w-[120px] sm:shrink-0"
         >
           {label}
         </FieldLabel>

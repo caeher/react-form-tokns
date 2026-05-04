@@ -15,7 +15,7 @@ export const FieldWrapper = forwardRef<HTMLDivElement, FieldWrapperProps>(functi
     inline = false,
     disabled = false,
     className = '',
-    inlineClassName = 'items-start gap-4',
+    inlineClassName = 'flex-col gap-1.5 sm:flex-row sm:items-start sm:gap-4',
     stackedClassName = 'flex-col gap-1.5',
     disabledClassName = 'opacity-50 cursor-not-allowed',
     children,
@@ -27,7 +27,7 @@ export const FieldWrapper = forwardRef<HTMLDivElement, FieldWrapperProps>(functi
     <div
       ref={ref}
       {...props}
-      className={`flex ${inline ? inlineClassName : stackedClassName} ${
+      className={`flex w-full min-w-0 ${inline ? inlineClassName : stackedClassName} ${
         disabled ? disabledClassName : ''
       } ${className}`}
     >

@@ -108,11 +108,11 @@ export const InputOtpField = forwardRef<HTMLInputElement, InputOtpFieldProps>(({
 
   const content = (
     <div className={`flex flex-col gap-1.5 ${inline ? 'flex-1' : ''}`}>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5 sm:gap-2">
         {digits.map((digit, i) => (
           <div key={i} className="flex items-center">
             {i > 0 && i === length / 2 && (
-              <div className="mx-1 h-px w-3 bg-slate-700" />
+              <div className="mx-0.5 h-px w-2 bg-slate-700 sm:mx-1 sm:w-3" />
             )}
             <input
               ref={(el) => {
@@ -130,7 +130,7 @@ export const InputOtpField = forwardRef<HTMLInputElement, InputOtpFieldProps>(({
               onChange={(e) => handleChange(i, e.target.value)}
               onKeyDown={(e) => handleKeyDown(i, e)}
               onPaste={handlePaste}
-              className={`h-12 w-12 text-center text-lg font-mono font-semibold rounded-xl border bg-slate-900/50 text-slate-50 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-950 ${
+              className={`h-10 w-9 rounded-xl border bg-slate-900/50 text-center font-mono text-base font-semibold text-slate-50 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-950 sm:h-12 sm:w-12 sm:text-lg ${
                 disabled ? 'border-white/5 cursor-not-allowed opacity-50' :
                 error
                   ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/50'

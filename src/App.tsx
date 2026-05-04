@@ -96,8 +96,8 @@ function App() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 px-6 py-16 text-slate-50">
-      <div className="mx-auto max-w-6xl space-y-16">
+    <main className="min-h-screen bg-slate-950 px-4 py-10 text-slate-50 sm:px-6 sm:py-16">
+      <div className="mx-auto max-w-6xl space-y-12 sm:space-y-16">
         {/* Header Section */}
         <div className="flex flex-col gap-4 text-center">
           <p className="text-sm font-medium uppercase tracking-[0.3em] text-cyan-300">
@@ -113,7 +113,7 @@ function App() {
 
         <div className="grid gap-8 xl:grid-cols-2">
           {/* Default State Preview */}
-          <section className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl shadow-slate-950/40 backdrop-blur flex flex-col h-full">
+          <section className="flex h-full flex-col rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-slate-950/40 backdrop-blur sm:p-8">
             <div className="mb-8 border-b border-white/10 pb-4">
               <div className="flex items-center gap-2 mb-1">
                 <Layout size={20} className="text-cyan-400" />
@@ -213,7 +213,7 @@ function App() {
 
           <div className="space-y-8">
             {/* New Components Preview */}
-            <section className="rounded-3xl border border-white/10 bg-indigo-500/[0.03] p-8 shadow-2xl shadow-slate-950/40 backdrop-blur border-indigo-500/20">
+            <section className="rounded-3xl border border-white/10 border-indigo-500/20 bg-indigo-500/[0.03] p-5 shadow-2xl shadow-slate-950/40 backdrop-blur sm:p-8">
               <div className="mb-8 border-b border-white/10 pb-4">
                 <div className="flex items-center gap-2 mb-1">
                   <Layers size={20} className="text-indigo-400" />
@@ -304,7 +304,7 @@ function App() {
             </section>
 
             {/* Inline Layout Preview */}
-            <section className="rounded-3xl border border-white/10 bg-cyan-500/[0.03] p-8 shadow-2xl shadow-slate-950/40 backdrop-blur border-cyan-500/20">
+            <section className="rounded-3xl border border-white/10 border-cyan-500/20 bg-cyan-500/[0.03] p-5 shadow-2xl shadow-slate-950/40 backdrop-blur sm:p-8">
               <div className="mb-8 border-b border-white/10 pb-4">
                 <div className="flex items-center gap-2 mb-1">
                   <Layout size={20} className="text-cyan-400" />
@@ -350,7 +350,7 @@ function App() {
             </section>
 
             {/* Error State Preview */}
-            <section className="rounded-3xl border border-white/10 bg-red-500/[0.03] p-8 shadow-2xl shadow-slate-950/40 backdrop-blur border-red-500/20">
+            <section className="rounded-3xl border border-white/10 border-red-500/20 bg-red-500/[0.03] p-5 shadow-2xl shadow-slate-950/40 backdrop-blur sm:p-8">
               <div className="mb-8 border-b border-white/10 pb-4">
                 <h2 className="text-xl font-semibold text-red-400">Error States</h2>
                 <p className="text-sm text-slate-400">Visual feedback for validation failures.</p>

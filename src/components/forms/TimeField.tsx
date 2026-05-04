@@ -163,7 +163,7 @@ export const TimeField = forwardRef<HTMLInputElement, TimeFieldProps>(({
                     : 'border-white/10 hover:border-white/20 cursor-pointer'
               } ${Icon && iconPosition === 'left' ? 'pl-10' : ''} ${Icon && iconPosition === 'right' ? 'pr-10' : ''}`}
             >
-              <span className={currentTime ? (disabled ? 'text-slate-400' : 'text-slate-50') : 'text-slate-500'}>
+              <span className={`block min-w-0 truncate ${currentTime ? (disabled ? 'text-slate-400' : 'text-slate-50') : 'text-slate-500'}`}>
                 {displayTime()}
               </span>
             </div>
@@ -175,7 +175,7 @@ export const TimeField = forwardRef<HTMLInputElement, TimeFieldProps>(({
           </div>
         }
         content={() => (
-          <div className="p-4 flex gap-4 select-none">
+          <div className="flex w-[min(300px,calc(100vw-2rem))] flex-wrap gap-4 p-4 select-none">
             {renderColumn('Hrs', hours, use24Hour ? parsed.hours : (parsed.hours % 12 || 12), 'hours')}
             {renderColumn('Min', minutes, parsed.minutes, 'minutes')}
             {showSeconds && renderColumn('Sec', seconds, parsed.seconds, 'seconds')}

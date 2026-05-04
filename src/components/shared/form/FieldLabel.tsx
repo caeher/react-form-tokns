@@ -18,7 +18,7 @@ export function FieldLabel({
   inline = false,
   disabled = false,
   className = '',
-  inlineClassName = 'pt-2.5 min-w-[120px] shrink-0',
+  inlineClassName = 'pt-0 sm:pt-2.5 sm:min-w-[120px] sm:shrink-0',
   htmlFor,
   ...props
 }: FieldLabelProps) {
@@ -34,7 +34,7 @@ export function FieldLabel({
       {...componentProps}
       className={`text-sm font-medium ${
         disabled ? 'text-slate-500' : 'text-slate-200'
-      } ${inline ? inlineClassName : ''} ${className}`}
+      } ${inline ? inlineClassName : ''} ${inline ? 'w-full min-w-0' : ''} ${className}`}
     >
       {children}
     </Component>

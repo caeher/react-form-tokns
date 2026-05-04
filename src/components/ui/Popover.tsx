@@ -150,6 +150,7 @@ export const Popover = ({
               top: `${coords.top}px`,
               left: `${coords.left}px`,
               width: matchTriggerWidth ? `${coords.width}px` : 'auto',
+              maxWidth: `calc(100vw - ${VIEWPORT_MARGIN * 2}px)`,
               zIndex: 9999,
               pointerEvents: 'auto',
               opacity: ready ? 1 : 0,

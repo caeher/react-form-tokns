@@ -488,8 +488,8 @@ export const UploadField = forwardRef<HTMLInputElement, UploadFieldProps>(({
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/5 to-transparent" />
         <div className="relative flex flex-col gap-4">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex items-start gap-3">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div className="flex items-start gap-3 min-w-0">
               <div className={`flex h-11 w-11 items-center justify-center rounded-2xl border ${
                 disabled
                   ? 'border-white/5 bg-slate-900/40 text-slate-600'
@@ -499,7 +499,7 @@ export const UploadField = forwardRef<HTMLInputElement, UploadFieldProps>(({
               }`}>
                 {isServerMode ? <CloudUpload size={20} /> : <Upload size={20} />}
               </div>
-              <div className="space-y-1">
+              <div className="min-w-0 space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
                   <p className={`text-sm font-medium ${disabled ? 'text-slate-500' : 'text-slate-100'}`}>
                     Drop files here or browse
@@ -525,7 +525,7 @@ export const UploadField = forwardRef<HTMLInputElement, UploadFieldProps>(({
                 event.stopPropagation();
                 inputRef.current?.click();
               }}
-              className={`inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium transition-colors ${
+              className={`inline-flex w-full items-center justify-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium transition-colors sm:w-auto ${
                 disabled || !canAddMore
                   ? 'cursor-not-allowed border-white/5 bg-slate-900/30 text-slate-600'
                   : 'border-white/10 bg-white/5 text-slate-100 hover:border-cyan-400/30 hover:bg-cyan-400/10 hover:text-cyan-200'

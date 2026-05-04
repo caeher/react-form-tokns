@@ -174,7 +174,7 @@ export const DatetimeField = forwardRef<HTMLInputElement, DatetimeFieldProps>(({
                     : 'border-white/10 hover:border-white/20 cursor-pointer'
               } ${Icon && iconPosition === 'left' ? 'pl-10' : ''} ${Icon && iconPosition === 'right' ? 'pr-10' : ''}`}
             >
-              <span className={currentValue ? (disabled ? 'text-slate-400' : 'text-slate-50') : 'text-slate-500'}>
+              <span className={`block min-w-0 truncate ${currentValue ? (disabled ? 'text-slate-400' : 'text-slate-50') : 'text-slate-500'}`}>
                 {displayDatetime()}
               </span>
             </div>
@@ -186,7 +186,7 @@ export const DatetimeField = forwardRef<HTMLInputElement, DatetimeFieldProps>(({
           </div>
         }
         content={() => (
-          <div className="flex flex-col w-[300px]">
+          <div className="flex w-[min(300px,calc(100vw-2rem))] flex-col">
             <CalendarGrid 
               viewDate={viewDate}
               onViewDateChange={setViewDate}
@@ -195,7 +195,7 @@ export const DatetimeField = forwardRef<HTMLInputElement, DatetimeFieldProps>(({
               minDate={minDate}
               maxDate={maxDate}
             />
-            <div className="p-4 border-t border-white/5 flex justify-center gap-6 select-none bg-slate-900/30">
+            <div className="flex flex-wrap justify-center gap-4 border-t border-white/5 bg-slate-900/30 p-3 sm:p-4 select-none">
               {renderTimeColumn('Hrs', hours, use24Hour ? parsedTime.hours : (parsedTime.hours % 12 || 12), 'h')}
               {renderTimeColumn('Min', minutesArr, parsedTime.minutes, 'm')}
               {!use24Hour && renderTimeColumn('AM/PM', ['AM', 'PM'], parsedTime.hours >= 12 ? 'PM' : 'AM', 'ampm')}

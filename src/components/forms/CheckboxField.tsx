@@ -96,7 +96,7 @@ export const CheckboxField = forwardRef<HTMLInputElement, CheckboxFieldProps>(({
           as="span"
           inline
           disabled={disabled}
-          inlineClassName="pt-0.5 min-w-[120px] shrink-0"
+          inlineClassName="pt-0 sm:pt-0.5 sm:min-w-[120px] sm:shrink-0"
         >
           {label}
         </FieldLabel>
