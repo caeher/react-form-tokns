@@ -32,7 +32,9 @@ import {
   ProgressField,
   TimeField,
   DatetimeField,
-  ColorPickerField
+  ColorPickerField,
+  UploadField,
+  type UploadFieldItem
 } from './components/forms';
 
 function App() {
@@ -54,7 +56,8 @@ function App() {
     progress: 65,
     startTime: '09:00',
     meeting: '2024-07-15 14:00',
-    accentColor: '#06b6d4'
+    accentColor: '#06b6d4',
+    assets: [] as UploadFieldItem[]
   });
 
   type AppChangeEvent =
@@ -62,7 +65,7 @@ function App() {
     | {
       target: {
         name: string;
-        value: string | number | (string | number)[];
+        value: string | number | (string | number)[] | UploadFieldItem[];
         type?: string;
         checked?: boolean;
       };
@@ -277,6 +280,17 @@ function App() {
                   />
                 </div>
 
+                <UploadField
+                  label="Project Assets"
+                  name="assets"
+                  value={formData.assets}
+                  onChange={handleChange}
+                  multiple
+                  maxFiles={4}
+                  accept="image/*,.pdf,.zip,.fig"
+                  hint="Supports local selection now, and server-side upload when `uploadUrl` is provided."
+                />
+
                 <ProgressField
                   label="Setup Completion"
                   name="progress"
@@ -361,6 +375,13 @@ function App() {
                   error="Cannot exceed limit."
                   value={150}
                   max={100}
+                />
+
+                <UploadField
+                  label="Brand Assets"
+                  error="At least one approved file is required."
+                  hint="Upload logos, visual references, or product sheets."
+                  accept="image/*,.pdf"
                 />
               </div>
             </section>

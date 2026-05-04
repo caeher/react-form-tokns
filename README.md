@@ -105,6 +105,18 @@ Advanced color selection supporting Hex, RGB, HSL, and Alpha transparency.
 | `format` | `ColorFormat` | `'hex'` | `'hex' \| 'rgb' \| 'hsl' \| 'hex-alpha' \| 'rgba' \| 'hsla'` |
 | `presets` | `string[]` | (Default Palette) | Quick-select color swatches |
 
+### UploadField
+Professional file uploader with drag-and-drop, image previews, removable items, and optional automatic server upload.
+**Import:** `import { UploadField } from './components/forms'`
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `UploadFieldItem[]` | `[]` | Current selected or uploaded files |
+| `uploadUrl` | `string` | - | Enables automatic server-side upload |
+| `multiple` | `boolean` | `false` | Allows multiple file selection |
+| `maxFiles` | `number` | - | Caps how many files can be stored |
+| `previewStrategy` | `'auto' \| 'image-only' \| 'none'` | `'auto'` | Controls preview rendering |
+
 ---
 
 ## UI Primitives

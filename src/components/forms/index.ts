@@ -12,3 +12,4 @@ export * from './ProgressField';
 export * from './TimeField';
 export * from './DatetimeField';
 export * from './ColorPickerField';
+export * from './UploadField';

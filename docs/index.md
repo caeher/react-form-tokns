@@ -17,6 +17,7 @@ Welcome to the comprehensive documentation for the Form Maker component library.
 - [TimeField](TimeField.md)
 - [DatetimeField](DatetimeField.md)
 - [ColorPickerField](ColorPickerField.md)
+- [UploadField](UploadField.md)
 
 ## UI Primitives
 - [Popover](Popover.md)
