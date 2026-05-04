@@ -279,10 +279,12 @@ function App() {
 
                 <ProgressField
                   label="Setup Completion"
+                  name="progress"
                   value={formData.progress}
+                  onChange={handleChange}
                   variant="striped"
                   color="cyan"
-                  hint="Finalizing environment..."
+                  hint="Arrastra la barra para ajustar el progreso."
                 />
               </div>
             </section>

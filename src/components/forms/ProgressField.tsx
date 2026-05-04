@@ -1,22 +1,31 @@
-import { useId } from 'react';
+import { forwardRef, useId, useState, useEffect, type ChangeEvent, type InputHTMLAttributes } from 'react';
 
-export interface ProgressFieldProps {
+export interface ProgressFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size' | 'onChange' | 'value' | 'defaultValue' | 'min' | 'max' | 'step'> {
   id?: string;
   label?: string;
   hint?: string;
   error?: string;
   inline?: boolean;
   disabled?: boolean;
-  className?: string;
   value?: number;
+  defaultValue?: number;
+  min?: number;
   max?: number;
+  step?: number;
   showValue?: boolean;
   variant?: 'default' | 'gradient' | 'striped';
   size?: 'sm' | 'md' | 'lg';
   color?: 'cyan' | 'green' | 'amber' | 'red';
+  interactive?: boolean;
+  onChange?: (event: { target: { name: string; value: number }; persist: () => void }) => void;
 }
 
-export const ProgressField = ({
+const clampValue = (nextValue: number, min: number, max: number) => {
+  if (!Number.isFinite(nextValue)) return min;
+  return Math.min(max, Math.max(min, nextValue));
+};
+
+export const ProgressField = forwardRef<HTMLInputElement, ProgressFieldProps>(({
   id,
   label,
   hint,
@@ -24,17 +33,34 @@ export const ProgressField = ({
   inline = false,
   disabled = false,
   className = '',
-  value = 0,
+  value,
+  defaultValue,
+  min = 0,
   max = 100,
+  step = 1,
   showValue = true,
   variant = 'default',
   size = 'md',
   color = 'cyan',
-}: ProgressFieldProps) => {
+  interactive,
+  onChange,
+  name,
+  ...props
+}, ref) => {
   const generatedId = useId();
   const progressId = id || generatedId;
+  const safeMax = max <= min ? min + 1 : max;
+  const isInteractive = interactive ?? !!onChange;
+  const [internalValue, setInternalValue] = useState(() => clampValue(defaultValue ?? value ?? min, min, safeMax));
+  const currentValue = value !== undefined ? clampValue(value, min, safeMax) : internalValue;
 
-  const percentage = Math.min(100, Math.max(0, (value / max) * 100));
+  useEffect(() => {
+    if (value === undefined) {
+      setInternalValue(clampValue(defaultValue ?? min, min, safeMax));
+    }
+  }, [defaultValue, min, safeMax, value]);
+
+  const percentage = ((currentValue - min) / (safeMax - min)) * 100;
 
   const colorClasses = {
     cyan: 'bg-cyan-500',
@@ -59,19 +85,61 @@ export const ProgressField = ({
   const barContent = (
     <div className={`flex flex-col gap-1.5 ${inline ? 'flex-1' : ''}`}>
       <div className="flex items-center gap-3">
-        <div 
-          className={`relative flex-1 ${sizeClasses[size]} rounded-full bg-slate-800 border border-white/5 overflow-hidden`}
-          role="progressbar"
-          aria-valuenow={value}
-          aria-valuemin={0}
-          aria-valuemax={max}
+        <div
+          className={`relative flex-1 ${sizeClasses[size]} rounded-full bg-slate-800 border border-white/5 overflow-hidden ${isInteractive && !disabled ? 'cursor-pointer' : ''}`}
+          role={isInteractive ? undefined : 'progressbar'}
+          aria-valuenow={isInteractive ? undefined : currentValue}
+          aria-valuemin={isInteractive ? undefined : min}
+          aria-valuemax={isInteractive ? undefined : safeMax}
         >
-          <div 
+          {isInteractive && (
+            <input
+              ref={ref}
+              id={progressId}
+              type="range"
+              name={name}
+              min={min}
+              max={safeMax}
+              step={step}
+              value={currentValue}
+              disabled={disabled}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                const nextValue = clampValue(event.currentTarget.valueAsNumber, min, safeMax);
+
+                if (value === undefined) {
+                  setInternalValue(nextValue);
+                }
+
+                onChange?.({
+                  target: {
+                    name: name || progressId,
+                    value: nextValue,
+                  },
+                  persist: () => {},
+                });
+              }}
+              aria-invalid={!!error}
+              aria-describedby={error ? `${progressId}-error` : hint ? `${progressId}-hint` : undefined}
+              className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0 disabled:cursor-not-allowed"
+              {...props}
+            />
+          )}
+          <div
+            aria-hidden="true"
             className={`absolute top-0 left-0 h-full transition-all duration-500 ease-out ${
               variant === 'gradient' ? gradientClasses[color] : colorClasses[color]
             } ${variant === 'striped' ? 'progress-striped' : ''}`}
             style={{ width: `${percentage}%` }}
           />
+          {isInteractive && (
+            <span
+              aria-hidden="true"
+              className={`absolute top-1/2 z-0 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/30 bg-white shadow-lg shadow-slate-950/40 transition-all ${
+                disabled ? 'opacity-60' : ''
+              }`}
+              style={{ left: `${percentage}%` }}
+            />
+          )}
         </div>
         {showValue && (
           <span className="text-xs font-mono font-medium text-slate-400 min-w-[3ch] text-right">
@@ -95,11 +163,13 @@ export const ProgressField = ({
   return (
     <div className={`flex ${inline ? 'items-start gap-4' : 'flex-col gap-1.5'} ${disabled ? 'opacity-50' : ''} ${className}`}>
       {label && (
-        <label className={`text-sm font-medium ${disabled ? 'text-slate-500' : 'text-slate-200'} ${inline ? 'pt-0.5 min-w-[120px] shrink-0' : ''}`}>
+        <label htmlFor={isInteractive ? progressId : undefined} className={`text-sm font-medium ${disabled ? 'text-slate-500' : 'text-slate-200'} ${inline ? 'pt-0.5 min-w-[120px] shrink-0' : ''}`}>
           {label}
         </label>
       )}
       {barContent}
     </div>
   );
-};
+});
+
+ProgressField.displayName = 'ProgressField';
