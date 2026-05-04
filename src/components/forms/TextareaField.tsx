@@ -1,4 +1,10 @@
 import { useId, forwardRef, TextareaHTMLAttributes, ElementType } from 'react';
+import {
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+  FieldWrapper,
+} from '../shared/form';
 
 export interface TextareaFieldProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
@@ -52,28 +58,20 @@ export const TextareaField = forwardRef<HTMLTextAreaElement, TextareaFieldProps>
           {...props}
         />
       </div>
-      {hint && !error && (
-        <p id={`${textareaId}-hint`} className="text-xs text-slate-400">
-          {hint}
-        </p>
-      )}
-      {error && (
-        <p id={`${textareaId}-error`} className="text-xs font-medium text-red-400">
-          {error}
-        </p>
-      )}
+      <FieldDescription id={`${textareaId}-hint`} disabled={disabled} hidden={!!error}>
+        {hint}
+      </FieldDescription>
+      <FieldError id={`${textareaId}-error`}>{error}</FieldError>
     </div>
   );
 
   return (
-    <div className={`flex ${inline ? 'items-start gap-4' : 'flex-col gap-1.5'} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}>
-      {label && (
-        <label htmlFor={textareaId} className={`text-sm font-medium ${disabled ? 'text-slate-500' : 'text-slate-200'} ${inline ? 'pt-2.5 min-w-[120px] shrink-0' : ''}`}>
-          {label}
-        </label>
-      )}
+    <FieldWrapper inline={inline} disabled={disabled} className={className}>
+      <FieldLabel htmlFor={textareaId} inline={inline} disabled={disabled}>
+        {label}
+      </FieldLabel>
       {inputContent}
-    </div>
+    </FieldWrapper>
   );
 });
 

@@ -1,5 +1,11 @@
 import { useId, forwardRef, useState, SelectHTMLAttributes, ElementType, ReactNode, ChangeEvent } from 'react';
 import { Popover } from '../ui/Popover';
+import {
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+  FieldWrapper,
+} from '../shared/form';
 
 export interface SelectOption {
   label: string;
@@ -136,28 +142,20 @@ export const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(({
         </select>
       </div>
 
-      {hint && !error && (
-        <p id={`${selectId}-hint`} className="text-xs text-slate-400">
-          {hint}
-        </p>
-      )}
-      {error && (
-        <p id={`${selectId}-error`} className="text-xs font-medium text-red-400">
-          {error}
-        </p>
-      )}
+      <FieldDescription id={`${selectId}-hint`} disabled={disabled} hidden={!!error}>
+        {hint}
+      </FieldDescription>
+      <FieldError id={`${selectId}-error`}>{error}</FieldError>
     </div>
   );
 
   return (
-    <div className={`flex ${inline ? 'items-start gap-4' : 'flex-col gap-1.5'} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}>
-      {label && (
-        <label htmlFor={selectId} className={`text-sm font-medium ${disabled ? 'text-slate-500' : 'text-slate-200'} ${inline ? 'pt-2.5 min-w-[120px] shrink-0' : ''}`}>
-          {label}
-        </label>
-      )}
+    <FieldWrapper inline={inline} disabled={disabled} className={className}>
+      <FieldLabel htmlFor={selectId} inline={inline} disabled={disabled}>
+        {label}
+      </FieldLabel>
       {selectContent}
-    </div>
+    </FieldWrapper>
   );
 });
 

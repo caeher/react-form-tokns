@@ -5,6 +5,7 @@ export * from '../components/forms';
 export { Popover } from '../components/ui/Popover';
 export { Portal } from '../components/ui/Portal';
 export { Tooltip } from '../components/ui/Tooltip';
+export * from '../components/shared';
 
 // Utilidades
 export { parseDateValue } from '../components/forms/utils/parseDateValue';

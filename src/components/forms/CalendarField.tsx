@@ -8,6 +8,12 @@ import {
   today, 
 } from '@internationalized/date';
 import { Popover } from '../ui/Popover';
+import {
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+  FieldWrapper,
+} from '../shared/form';
 import { parseDateValue } from './utils/parseDateValue';
 import { CalendarGrid } from './utils/CalendarGrid';
 
@@ -131,28 +137,20 @@ export const CalendarField = forwardRef<HTMLInputElement, CalendarFieldProps>(({
         {...props}
       />
 
-      {hint && !error && (
-        <p id={`${calendarId}-hint`} className={`text-xs ${disabled ? 'text-slate-600' : 'text-slate-400'}`}>
-          {hint}
-        </p>
-      )}
-      {error && (
-        <p id={`${calendarId}-error`} className="text-xs font-medium text-red-400">
-          {error}
-        </p>
-      )}
+      <FieldDescription id={`${calendarId}-hint`} disabled={disabled} hidden={!!error}>
+        {hint}
+      </FieldDescription>
+      <FieldError id={`${calendarId}-error`}>{error}</FieldError>
     </div>
   );
 
   return (
-    <div className={`flex ${inline ? 'items-start gap-4' : 'flex-col gap-1.5'} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}>
-      {label && (
-        <label htmlFor={calendarId} className={`text-sm font-medium ${disabled ? 'text-slate-500' : 'text-slate-200'} ${inline ? 'pt-2.5 min-w-[120px] shrink-0' : ''}`}>
-          {label}
-        </label>
-      )}
+    <FieldWrapper inline={inline} disabled={disabled} className={className}>
+      <FieldLabel htmlFor={calendarId} inline={inline} disabled={disabled}>
+        {label}
+      </FieldLabel>
       {calendarContent}
-    </div>
+    </FieldWrapper>
   );
 });
 

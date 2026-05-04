@@ -1,4 +1,10 @@
 import { forwardRef, useId, useState, useEffect, type ChangeEvent, type InputHTMLAttributes } from 'react';
+import {
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+  FieldWrapper,
+} from '../shared/form';
 
 export interface ProgressFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size' | 'onChange' | 'value' | 'defaultValue' | 'min' | 'max' | 'step'> {
   id?: string;
@@ -147,28 +153,30 @@ export const ProgressField = forwardRef<HTMLInputElement, ProgressFieldProps>(({
           </span>
         )}
       </div>
-      {hint && !error && (
-        <p id={`${progressId}-hint`} className="text-xs text-slate-400">
-          {hint}
-        </p>
-      )}
-      {error && (
-        <p id={`${progressId}-error`} className="text-xs font-medium text-red-400">
-          {error}
-        </p>
-      )}
+      <FieldDescription id={`${progressId}-hint`} disabled={disabled} hidden={!!error}>
+        {hint}
+      </FieldDescription>
+      <FieldError id={`${progressId}-error`}>{error}</FieldError>
     </div>
   );
 
   return (
-    <div className={`flex ${inline ? 'items-start gap-4' : 'flex-col gap-1.5'} ${disabled ? 'opacity-50' : ''} ${className}`}>
-      {label && (
-        <label htmlFor={isInteractive ? progressId : undefined} className={`text-sm font-medium ${disabled ? 'text-slate-500' : 'text-slate-200'} ${inline ? 'pt-0.5 min-w-[120px] shrink-0' : ''}`}>
-          {label}
-        </label>
-      )}
+    <FieldWrapper
+      inline={inline}
+      disabled={disabled}
+      className={className}
+      disabledClassName="opacity-50"
+    >
+      <FieldLabel
+        htmlFor={isInteractive ? progressId : undefined}
+        inline={inline}
+        disabled={disabled}
+        inlineClassName="pt-0.5 min-w-[120px] shrink-0"
+      >
+        {label}
+      </FieldLabel>
       {barContent}
-    </div>
+    </FieldWrapper>
   );
 });
 

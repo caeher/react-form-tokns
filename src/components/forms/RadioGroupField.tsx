@@ -1,4 +1,10 @@
 import { useId, forwardRef, InputHTMLAttributes, ElementType } from 'react';
+import {
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+  FieldWrapper,
+} from '../shared/form';
 
 export interface RadioOption {
   label: string;
@@ -77,31 +83,41 @@ export const RadioGroupField = forwardRef<HTMLInputElement, RadioGroupFieldProps
         })}
       </div>
 
-      {hint && !error && (
-        <p id={`${groupId}-hint`} className={`text-xs mt-1 ${disabled ? 'text-slate-600' : 'text-slate-400'}`}>
-          {hint}
-        </p>
-      )}
-      {error && (
-        <p id={`${groupId}-error`} className="text-xs font-medium text-red-400 mt-1">
-          {error}
-        </p>
-      )}
+      <FieldDescription id={`${groupId}-hint`} disabled={disabled} hidden={!!error} className="mt-1">
+        {hint}
+      </FieldDescription>
+      <FieldError id={`${groupId}-error`} className="mt-1">
+        {error}
+      </FieldError>
     </div>
   );
 
   return (
-    <div className={`flex ${inline ? 'items-start gap-4' : 'flex-col gap-2'} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`} role="radiogroup" aria-labelledby={label ? `${groupId}-label` : undefined}>
+    <FieldWrapper
+      inline={inline}
+      disabled={disabled}
+      className={className}
+      stackedClassName="flex-col gap-2"
+      disabledClassName="opacity-50 cursor-not-allowed"
+      role="radiogroup"
+      aria-labelledby={label ? `${groupId}-label` : undefined}
+    >
       {label && (
         <div className={`flex items-center gap-2 mb-1 ${inline ? 'pt-0.5 min-w-[120px] shrink-0' : ''} ${iconPosition === 'right' ? 'flex-row-reverse justify-end' : ''}`}>
           {Icon && <Icon size={16} className={disabled ? 'text-slate-600' : 'text-slate-400'} />}
-          <span id={`${groupId}-label`} className={`text-sm font-medium ${disabled ? 'text-slate-500' : 'text-slate-200'}`}>
+          <FieldLabel
+            as="span"
+            id={`${groupId}-label`}
+            disabled={disabled}
+            className="mb-0"
+            inline={false}
+          >
             {label}
-          </span>
+          </FieldLabel>
         </div>
       )}
       {content}
-    </div>
+    </FieldWrapper>
   );
 });
 

@@ -1,4 +1,10 @@
 import { useId, forwardRef, useState, useRef, useEffect, ClipboardEvent, KeyboardEvent, RefObject } from 'react';
+import {
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+  FieldWrapper,
+} from '../shared/form';
 
 export interface InputOtpFieldProps {
   id?: string;
@@ -134,28 +140,25 @@ export const InputOtpField = forwardRef<HTMLInputElement, InputOtpFieldProps>(({
           </div>
         ))}
       </div>
-      {hint && !error && (
-        <p id={`${otpId}-hint`} className="text-xs text-slate-400">
-          {hint}
-        </p>
-      )}
-      {error && (
-        <p id={`${otpId}-error`} className="text-xs font-medium text-red-400">
-          {error}
-        </p>
-      )}
+      <FieldDescription id={`${otpId}-hint`} disabled={disabled} hidden={!!error}>
+        {hint}
+      </FieldDescription>
+      <FieldError id={`${otpId}-error`}>{error}</FieldError>
     </div>
   );
 
   return (
-    <div className={`flex ${inline ? 'items-start gap-4' : 'flex-col gap-1.5'} ${disabled ? 'opacity-50' : ''} ${className}`}>
-      {label && (
-        <label className={`text-sm font-medium ${disabled ? 'text-slate-500' : 'text-slate-200'} ${inline ? 'pt-2.5 min-w-[120px] shrink-0' : ''}`}>
-          {label}
-        </label>
-      )}
+    <FieldWrapper
+      inline={inline}
+      disabled={disabled}
+      className={className}
+      disabledClassName="opacity-50"
+    >
+      <FieldLabel as="span" inline={inline} disabled={disabled}>
+        {label}
+      </FieldLabel>
       {content}
-    </div>
+    </FieldWrapper>
   );
 });
 

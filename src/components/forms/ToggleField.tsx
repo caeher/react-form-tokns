@@ -1,5 +1,6 @@
 import { useId, forwardRef, ElementType } from 'react';
 import { Tooltip } from '../ui/Tooltip';
+import { FieldError, FieldWrapper } from '../shared/form';
 
 export interface ToggleOption {
   value: string | number;
@@ -75,7 +76,7 @@ export const ToggleField = forwardRef<HTMLDivElement, ToggleFieldProps>(({
   };
 
   return (
-    <div className={`flex flex-col gap-1.5 ${className}`} ref={ref}>
+    <FieldWrapper className={className} ref={ref}>
       <div className={`inline-flex rounded-xl border border-white/10 bg-slate-900/30 overflow-hidden w-fit ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}>
         {options.map((option, index) => {
           const isActive = value.includes(option.value);
@@ -107,18 +108,14 @@ export const ToggleField = forwardRef<HTMLDivElement, ToggleFieldProps>(({
         })}
       </div>
       
-      {error && (
-        <p className="text-xs font-medium text-red-400">
-          {error}
-        </p>
-      )}
+      <FieldError>{error}</FieldError>
 
       <input 
         type="hidden" 
         name={name || toggleId} 
         value={JSON.stringify(value)} 
       />
-    </div>
+    </FieldWrapper>
   );
 });
 

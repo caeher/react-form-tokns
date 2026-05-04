@@ -1,4 +1,10 @@
 import { useId, forwardRef, InputHTMLAttributes, ElementType } from 'react';
+import {
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+  FieldWrapper,
+} from '../shared/form';
 
 export interface SwitchFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string;
@@ -35,8 +41,18 @@ export const SwitchField = forwardRef<HTMLInputElement, SwitchFieldProps>(({
             {Icon && <Icon size={16} className={disabled ? 'text-slate-600' : 'text-slate-400'} />}
             {label && <span className={`text-sm font-medium ${disabled ? 'text-slate-500' : 'text-slate-200'}`}>{label}</span>}
           </div>
-          {hint && !error && <span id={`${switchId}-hint`} className={`text-xs mt-0.5 ${disabled ? 'text-slate-600' : 'text-slate-400'}`}>{hint}</span>}
-          {error && <span id={`${switchId}-error`} className="text-xs font-medium text-red-400 mt-0.5">{error}</span>}
+          <FieldDescription
+            as="span"
+            id={`${switchId}-hint`}
+            disabled={disabled}
+            hidden={!!error}
+            className="mt-0.5"
+          >
+            {hint}
+          </FieldDescription>
+          <FieldError as="span" id={`${switchId}-error`} className="mt-0.5">
+            {error}
+          </FieldError>
         </div>
       )}
 
@@ -68,23 +84,36 @@ export const SwitchField = forwardRef<HTMLInputElement, SwitchFieldProps>(({
 
   if (inline) {
     return (
-      <div className={`flex items-center gap-4 ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}>
-        {label && (
-          <span className={`text-sm font-medium min-w-[120px] shrink-0 ${disabled ? 'text-slate-500' : 'text-slate-200'}`}>
-            {label}
-          </span>
-        )}
+      <FieldWrapper
+        inline
+        disabled={disabled}
+        className={className}
+        inlineClassName="items-center gap-4"
+        disabledClassName="opacity-50 cursor-not-allowed"
+      >
+        <FieldLabel
+          as="span"
+          inline
+          disabled={disabled}
+          inlineClassName="min-w-[120px] shrink-0"
+        >
+          {label}
+        </FieldLabel>
         {content}
-      </div>
+      </FieldWrapper>
     );
   }
 
   return (
-    <div className={`flex flex-col gap-1.5 ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}>
+    <FieldWrapper
+      disabled={disabled}
+      className={className}
+      disabledClassName="opacity-50 cursor-not-allowed"
+    >
       <label htmlFor={switchId} className={disabled ? 'cursor-not-allowed' : 'cursor-pointer'}>
         {content}
       </label>
-    </div>
+    </FieldWrapper>
   );
 });
 

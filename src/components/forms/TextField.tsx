@@ -1,4 +1,10 @@
 import { useId, forwardRef, InputHTMLAttributes, ElementType } from 'react';
+import {
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+  FieldWrapper,
+} from '../shared/form';
 
 export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -55,28 +61,20 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({
           </div>
         )}
       </div>
-      {hint && !error && (
-        <p id={`${inputId}-hint`} className="text-xs text-slate-400">
-          {hint}
-        </p>
-      )}
-      {error && (
-        <p id={`${inputId}-error`} className="text-xs font-medium text-red-400">
-          {error}
-        </p>
-      )}
+      <FieldDescription id={`${inputId}-hint`} disabled={disabled} hidden={!!error}>
+        {hint}
+      </FieldDescription>
+      <FieldError id={`${inputId}-error`}>{error}</FieldError>
     </div>
   );
 
   return (
-    <div className={`flex ${inline ? 'items-start gap-4' : 'flex-col gap-1.5'} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}>
-      {label && (
-        <label htmlFor={inputId} className={`text-sm font-medium ${disabled ? 'text-slate-500' : 'text-slate-200'} ${inline ? 'pt-2.5 min-w-[120px] shrink-0' : ''}`}>
-          {label}
-        </label>
-      )}
+    <FieldWrapper inline={inline} disabled={disabled} className={className}>
+      <FieldLabel htmlFor={inputId} inline={inline} disabled={disabled}>
+        {label}
+      </FieldLabel>
       {inputContent}
-    </div>
+    </FieldWrapper>
   );
 });
 

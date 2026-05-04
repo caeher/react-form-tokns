@@ -1,5 +1,11 @@
 import { useId, forwardRef, InputHTMLAttributes, ElementType } from 'react';
 import { Check as CheckIcon } from 'lucide-react';
+import {
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+  FieldWrapper,
+} from '../shared/form';
 
 export interface CheckboxFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string;
@@ -59,36 +65,54 @@ export const CheckboxField = forwardRef<HTMLInputElement, CheckboxFieldProps>(({
               {Icon && <Icon size={16} className={disabled ? 'text-slate-600' : 'text-slate-400'} />}
               {label && <span className={`text-sm font-medium ${disabled ? 'text-slate-500' : 'text-slate-200'}`}>{label}</span>}
             </div>
-            {hint && !error && <span id={`${checkboxId}-hint`} className={`text-xs mt-0.5 ${disabled ? 'text-slate-600' : 'text-slate-400'}`}>{hint}</span>}
+            <FieldDescription
+              as="span"
+              id={`${checkboxId}-hint`}
+              disabled={disabled}
+              hidden={!!error}
+              className="mt-0.5"
+            >
+              {hint}
+            </FieldDescription>
           </div>
         )}
       </label>
       
-      {error && (
-        <p id={`${checkboxId}-error`} className="text-xs font-medium text-red-400 pl-8">
-          {error}
-        </p>
-      )}
+      <FieldError id={`${checkboxId}-error`} className="pl-8">
+        {error}
+      </FieldError>
     </div>
   );
 
   if (inline) {
     return (
-      <div className={`flex items-start gap-4 ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}>
-        {label && (
-          <span className={`text-sm font-medium pt-0.5 min-w-[120px] shrink-0 ${disabled ? 'text-slate-500' : 'text-slate-200'}`}>
-            {label}
-          </span>
-        )}
+      <FieldWrapper
+        inline
+        disabled={disabled}
+        className={className}
+        disabledClassName="opacity-50 cursor-not-allowed"
+      >
+        <FieldLabel
+          as="span"
+          inline
+          disabled={disabled}
+          inlineClassName="pt-0.5 min-w-[120px] shrink-0"
+        >
+          {label}
+        </FieldLabel>
         {content}
-      </div>
+      </FieldWrapper>
     );
   }
 
   return (
-    <div className={`flex flex-col gap-1.5 ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}>
+    <FieldWrapper
+      disabled={disabled}
+      className={className}
+      disabledClassName="opacity-50 cursor-not-allowed"
+    >
       {content}
-    </div>
+    </FieldWrapper>
   );
 });
 

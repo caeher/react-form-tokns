@@ -6,6 +6,12 @@ import {
   today, 
 } from '@internationalized/date';
 import { Popover } from '../ui/Popover';
+import {
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+  FieldWrapper,
+} from '../shared/form';
 import { parseDateValue } from './utils/parseDateValue';
 import { parseTimeValue } from './utils/parseTimeValue';
 import { CalendarGrid } from './utils/CalendarGrid';
@@ -206,28 +212,25 @@ export const DatetimeField = forwardRef<HTMLInputElement, DatetimeFieldProps>(({
         value={currentValue}
       />
 
-      {hint && !error && (
-        <p id={`${datetimeId}-hint`} className={`text-xs ${disabled ? 'text-slate-600' : 'text-slate-400'}`}>
-          {hint}
-        </p>
-      )}
-      {error && (
-        <p id={`${datetimeId}-error`} className="text-xs font-medium text-red-400">
-          {error}
-        </p>
-      )}
+      <FieldDescription id={`${datetimeId}-hint`} disabled={disabled} hidden={!!error}>
+        {hint}
+      </FieldDescription>
+      <FieldError id={`${datetimeId}-error`}>{error}</FieldError>
     </div>
   );
 
   return (
-    <div className={`flex ${inline ? 'items-start gap-4' : 'flex-col gap-1.5'} ${disabled ? 'opacity-50' : ''} ${className}`}>
-      {label && (
-        <label htmlFor={datetimeId} className={`text-sm font-medium ${disabled ? 'text-slate-500' : 'text-slate-200'} ${inline ? 'pt-2.5 min-w-[120px] shrink-0' : ''}`}>
-          {label}
-        </label>
-      )}
+    <FieldWrapper
+      inline={inline}
+      disabled={disabled}
+      className={className}
+      disabledClassName="opacity-50"
+    >
+      <FieldLabel htmlFor={datetimeId} inline={inline} disabled={disabled}>
+        {label}
+      </FieldLabel>
       {datetimeContent}
-    </div>
+    </FieldWrapper>
   );
 });
 
