@@ -16,6 +16,7 @@ import {
   FieldLabel,
   FieldWrapper,
 } from '../shared/form';
+import { getFieldDividerClass, getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface PhoneCountryOption {
   code: string;
@@ -229,13 +230,11 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(({
   const phoneContent = (
     <div className={`flex min-w-0 flex-col gap-1.5 ${inline ? 'flex-1' : ''}`}>
       <div
-        className={`flex overflow-hidden rounded-xl border bg-slate-900/50 transition-all focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-slate-950 ${
-          disabled
-            ? 'border-white/5'
-            : error
-              ? 'border-red-500/50 focus-within:border-red-500 focus-within:ring-red-500/50'
-              : 'border-white/10 hover:border-white/20 focus-within:border-cyan-400 focus-within:ring-cyan-500/50'
-        }`}
+        className={`flex overflow-hidden rounded-xl ${getFieldSurfaceClass({
+          disabled,
+          error: !!error,
+          focusMode: 'focus-within',
+        })}`}
       >
         <div className="w-36 shrink-0" onMouseDown={(event) => event.stopPropagation()}>
           <Popover
@@ -245,11 +244,11 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(({
               <div
                 className={`flex h-11 items-center justify-between border-r bg-slate-900/50 px-3 text-sm ${
                   disabled
-                    ? 'cursor-not-allowed border-white/5 text-slate-600'
+                    ? 'cursor-not-allowed text-slate-600'
                     : error
-                      ? 'border-red-500/50 text-slate-100'
-                      : 'border-white/10 text-slate-100'
-                }`}
+                      ? 'text-slate-100'
+                      : 'text-slate-100'
+                } ${getFieldDividerClass({ disabled, error: !!error })}`}
               >
                 <div className="min-w-0">
                   <p className="truncate font-medium">{selectedCountry.code}</p>
@@ -270,7 +269,7 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(({
                       value={countryQuery}
                       onChange={(event) => setCountryQuery(event.target.value)}
                       placeholder={countrySearchPlaceholder}
-                      className="w-full rounded-lg border border-white/10 bg-slate-950/70 py-2 pl-9 pr-3 text-sm text-slate-100 placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none"
+                      className={`w-full rounded-lg py-2 pl-9 pr-3 text-sm text-slate-100 placeholder:text-slate-500 ${getFieldSurfaceClass({})}`}
                     />
                   </div>
                 </div>

@@ -8,6 +8,7 @@ import {
   FieldWrapper,
 } from '../shared/form';
 import type { ComboboxOption } from './ComboboxField';
+import { getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface MultiSelectFieldProps
   extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'value' | 'defaultValue'> {
@@ -162,13 +163,13 @@ export const MultiSelectField = forwardRef<HTMLSelectElement, MultiSelectFieldPr
           disabled={disabled}
           trigger={
             <div
-              className={`flex min-h-11 w-full items-center justify-between rounded-xl border bg-slate-900/50 px-4 py-2.5 text-left text-sm transition-all ${
-                disabled
-                  ? 'cursor-not-allowed border-white/5 text-slate-600'
-                  : error
-                    ? 'border-red-500/50 text-slate-100 hover:border-red-500'
-                    : 'border-white/10 text-slate-100 hover:border-white/20'
-              }`}
+              className={`flex min-h-11 w-full items-center justify-between rounded-xl px-4 py-2.5 text-left text-sm ${
+                disabled ? 'text-slate-600' : 'text-slate-100'
+              } ${getFieldSurfaceClass({
+                disabled,
+                error: !!error,
+                focusMode: 'group-focus',
+              })}`}
             >
               <div className="min-w-0 flex-1">{triggerContent}</div>
               <div className="ml-3 flex shrink-0 items-center gap-2">
@@ -201,7 +202,7 @@ export const MultiSelectField = forwardRef<HTMLSelectElement, MultiSelectFieldPr
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
                     placeholder={searchPlaceholder}
-                    className="w-full rounded-lg border border-white/10 bg-slate-950/70 py-2 pl-9 pr-3 text-sm text-slate-100 placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none"
+                    className={`w-full rounded-lg py-2 pl-9 pr-3 text-sm text-slate-100 placeholder:text-slate-500 ${getFieldSurfaceClass({})}`}
                   />
                 </div>
                 <div className="mt-2 flex items-center justify-between text-xs text-slate-500">

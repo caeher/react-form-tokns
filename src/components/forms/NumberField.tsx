@@ -6,6 +6,7 @@ import {
   FieldLabel,
   FieldWrapper,
 } from '../shared/form';
+import { getFieldDividerClass, getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface NumberFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'onChange'> {
   label?: string;
@@ -90,13 +91,11 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(({
   const inputContent = (
     <div className={`flex min-w-0 flex-col gap-1.5 ${inline ? 'flex-1' : ''}`}>
       <div
-        className={`flex overflow-hidden rounded-xl border bg-slate-900/50 transition-all focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-slate-950 ${
-          disabled
-            ? 'border-white/5'
-            : error
-              ? 'border-red-500/50 focus-within:border-red-500 focus-within:ring-red-500/50'
-              : 'border-white/10 hover:border-white/20 focus-within:border-cyan-400 focus-within:ring-cyan-500/50'
-        }`}
+        className={`flex overflow-hidden rounded-xl ${getFieldSurfaceClass({
+          disabled,
+          error: !!error,
+          focusMode: 'focus-within',
+        })}`}
       >
         <button
           type="button"
@@ -106,11 +105,11 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(({
           onPointerLeave={stopTimer}
           className={`flex h-11 w-11 items-center justify-center border-r transition-colors ${
             disabled 
-              ? 'cursor-not-allowed border-white/5 bg-slate-900/30 text-slate-600' 
+              ? 'cursor-not-allowed bg-slate-900/30 text-slate-600' 
               : error
-                ? 'border-red-500/50 bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
-                : 'border-white/10 bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
-          }`}
+                ? 'bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
+                : 'bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
+          } ${getFieldDividerClass({ disabled, error: !!error })}`}
         >
           <Minus size={18} />
         </button>
@@ -138,11 +137,11 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(({
           onPointerLeave={stopTimer}
           className={`flex h-11 w-11 items-center justify-center border-l transition-colors ${
             disabled 
-              ? 'cursor-not-allowed border-white/5 bg-slate-900/30 text-slate-600' 
+              ? 'cursor-not-allowed bg-slate-900/30 text-slate-600' 
               : error
-                ? 'border-red-500/50 bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
-                : 'border-white/10 bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
-          }`}
+                ? 'bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
+                : 'bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
+          } ${getFieldDividerClass({ disabled, error: !!error })}`}
         >
           <Plus size={18} />
         </button>

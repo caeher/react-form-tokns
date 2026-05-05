@@ -28,6 +28,7 @@ import {
   FieldLabel,
   FieldWrapper,
 } from '../shared/form';
+import { getFieldSurfaceClass } from './utils/fieldStyles';
 
 export type UploadFieldStatus = 'idle' | 'uploading' | 'uploaded' | 'error';
 
@@ -476,14 +477,17 @@ export const UploadField = forwardRef<HTMLInputElement, UploadFieldProps>(({
           setIsDragging(false);
           await processFiles(Array.from(event.dataTransfer.files ?? []));
         }}
-        className={`group relative overflow-hidden rounded-2xl border border-dashed px-5 py-5 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-950 ${
-          disabled
-            ? 'cursor-not-allowed border-white/5 bg-slate-900/30 opacity-50'
-            : error
-              ? 'border-red-500/50 bg-red-500/5 focus:ring-red-500/40'
-              : isDragging
-                ? 'border-cyan-400/70 bg-cyan-500/10 shadow-[0_0_0_1px_rgba(34,211,238,0.2)] focus:ring-cyan-500/50'
-                : 'border-white/10 bg-slate-900/50 hover:border-white/20 hover:bg-slate-900/70 focus:ring-cyan-500/50'
+        className={`group relative overflow-hidden rounded-2xl border-dashed px-5 py-5 ${getFieldSurfaceClass({
+          disabled,
+          error: !!error,
+        })} ${
+          isDragging && !disabled && !error
+            ? 'border-cyan-400 bg-cyan-500/10 shadow-[0_0_0_1px_rgba(34,211,238,0.2)] focus:border-cyan-400'
+            : disabled
+              ? 'bg-slate-900/30 opacity-50'
+              : error
+                ? 'bg-red-500/5'
+                : 'hover:bg-slate-900/70'
         }`}
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/5 to-transparent" />

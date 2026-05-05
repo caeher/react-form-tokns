@@ -50,7 +50,7 @@ export const CheckboxField = forwardRef<HTMLInputElement, CheckboxFieldProps>(({
             disabled ? 'border-white/5 opacity-50' :
             error
               ? 'border-red-500/50 peer-checked:border-red-500 peer-checked:bg-red-500 peer-focus-visible:ring-red-500/50'
-              : 'border-white/20 group-hover:border-white/40 peer-checked:border-cyan-500 peer-checked:bg-cyan-500 peer-focus-visible:ring-cyan-500/50'
+              : 'border-white/10 group-hover:border-white/20 peer-checked:border-cyan-500 peer-checked:bg-cyan-500 peer-focus-visible:ring-cyan-500/50'
           }`}>
             <CheckIcon
               className="pointer-events-none h-3.5 w-3.5 opacity-0 transition-opacity text-slate-950"

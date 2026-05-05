@@ -6,6 +6,7 @@ import {
   FieldLabel,
   FieldWrapper,
 } from '../shared/form';
+import { getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface SelectOption {
   label: string;
@@ -79,13 +80,13 @@ export const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(({
           disabled={disabled}
           trigger={
             <div
-              className={`w-full flex items-center justify-between rounded-xl border bg-slate-900/50 px-4 py-2.5 text-sm transition-all ${
-                disabled 
-                  ? 'cursor-not-allowed border-white/5 pointer-events-none' 
-                  : error
-                    ? 'border-red-500/50 hover:border-red-500 cursor-pointer'
-                    : 'border-white/10 hover:border-white/20 cursor-pointer'
-              }`}
+              className={`w-full flex items-center justify-between rounded-xl px-4 py-2.5 text-sm ${
+                disabled ? 'pointer-events-none' : 'cursor-pointer'
+              } ${getFieldSurfaceClass({
+                disabled,
+                error: !!error,
+                focusMode: 'group-focus',
+              })}`}
             >
               <div className={`flex-1 overflow-hidden ${selectedOption ? (disabled ? 'text-slate-400' : 'text-slate-50') : 'text-slate-400'}`}>
                 {selectedOption ? renderOption(selectedOption) : 'Select option...'}

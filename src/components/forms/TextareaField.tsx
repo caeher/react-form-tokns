@@ -5,6 +5,7 @@ import {
   FieldLabel,
   FieldWrapper,
 } from '../shared/form';
+import { getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface TextareaFieldProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
@@ -47,12 +48,10 @@ export const TextareaField = forwardRef<HTMLTextAreaElement, TextareaFieldProps>
           ref={ref}
           id={textareaId}
           disabled={disabled}
-          className={`w-full min-h-[100px] resize-y rounded-xl border bg-slate-900/50 px-4 py-2.5 text-sm text-slate-50 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-950 transition-all custom-scrollbar ${
-            disabled ? 'cursor-not-allowed border-white/5' :
-            error
-              ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/50'
-              : 'border-white/10 focus:border-cyan-400 focus:ring-cyan-500/50 hover:border-white/20'
-          } ${Icon && iconPosition === 'left' ? 'pl-10' : ''} ${Icon && iconPosition === 'right' ? 'pr-10' : ''}`}
+          className={`custom-scrollbar w-full min-h-[100px] resize-y rounded-xl px-4 py-2.5 text-sm text-slate-50 placeholder:text-slate-500 ${getFieldSurfaceClass({
+            disabled,
+            error: !!error,
+          })} ${Icon && iconPosition === 'left' ? 'pl-10' : ''} ${Icon && iconPosition === 'right' ? 'pr-10' : ''}`}
           aria-invalid={!!error}
           aria-describedby={error ? `${textareaId}-error` : hint ? `${textareaId}-hint` : undefined}
           {...props}

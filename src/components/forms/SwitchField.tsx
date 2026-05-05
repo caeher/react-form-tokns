@@ -34,7 +34,7 @@ export const SwitchField = forwardRef<HTMLInputElement, SwitchFieldProps>(({
   const switchId = id || generatedId;
 
   const content = (
-    <div className={`flex items-center justify-between gap-3 w-full ${inline ? '' : `rounded-xl border border-white/5 bg-slate-900/30 p-3 transition-colors ${disabled ? '' : 'hover:bg-slate-900/50'}`}`}>
+    <div className={`flex items-center justify-between gap-3 w-full ${inline ? '' : `rounded-xl border border-white/10 bg-slate-900/30 p-3 transition-colors ${disabled ? '' : 'hover:border-white/20 hover:bg-slate-900/50'}`}`}>
       {(label || hint || Icon) && (
         <div className="flex flex-col">
           <div className={`flex items-center gap-2 ${iconPosition === 'right' ? 'flex-row-reverse justify-end' : ''}`}>

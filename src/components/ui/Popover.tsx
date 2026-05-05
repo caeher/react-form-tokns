@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, ReactNode, useLayoutEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, ReactNode, useLayoutEffect, useCallback, type KeyboardEvent } from 'react';
 import { Portal } from './Portal';
 
 const GAP = 8;
@@ -129,11 +129,26 @@ export const Popover = ({
     setIsOpen(!isOpen);
   };
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (disabled) return;
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      setIsOpen((open) => !open);
+    }
+
+    if (event.key === 'Escape') {
+      setIsOpen(false);
+    }
+  };
+
   return (
     <div className={`relative inline-block w-full ${className}`} ref={triggerRef}>
       <div
         onClick={handleToggle}
-        className={`w-full ${disabled ? 'pointer-events-none cursor-not-allowed' : 'cursor-pointer'}`}
+        onKeyDown={handleKeyDown}
+        tabIndex={disabled ? -1 : 0}
+        className={`group w-full ${disabled ? 'pointer-events-none cursor-not-allowed' : 'cursor-pointer'}`}
         aria-disabled={disabled}
         aria-expanded={isOpen}
         role="button"

@@ -14,6 +14,7 @@ import {
   parseColor, 
   rgbToHex 
 } from './utils/colorConversions';
+import { getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface ColorPickerFieldProps {
   id?: string;
@@ -108,13 +109,13 @@ export const ColorPickerField = forwardRef<HTMLInputElement, ColorPickerFieldPro
         disabled={disabled}
         trigger={
           <div
-            className={`w-full flex items-center gap-3 rounded-xl border bg-slate-900/50 px-3 py-2 text-sm transition-all ${
-              disabled 
-                ? 'cursor-not-allowed border-white/5 pointer-events-none' 
-                : error
-                  ? 'border-red-500/50 hover:border-red-500 cursor-pointer'
-                  : 'border-white/10 hover:border-white/20 cursor-pointer'
-            }`}
+            className={`w-full flex items-center gap-3 rounded-xl px-3 py-2 text-sm ${
+              disabled ? 'pointer-events-none' : 'cursor-pointer'
+            } ${getFieldSurfaceClass({
+              disabled,
+              error: !!error,
+              focusMode: 'group-focus',
+            })}`}
           >
             <div 
               className="h-6 w-10 rounded-lg border border-white/10 checkerboard-bg relative overflow-hidden shrink-0"

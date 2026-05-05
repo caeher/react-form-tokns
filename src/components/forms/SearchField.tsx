@@ -15,6 +15,7 @@ import {
   FieldLabel,
   FieldWrapper,
 } from '../shared/form';
+import { getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface SearchFieldProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'value' | 'defaultValue' | 'onChange'> {
@@ -96,13 +97,10 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(({
             }
             onChange?.(event);
           }}
-          className={`w-full rounded-xl border bg-slate-900/50 py-2.5 pl-10 pr-11 text-sm text-slate-50 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-950 transition-all ${
-            disabled
-              ? 'cursor-not-allowed border-white/5'
-              : error
-                ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/50'
-                : 'border-white/10 focus:border-cyan-400 focus:ring-cyan-500/50 hover:border-white/20'
-          }`}
+          className={`w-full rounded-xl py-2.5 pl-10 pr-11 text-sm text-slate-50 placeholder:text-slate-500 ${getFieldSurfaceClass({
+            disabled,
+            error: !!error,
+          })}`}
           aria-invalid={!!error}
           aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
           {...props}

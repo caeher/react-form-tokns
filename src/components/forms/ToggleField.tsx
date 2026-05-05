@@ -1,6 +1,7 @@
 import { useId, forwardRef, ElementType } from 'react';
 import { Tooltip } from '../ui/Tooltip';
 import { FieldError, FieldWrapper } from '../shared/form';
+import { getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface ToggleOption {
   value: string | number;
@@ -77,7 +78,11 @@ export const ToggleField = forwardRef<HTMLDivElement, ToggleFieldProps>(({
 
   return (
     <FieldWrapper className={className} ref={ref}>
-      <div className={`inline-flex rounded-xl border border-white/10 bg-slate-900/30 overflow-hidden w-fit ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}>
+      <div className={`inline-flex w-fit overflow-hidden rounded-xl bg-slate-900/30 ${getFieldSurfaceClass({
+        disabled,
+        error: !!error,
+        focusMode: 'focus-within',
+      })}`}>
         {options.map((option, index) => {
           const isActive = value.includes(option.value);
           const Icon = option.icon;

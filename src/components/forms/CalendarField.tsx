@@ -16,6 +16,7 @@ import {
 } from '../shared/form';
 import { parseDateValue } from './utils/parseDateValue';
 import { CalendarGrid } from './utils/CalendarGrid';
+import { getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface CalendarFieldProps {
   id?: string;
@@ -97,13 +98,13 @@ export const CalendarField = forwardRef<HTMLInputElement, CalendarFieldProps>(({
               </div>
             )}
             <div
-              className={`w-full rounded-xl border bg-slate-900/50 px-4 py-2.5 text-sm transition-all flex items-center min-h-[42px] ${
-                disabled
-                  ? 'border-white/5 cursor-not-allowed pointer-events-none'
-                  : error
-                    ? 'border-red-500/50 hover:border-red-500 cursor-pointer'
-                    : 'border-white/10 hover:border-white/20 cursor-pointer'
-              } ${Icon && iconPosition === 'left' ? 'pl-10' : ''} ${Icon && iconPosition === 'right' ? 'pr-10' : ''}`}
+              className={`flex min-h-[42px] w-full items-center rounded-xl px-4 py-2.5 text-sm ${
+                disabled ? 'pointer-events-none' : 'cursor-pointer'
+              } ${getFieldSurfaceClass({
+                disabled,
+                error: !!error,
+                focusMode: 'group-focus',
+              })} ${Icon && iconPosition === 'left' ? 'pl-10' : ''} ${Icon && iconPosition === 'right' ? 'pr-10' : ''}`}
             >
               <span className={`block min-w-0 truncate ${currentDate ? (disabled ? 'text-slate-400' : 'text-slate-50') : 'text-slate-500'}`}>
                 {currentDate ? currentDate.toString() : placeholder}

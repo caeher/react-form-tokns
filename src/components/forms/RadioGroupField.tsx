@@ -70,7 +70,7 @@ export const RadioGroupField = forwardRef<HTMLInputElement, RadioGroupFieldProps
                   disabled ? 'border-white/5 opacity-50' :
                   error
                     ? 'border-red-500/50 peer-checked:border-red-500 peer-focus-visible:ring-red-500/50'
-                    : 'border-white/20 group-hover:border-white/40 peer-checked:border-cyan-400 peer-focus-visible:ring-cyan-500/50'
+                    : 'border-white/10 group-hover:border-white/20 peer-checked:border-cyan-400 peer-focus-visible:ring-cyan-500/50'
                 }`}>
                   <div className={`h-2.5 w-2.5 rounded-full transition-all ${
                     isChecked ? (error ? 'bg-red-500 scale-100' : (disabled ? 'bg-slate-600 scale-100' : 'bg-cyan-400 scale-100')) : 'scale-0'

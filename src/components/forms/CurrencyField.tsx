@@ -15,6 +15,7 @@ import {
   FieldLabel,
   FieldWrapper,
 } from '../shared/form';
+import { getFieldDividerClass, getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface CurrencyFieldProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'value' | 'defaultValue' | 'onChange' | 'min' | 'max'> {
@@ -201,22 +202,20 @@ export const CurrencyField = forwardRef<HTMLInputElement, CurrencyFieldProps>(({
   const currencyContent = (
     <div className={`flex min-w-0 flex-col gap-1.5 ${inline ? 'flex-1' : ''}`}>
       <div
-        className={`flex overflow-hidden rounded-xl border bg-slate-900/50 transition-all focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-slate-950 ${
-          disabled
-            ? 'border-white/5'
-            : error
-              ? 'border-red-500/50 focus-within:border-red-500 focus-within:ring-red-500/50'
-              : 'border-white/10 hover:border-white/20 focus-within:border-cyan-400 focus-within:ring-cyan-500/50'
-        }`}
+        className={`flex overflow-hidden rounded-xl ${getFieldSurfaceClass({
+          disabled,
+          error: !!error,
+          focusMode: 'focus-within',
+        })}`}
       >
         <div
           className={`flex h-11 items-center gap-2 border-r bg-slate-900/50 px-3 text-sm ${
             disabled
-              ? 'border-white/5 text-slate-600'
+              ? 'text-slate-600'
               : error
-                ? 'border-red-500/50 text-slate-100'
-                : 'border-white/10 text-slate-100'
-          }`}
+                ? 'text-slate-100'
+                : 'text-slate-100'
+          } ${getFieldDividerClass({ disabled, error: !!error })}`}
         >
           <Landmark size={16} className={disabled ? 'text-slate-700' : 'text-slate-500'} />
           <span className="font-medium">{currencyMarker}</span>

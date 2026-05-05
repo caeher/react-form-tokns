@@ -5,6 +5,7 @@ import {
   FieldLabel,
   FieldWrapper,
 } from '../shared/form';
+import { getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -45,12 +46,10 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({
           id={inputId}
           type={type}
           disabled={disabled}
-          className={`w-full rounded-xl border bg-slate-900/50 px-4 py-2.5 text-sm text-slate-50 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-950 transition-all ${
-            disabled ? 'cursor-not-allowed border-white/5' : 
-            error
-              ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/50'
-              : 'border-white/10 focus:border-cyan-400 focus:ring-cyan-500/50 hover:border-white/20'
-          } ${Icon && iconPosition === 'left' ? 'pl-10' : ''} ${Icon && iconPosition === 'right' ? 'pr-10' : ''}`}
+          className={`w-full rounded-xl px-4 py-2.5 text-sm text-slate-50 placeholder:text-slate-500 ${getFieldSurfaceClass({
+            disabled,
+            error: !!error,
+          })} ${Icon && iconPosition === 'left' ? 'pl-10' : ''} ${Icon && iconPosition === 'right' ? 'pr-10' : ''}`}
           aria-invalid={!!error}
           aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
           {...props}
