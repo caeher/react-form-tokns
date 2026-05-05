@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/caeher/form-maker/compare/v1.4.0...v1.4.1) (2026-05-05)
+
+
+### Bug Fixes
+
+* add styles ([a049a5d](https://github.com/caeher/form-maker/commit/a049a5d56f5161731d05436bde0e53cf9f6b901e))
+
 # [1.4.0](https://github.com/caeher/form-maker/compare/v1.3.0...v1.4.0) (2026-05-05)
 
 
