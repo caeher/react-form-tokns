@@ -15,7 +15,7 @@ import {
   FieldLabel,
   FieldWrapper,
 } from '../shared/form';
-import { getFieldSurfaceClass } from './utils/fieldStyles';
+import { fieldControlHeightClass, getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface SearchFieldProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'value' | 'defaultValue' | 'onChange'> {
@@ -97,7 +97,7 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(({
             }
             onChange?.(event);
           }}
-          className={`w-full rounded-xl py-2.5 pl-10 pr-11 text-sm text-slate-50 placeholder:text-slate-500 ${getFieldSurfaceClass({
+          className={`w-full rounded-xl py-2.5 pl-10 pr-11 text-sm text-slate-50 placeholder:text-slate-500 ${fieldControlHeightClass} ${getFieldSurfaceClass({
             disabled,
             error: !!error,
           })}`}

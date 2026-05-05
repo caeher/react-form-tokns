@@ -143,12 +143,12 @@ export const Popover = ({
   };
 
   return (
-    <div className={`relative inline-block w-full ${className}`} ref={triggerRef}>
+    <div className={`relative inline-block h-full w-full ${className}`} ref={triggerRef}>
       <div
         onClick={handleToggle}
         onKeyDown={handleKeyDown}
         tabIndex={disabled ? -1 : 0}
-        className={`group w-full ${disabled ? 'pointer-events-none cursor-not-allowed' : 'cursor-pointer'}`}
+        className={`group h-full w-full ${disabled ? 'pointer-events-none cursor-not-allowed' : 'cursor-pointer'}`}
         aria-disabled={disabled}
         aria-expanded={isOpen}
         role="button"

@@ -5,7 +5,7 @@ import {
   FieldLabel,
   FieldWrapper,
 } from '../shared/form';
-import { getFieldSurfaceClass } from './utils/fieldStyles';
+import { fieldControlFixedHeightClass, getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface InputOtpFieldProps {
   id?: string;
@@ -131,7 +131,7 @@ export const InputOtpField = forwardRef<HTMLInputElement, InputOtpFieldProps>(({
               onChange={(e) => handleChange(i, e.target.value)}
               onKeyDown={(e) => handleKeyDown(i, e)}
               onPaste={handlePaste}
-              className={`h-10 w-9 rounded-xl text-center font-mono text-base font-semibold text-slate-50 sm:h-12 sm:w-12 sm:text-lg ${getFieldSurfaceClass({
+              className={`w-[42px] rounded-xl text-center font-mono text-base font-semibold text-slate-50 sm:text-lg ${fieldControlFixedHeightClass} ${getFieldSurfaceClass({
                 disabled,
                 error: !!error,
               })} ${disabled ? 'opacity-50' : ''}`}

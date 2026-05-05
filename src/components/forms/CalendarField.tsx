@@ -16,7 +16,7 @@ import {
 } from '../shared/form';
 import { parseDateValue } from './utils/parseDateValue';
 import { CalendarGrid } from './utils/CalendarGrid';
-import { getFieldSurfaceClass } from './utils/fieldStyles';
+import { fieldControlHeightClass, getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface CalendarFieldProps {
   id?: string;
@@ -98,9 +98,9 @@ export const CalendarField = forwardRef<HTMLInputElement, CalendarFieldProps>(({
               </div>
             )}
             <div
-              className={`flex min-h-[42px] w-full items-center rounded-xl px-4 py-2.5 text-sm ${
+              className={`flex w-full items-center rounded-xl px-4 py-2.5 text-sm ${
                 disabled ? 'pointer-events-none' : 'cursor-pointer'
-              } ${getFieldSurfaceClass({
+              } ${fieldControlHeightClass} ${getFieldSurfaceClass({
                 disabled,
                 error: !!error,
                 focusMode: 'group-focus',

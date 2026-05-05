@@ -8,7 +8,7 @@ import {
   FieldWrapper,
 } from '../shared/form';
 import type { ComboboxOption } from './ComboboxField';
-import { getFieldSurfaceClass } from './utils/fieldStyles';
+import { fieldControlHeightClass, getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface MultiSelectFieldProps
   extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'value' | 'defaultValue'> {
@@ -140,20 +140,15 @@ export const MultiSelectField = forwardRef<HTMLSelectElement, MultiSelectFieldPr
     emitChange(nextValue);
   };
 
-  const triggerContent = selectedOptions.length === 0 ? (
-    <span className="truncate text-slate-400">{placeholder}</span>
-  ) : (
-    <div className="flex flex-wrap gap-2">
-      {selectedOptions.map((option) => (
-        <span
-          key={String(option.value)}
-          className="inline-flex max-w-full items-center rounded-full border border-cyan-500/20 bg-cyan-500/10 px-2.5 py-1 text-xs font-medium text-cyan-200"
-        >
-          <span className="truncate">{option.label}</span>
-        </span>
-      ))}
-    </div>
-  );
+  const triggerLabel = selectedOptions.length === 0
+    ? ''
+    : selectedOptions.length === 1
+      ? selectedOptions[0].label
+      : `${selectedOptions[0].label} +${selectedOptions.length - 1}`;
+
+  const triggerContent = selectedOptions.length === 0
+    ? <span className="truncate text-slate-400">{placeholder}</span>
+    : <span className={`truncate ${disabled ? 'text-slate-400' : 'text-slate-100'}`}>{triggerLabel}</span>;
 
   const multiSelectContent = (
     <div className={`flex flex-col gap-1.5 ${inline ? 'flex-1' : ''}`}>
@@ -163,9 +158,9 @@ export const MultiSelectField = forwardRef<HTMLSelectElement, MultiSelectFieldPr
           disabled={disabled}
           trigger={
             <div
-              className={`flex min-h-11 w-full items-center justify-between rounded-xl px-4 py-2.5 text-left text-sm ${
+              className={`flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-left text-sm ${
                 disabled ? 'text-slate-600' : 'text-slate-100'
-              } ${getFieldSurfaceClass({
+              } ${fieldControlHeightClass} ${getFieldSurfaceClass({
                 disabled,
                 error: !!error,
                 focusMode: 'group-focus',

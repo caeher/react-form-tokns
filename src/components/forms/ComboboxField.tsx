@@ -8,7 +8,7 @@ import {
   FieldWrapper,
 } from '../shared/form';
 import type { SelectOption } from './SelectField';
-import { getFieldSurfaceClass } from './utils/fieldStyles';
+import { fieldControlHeightClass, getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface ComboboxOption extends SelectOption {
   description?: string;
@@ -73,6 +73,25 @@ function renderOption(option: ComboboxOption, disabled: boolean): ReactNode {
           <p className="truncate text-xs text-slate-400">{option.description}</p>
         )}
       </div>
+    </div>
+  );
+}
+
+function renderTriggerOption(option: ComboboxOption, disabled: boolean): ReactNode {
+  const Icon = option.icon as ElementType | undefined;
+
+  return (
+    <div className="flex min-w-0 items-center gap-2.5 overflow-hidden">
+      {option.image ? (
+        <img src={option.image} alt="" className="h-5 w-5 shrink-0 rounded-full object-cover" />
+      ) : Icon ? (
+        <Icon size={16} className={`${disabled ? 'text-slate-600' : 'text-slate-400'} shrink-0`} />
+      ) : (
+        <Search size={16} className={`${disabled ? 'text-slate-700' : 'text-slate-500'} shrink-0`} />
+      )}
+      <span className={`truncate ${disabled ? 'text-slate-400' : 'text-slate-50'}`}>
+        {option.label}
+      </span>
     </div>
   );
 }
@@ -143,7 +162,7 @@ export const ComboboxField = forwardRef<HTMLSelectElement, ComboboxFieldProps>((
             <div
               className={`flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-left text-sm ${
                 disabled ? 'text-slate-600' : 'text-slate-100'
-              } ${getFieldSurfaceClass({
+              } ${fieldControlHeightClass} ${getFieldSurfaceClass({
                 disabled,
                 error: !!error,
                 focusMode: 'group-focus',
@@ -151,7 +170,7 @@ export const ComboboxField = forwardRef<HTMLSelectElement, ComboboxFieldProps>((
             >
               <div className="min-w-0 flex-1">
                 {selectedOption ? (
-                  renderOption(selectedOption, disabled)
+                  renderTriggerOption(selectedOption, disabled)
                 ) : (
                   <span className="truncate text-slate-400">{placeholder}</span>
                 )}

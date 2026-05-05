@@ -5,7 +5,7 @@ import {
   FieldLabel,
   FieldWrapper,
 } from '../shared/form';
-import { getFieldSurfaceClass } from './utils/fieldStyles';
+import { fieldControlHeightClass, getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -46,7 +46,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({
           id={inputId}
           type={type}
           disabled={disabled}
-          className={`w-full rounded-xl px-4 py-2.5 text-sm text-slate-50 placeholder:text-slate-500 ${getFieldSurfaceClass({
+          className={`w-full rounded-xl px-4 py-2.5 text-sm text-slate-50 placeholder:text-slate-500 ${fieldControlHeightClass} ${getFieldSurfaceClass({
             disabled,
             error: !!error,
           })} ${Icon && iconPosition === 'left' ? 'pl-10' : ''} ${Icon && iconPosition === 'right' ? 'pr-10' : ''}`}

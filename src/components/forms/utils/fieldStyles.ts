@@ -6,6 +6,9 @@ interface FieldStateOptions {
   focusMode?: FieldFocusMode;
 }
 
+export const fieldControlHeightClass = 'min-h-[42px]';
+export const fieldControlFixedHeightClass = 'h-[42px]';
+
 const baseFieldSurface = 'border bg-slate-900/50 transition-all';
 
 const focusModeClasses: Record<FieldFocusMode, string> = {

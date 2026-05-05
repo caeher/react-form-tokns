@@ -6,7 +6,7 @@ import {
   FieldLabel,
   FieldWrapper,
 } from '../shared/form';
-import { getFieldSurfaceClass } from './utils/fieldStyles';
+import { fieldControlHeightClass, getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface SelectOption {
   label: string;
@@ -82,7 +82,7 @@ export const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(({
             <div
               className={`w-full flex items-center justify-between rounded-xl px-4 py-2.5 text-sm ${
                 disabled ? 'pointer-events-none' : 'cursor-pointer'
-              } ${getFieldSurfaceClass({
+              } ${fieldControlHeightClass} ${getFieldSurfaceClass({
                 disabled,
                 error: !!error,
                 focusMode: 'group-focus',

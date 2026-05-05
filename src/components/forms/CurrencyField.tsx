@@ -15,7 +15,11 @@ import {
   FieldLabel,
   FieldWrapper,
 } from '../shared/form';
-import { getFieldDividerClass, getFieldSurfaceClass } from './utils/fieldStyles';
+import {
+  fieldControlFixedHeightClass,
+  getFieldDividerClass,
+  getFieldSurfaceClass,
+} from './utils/fieldStyles';
 
 export interface CurrencyFieldProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'value' | 'defaultValue' | 'onChange' | 'min' | 'max'> {
@@ -202,14 +206,14 @@ export const CurrencyField = forwardRef<HTMLInputElement, CurrencyFieldProps>(({
   const currencyContent = (
     <div className={`flex min-w-0 flex-col gap-1.5 ${inline ? 'flex-1' : ''}`}>
       <div
-        className={`flex overflow-hidden rounded-xl ${getFieldSurfaceClass({
+        className={`flex overflow-hidden rounded-xl ${fieldControlFixedHeightClass} ${getFieldSurfaceClass({
           disabled,
           error: !!error,
           focusMode: 'focus-within',
         })}`}
       >
         <div
-          className={`flex h-11 items-center gap-2 border-r bg-slate-900/50 px-3 text-sm ${
+          className={`flex h-full items-center gap-2 border-r bg-slate-900/50 px-3 text-sm ${
             disabled
               ? 'text-slate-600'
               : error
@@ -257,7 +261,7 @@ export const CurrencyField = forwardRef<HTMLInputElement, CurrencyFieldProps>(({
               adjustValue(-1);
             }
           }}
-          className={`h-11 w-full min-w-0 bg-slate-900/50 px-4 text-sm text-slate-50 placeholder:text-slate-500 focus:outline-none ${
+          className={`h-full w-full min-w-0 bg-slate-900/50 px-4 text-sm text-slate-50 placeholder:text-slate-500 focus:outline-none ${
             disabled ? 'cursor-not-allowed' : ''
           }`}
           aria-invalid={!!error}

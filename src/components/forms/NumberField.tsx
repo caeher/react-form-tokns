@@ -6,7 +6,11 @@ import {
   FieldLabel,
   FieldWrapper,
 } from '../shared/form';
-import { getFieldDividerClass, getFieldSurfaceClass } from './utils/fieldStyles';
+import {
+  fieldControlFixedHeightClass,
+  getFieldDividerClass,
+  getFieldSurfaceClass,
+} from './utils/fieldStyles';
 
 export interface NumberFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'onChange'> {
   label?: string;
@@ -91,7 +95,7 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(({
   const inputContent = (
     <div className={`flex min-w-0 flex-col gap-1.5 ${inline ? 'flex-1' : ''}`}>
       <div
-        className={`flex overflow-hidden rounded-xl ${getFieldSurfaceClass({
+        className={`flex overflow-hidden rounded-xl ${fieldControlFixedHeightClass} ${getFieldSurfaceClass({
           disabled,
           error: !!error,
           focusMode: 'focus-within',
@@ -103,7 +107,7 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(({
           onPointerDown={() => startTimer(-1)}
           onPointerUp={stopTimer}
           onPointerLeave={stopTimer}
-          className={`flex h-11 w-11 items-center justify-center border-r transition-colors ${
+          className={`flex h-full w-[42px] items-center justify-center border-r transition-colors ${
             disabled 
               ? 'cursor-not-allowed bg-slate-900/30 text-slate-600' 
               : error
@@ -122,7 +126,7 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(({
           value={currentValue}
           disabled={disabled}
           readOnly
-          className={`h-11 w-full min-w-0 bg-slate-900/50 px-2 text-center text-sm text-slate-50 transition-all focus:outline-none ${
+          className={`h-full w-full min-w-0 bg-slate-900/50 px-2 text-center text-sm text-slate-50 transition-all focus:outline-none ${
             disabled ? 'cursor-not-allowed' : ''
           }`}
           aria-invalid={!!error}
@@ -135,7 +139,7 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(({
           onPointerDown={() => startTimer(1)}
           onPointerUp={stopTimer}
           onPointerLeave={stopTimer}
-          className={`flex h-11 w-11 items-center justify-center border-l transition-colors ${
+          className={`flex h-full w-[42px] items-center justify-center border-l transition-colors ${
             disabled 
               ? 'cursor-not-allowed bg-slate-900/30 text-slate-600' 
               : error

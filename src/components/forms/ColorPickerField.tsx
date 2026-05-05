@@ -14,7 +14,7 @@ import {
   parseColor, 
   rgbToHex 
 } from './utils/colorConversions';
-import { getFieldSurfaceClass } from './utils/fieldStyles';
+import { fieldControlHeightClass, getFieldSurfaceClass } from './utils/fieldStyles';
 
 export interface ColorPickerFieldProps {
   id?: string;
@@ -111,7 +111,7 @@ export const ColorPickerField = forwardRef<HTMLInputElement, ColorPickerFieldPro
           <div
             className={`w-full flex items-center gap-3 rounded-xl px-3 py-2 text-sm ${
               disabled ? 'pointer-events-none' : 'cursor-pointer'
-            } ${getFieldSurfaceClass({
+            } ${fieldControlHeightClass} ${getFieldSurfaceClass({
               disabled,
               error: !!error,
               focusMode: 'group-focus',
