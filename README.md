@@ -6,6 +6,17 @@ A high-performance, accessible, and themeable form component library built with 
 
 Form Maker is an evolution of standard form controls, focusing on deep accessibility (ARIA, focus management), robust data parsing (dates/times), and premium techno-industrial aesthetics. Every component follows a strict architectural pattern ensuring consistency across the entire system.
 
+## Library Usage
+
+When consuming the published package, import both the components and the generated stylesheet:
+
+```tsx
+import '@caeher/react-form-tokns/styles.css'
+import { TextField } from '@caeher/react-form-tokns'
+```
+
+Without that CSS import, the components render but Tailwind-generated styles from the library will not be applied.
+
 ## Tech Stack
 
 - **Core:** React 19 (Functional Components, Hooks)

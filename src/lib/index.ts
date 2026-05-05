@@ -1,3 +1,5 @@
+import '../index.css';
+
 // Componentes de formulario
 export * from '../components/forms';
 

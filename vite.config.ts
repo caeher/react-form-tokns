@@ -8,12 +8,13 @@ export default defineConfig(({ mode }) => {
   // Library build mode
   if (mode === 'lib') {
     return {
-      plugins: [react()],
+      plugins: [react(), tailwindcss()],
       build: {
         lib: {
           entry: resolve(__dirname, 'src/lib/index.ts'),
           formats: ['es', 'cjs'],
           fileName: (format) => `index.${format === 'es' ? 'js' : 'cjs'}`,
+          cssFileName: 'styles',
         },
         rollupOptions: {
           external: [
