@@ -1,0 +1,4 @@
+interface:
+  display_name: "React Form Tokns"
+  short_description: "Build forms correctly with React Form Tokns"
+  default_prompt: "Use $react-form-tokns to build or integrate a form with the @caeher/react-form-tokns library."
