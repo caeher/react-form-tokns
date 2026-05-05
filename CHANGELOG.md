@@ -1,3 +1,17 @@
+# [1.4.0](https://github.com/caeher/form-maker/compare/v1.3.0...v1.4.0) (2026-05-05)
+
+
+### Bug Fixes
+
+* border colors ([b7f9562](https://github.com/caeher/form-maker/commit/b7f9562c0573ecd5b494a7cc20c02ff49845bb8c))
+* group border effect ([f4d5350](https://github.com/caeher/form-maker/commit/f4d5350760b6baed8919e8a2c15a9b6e09be3fa1))
+* similar height field ([985f90a](https://github.com/caeher/form-maker/commit/985f90afdbd2310ae188bb3e9ff4c0c591550134))
+
+
+### Features
+
+* add multiselect, phone, search, combobox, currency field ([b3fe2e0](https://github.com/caeher/form-maker/commit/b3fe2e0ac4c434f20f439fd14043c787058627d0))
+
 # [1.3.0](https://github.com/caeher/form-maker/compare/v1.2.0...v1.3.0) (2026-05-04)
 
 
