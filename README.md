@@ -79,6 +79,16 @@ Standard single-line text input with optional icon integration.
 | `icon` | `ElementType` | - | Lucide icon to display |
 | `iconPosition`| `'left' \| 'right'`| `'left'` | Placement of the icon |
 
+### SearchField
+Dedicated search input with a leading icon, clear action, and optional loading state.
+**Import:** `import { SearchField } from './components/forms'`
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | - | Current search query |
+| `loading` | `boolean` | `false` | Shows a trailing spinner |
+| `clearable` | `boolean` | `true` | Enables the clear button |
+
 ### SelectField
 A premium custom dropdown replacing the native `<select>`, using a Popover overlay.
 **Import:** `import { SelectField } from './components/forms'`
@@ -87,6 +97,26 @@ A premium custom dropdown replacing the native `<select>`, using a Popover overl
 |---|---|---|---|
 | `options` | `SelectOption[]` | `[]` | Array of `{ label, value, icon?, image? }` |
 | `placeholder` | `string` | - | Text shown when no value is selected |
+
+### ComboboxField
+Searchable single-select field for larger or more descriptive option sets.
+**Import:** `import { ComboboxField } from './components/forms'`
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `options` | `ComboboxOption[]` | `[]` | Array of searchable options |
+| `searchPlaceholder` | `string` | `'Filter options...'` | Placeholder for the filter input |
+| `clearable` | `boolean` | `true` | Enables quick selection reset |
+
+### MultiSelectField
+Searchable multi-select with chip-style selected values in the trigger.
+**Import:** `import { MultiSelectField } from './components/forms'`
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `(string \| number)[]` | `[]` | Current selected values |
+| `maxSelections` | `number` | - | Optional selection cap |
+| `clearable` | `boolean` | `true` | Enables quick clear-all |
 
 ### CalendarField
 Date picker using `@internationalized/date`. Supports strings, nulls, and standard DB formats.
@@ -116,6 +146,26 @@ Professional file uploader with drag-and-drop, image previews, removable items, 
 | `multiple` | `boolean` | `false` | Allows multiple file selection |
 | `maxFiles` | `number` | - | Caps how many files can be stored |
 | `previewStrategy` | `'auto' \| 'image-only' \| 'none'` | `'auto'` | Controls preview rendering |
+
+### PhoneField
+International telephone input with country dial code selection.
+**Import:** `import { PhoneField } from './components/forms'`
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | - | Full phone value including dial code |
+| `defaultCountry` | `string` | `'US'` | Starting country selection |
+| `countries` | `PhoneCountryOption[]` | Built-in list | Custom country presets |
+
+### CurrencyField
+Locale-aware currency input with formatted display on blur.
+**Import:** `import { CurrencyField } from './components/forms'`
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `number \| null` | - | Numeric currency value |
+| `currency` | `string` | `'USD'` | ISO currency code |
+| `locale` | `string` | `'en-US'` | Locale used for display formatting |
 
 ---
 

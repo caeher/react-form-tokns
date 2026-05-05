@@ -1,6 +1,6 @@
 # Full Documentation
 
-*Generated on 5/2/2026, 5:21:46 PM*
+*Generated on 5/4/2026, 10:24:30 PM*
 
 ---
 
@@ -10,19 +10,25 @@ Welcome to the comprehensive documentation for the Form Maker component library.
 
 ## Form Components
 - [TextField](TextField.md)
+- [SearchField](SearchField.md)
 - [TextareaField](TextareaField.md)
 - [SelectField](SelectField.md)
+- [ComboboxField](ComboboxField.md)
+- [MultiSelectField](MultiSelectField.md)
 - [CheckboxField](CheckboxField.md)
 - [RadioGroupField](RadioGroupField.md)
 - [SwitchField](SwitchField.md)
 - [CalendarField](CalendarField.md)
 - [ToggleField](ToggleField.md)
 - [NumberField](NumberField.md)
+- [PhoneField](PhoneField.md)
+- [CurrencyField](CurrencyField.md)
 - [InputOtpField](InputOtpField.md)
 - [ProgressField](ProgressField.md)
 - [TimeField](TimeField.md)
 - [DatetimeField](DatetimeField.md)
 - [ColorPickerField](ColorPickerField.md)
+- [UploadField](UploadField.md)
 
 ## UI Primitives
 - [Popover](Popover.md)
@@ -107,6 +113,60 @@ Supports all standard HTML input events. The `onChange` event follows the synthe
 
 - Wrapped with `forwardRef` to allow access to the underlying `HTMLInputElement`.
 - Built with Tailwind CSS v4 using modern tokens.
+
+
+---
+
+# SearchField
+
+> Dedicated search input with built-in icon, clear action, and optional loading state.
+
+## Importation
+
+```tsx
+import { SearchField } from '@caeher/react-form-tokns';
+```
+
+## Description
+
+The `SearchField` is a specialized text input tuned for search experiences. It ships with a leading search icon, optional loading feedback, and a quick clear action while preserving the same field wrapper API as the rest of the system.
+
+## Props
+
+| Prop | Type | Default | Required | Description |
+|---|---|---|---|---|
+| `label` | `string` | - | No | Label text |
+| `hint` | `string` | - | No | Helper copy |
+| `error` | `string` | - | No | Error state message |
+| `value` | `string` | - | No | Controlled value |
+| `defaultValue` | `string` | `''` | No | Initial uncontrolled value |
+| `loading` | `boolean` | `false` | No | Shows a spinner in the trailing action area |
+| `clearable` | `boolean` | `true` | No | Enables the clear button |
+| `onClear` | `() => void` | - | No | Called after the field is cleared |
+| `icon` | `ElementType` | `Search` | No | Override for the leading icon |
+
+## Events
+
+- `onChange`: Uses the standard React input change event.
+
+## Basic Usage
+
+```tsx
+<SearchField
+  label="Knowledge Base"
+  placeholder="Search docs, snippets, or tickets..."
+/>
+```
+
+## Accessibility
+
+- Uses `type="search"` for native browser semantics.
+- Preserves the same ARIA helper/error wiring as `TextField`.
+
+## Implementation Notes
+
+- Supports both controlled and uncontrolled usage.
+- The clear action focuses the input again after resetting the value.
 
 
 ---
@@ -253,6 +313,124 @@ const options = [
 
 - Uses a hidden `select` element to ensure compatibility with standard form submission and validation.
 - Employs a `Popover` primitive for the dropdown menu.
+
+
+---
+
+# ComboboxField
+
+> Searchable single-select field with a popover command-style picker.
+
+## Importation
+
+```tsx
+import { ComboboxField } from '@caeher/react-form-tokns';
+```
+
+## Description
+
+The `ComboboxField` combines custom select behavior with inline filtering. It is useful when the option list is longer, role-based, or easier to scan through search than a static dropdown.
+
+## Props
+
+| Prop | Type | Default | Required | Description |
+|---|---|---|---|---|
+| `label` | `string` | - | No | Label text |
+| `hint` | `string` | - | No | Helper text shown below the field |
+| `error` | `string` | - | No | Error message |
+| `options` | `ComboboxOption[]` | `[]` | No | Array of `{ label, value, icon?, image?, description?, keywords? }` |
+| `value` | `string \| number` | - | No | Selected value |
+| `defaultValue` | `string \| number` | `''` | No | Initial uncontrolled value |
+| `placeholder` | `string` | `'Search and select...'` | No | Empty trigger text |
+| `searchPlaceholder` | `string` | `'Filter options...'` | No | Filter input placeholder |
+| `clearable` | `boolean` | `true` | No | Shows a quick clear action |
+
+## Events
+
+- `onChange`: Emits a synthetic event `{ target: { name, value } }`.
+
+## Basic Usage
+
+```tsx
+<ComboboxField
+  label="Assigned Lead"
+  name="lead"
+  options={[
+    { label: 'Felix Tran', value: 'felix', description: 'Frontend systems owner' },
+    { label: 'Ari West', value: 'ari', description: 'Design direction' }
+  ]}
+/>
+```
+
+## Accessibility
+
+- Keeps a hidden native `select` synchronized for form compatibility.
+- Connects helper and error text via `aria-describedby`.
+
+## Implementation Notes
+
+- Shares the same field wrapper pattern as the rest of the library.
+- Option filtering checks `label`, `description`, `value`, and `keywords`.
+
+
+---
+
+# MultiSelectField
+
+> Searchable multi-select field with chip-style selected values.
+
+## Importation
+
+```tsx
+import { MultiSelectField } from '@caeher/react-form-tokns';
+```
+
+## Description
+
+The `MultiSelectField` lets users choose several options from a searchable popover. Selected items render as compact chips in the trigger, making it useful for tags, stacks, permissions, and grouped filters.
+
+## Props
+
+| Prop | Type | Default | Required | Description |
+|---|---|---|---|---|
+| `label` | `string` | - | No | Label text |
+| `hint` | `string` | - | No | Helper text |
+| `error` | `string` | - | No | Error message |
+| `options` | `ComboboxOption[]` | `[]` | No | Array of selectable options |
+| `value` | `(string \| number)[]` | - | No | Controlled selected values |
+| `defaultValue` | `(string \| number)[]` | `[]` | No | Initial uncontrolled values |
+| `maxSelections` | `number` | - | No | Optional upper limit for selections |
+| `placeholder` | `string` | `'Select one or more...'` | No | Empty trigger copy |
+| `clearable` | `boolean` | `true` | No | Shows a clear-all action |
+
+## Events
+
+- `onChange`: Emits a synthetic event `{ target: { name, value } }`.
+
+## Basic Usage
+
+```tsx
+<MultiSelectField
+  label="Tech Stack"
+  name="stack"
+  value={['react', 'typescript']}
+  options={[
+    { label: 'React', value: 'react' },
+    { label: 'TypeScript', value: 'typescript' },
+    { label: 'Tailwind CSS', value: 'tailwind' }
+  ]}
+/>
+```
+
+## Accessibility
+
+- Mirrors the selected values into a hidden native `select[multiple]`.
+- Uses the shared label, hint, and error infrastructure from the design system.
+
+## Implementation Notes
+
+- Supports inline filtering inside the popover.
+- `maxSelections` prevents adding more items once the limit is reached.
 
 
 ---
@@ -564,6 +742,120 @@ The `NumberField` allows users to input numbers with precise control using stepp
 
 ---
 
+# PhoneField
+
+> International phone input with dial code selection and formatted national number entry.
+
+## Importation
+
+```tsx
+import { PhoneField } from '@caeher/react-form-tokns';
+```
+
+## Description
+
+The `PhoneField` pairs a country picker with a telephone input so users can enter complete international numbers without losing the local formatting they expect while typing.
+
+## Props
+
+| Prop | Type | Default | Required | Description |
+|---|---|---|---|---|
+| `label` | `string` | - | No | Label text |
+| `hint` | `string` | - | No | Helper copy |
+| `error` | `string` | - | No | Error message |
+| `value` | `string` | - | No | Full phone value including dial code |
+| `defaultValue` | `string` | `''` | No | Initial uncontrolled value |
+| `country` | `string` | - | No | Controlled ISO country code |
+| `defaultCountry` | `string` | `'US'` | No | Default country selection |
+| `countries` | `PhoneCountryOption[]` | Built-in list | No | Custom country metadata |
+| `onCountryChange` | `(country) => void` | - | No | Fires when the selected country changes |
+
+## Events
+
+- `onChange`: Emits a synthetic event `{ target: { name, value } }`.
+
+## Basic Usage
+
+```tsx
+<PhoneField
+  label="Support Line"
+  name="phone"
+  defaultCountry="US"
+  hint="Stored as a complete international number."
+/>
+```
+
+## Accessibility
+
+- Uses a visible `tel` input for focus and a hidden input for full-value form submission.
+- Helper and error messaging follow the same ARIA mapping as other fields.
+
+## Implementation Notes
+
+- Includes a built-in starter list of international dialing presets.
+- Reformats national digits when the country changes.
+
+
+---
+
+# CurrencyField
+
+> Locale-aware currency input with editable numeric mode and formatted display mode.
+
+## Importation
+
+```tsx
+import { CurrencyField } from '@caeher/react-form-tokns';
+```
+
+## Description
+
+The `CurrencyField` is designed for budgets, pricing, and cost estimates. It formats values with `Intl.NumberFormat`, keeps a raw editable state while focused, and returns numeric values through the library's synthetic event model.
+
+## Props
+
+| Prop | Type | Default | Required | Description |
+|---|---|---|---|---|
+| `label` | `string` | - | No | Label text |
+| `hint` | `string` | - | No | Helper text |
+| `error` | `string` | - | No | Error message |
+| `value` | `number \| null` | - | No | Controlled numeric value |
+| `defaultValue` | `number \| null` | `null` | No | Initial uncontrolled value |
+| `currency` | `string` | `'USD'` | No | ISO currency code |
+| `locale` | `string` | `'en-US'` | No | Locale used for formatting |
+| `min` | `number` | - | No | Minimum allowed value |
+| `max` | `number` | - | No | Maximum allowed value |
+| `step` | `number` | `1` | No | Arrow-key increment and decrement size |
+| `allowNegative` | `boolean` | `false` | No | Allows negative values |
+
+## Events
+
+- `onChange`: Emits a synthetic event `{ target: { name, value } }`.
+
+## Basic Usage
+
+```tsx
+<CurrencyField
+  label="Monthly Budget"
+  name="budget"
+  currency="USD"
+  defaultValue={2400.5}
+/>
+```
+
+## Accessibility
+
+- Uses a standard text input with `inputMode="decimal"`.
+- Associates hint and error content through generated IDs.
+
+## Implementation Notes
+
+- Displays formatted currency on blur and plain editable numbers on focus.
+- Supports Arrow Up and Arrow Down keyboard adjustments.
+
+
+---
+
 # InputOtpField
 
 > One-Time Password input field with multiple slots.
@@ -778,6 +1070,89 @@ The `ColorPickerField` offers a visual way to select colors. It includes a satur
 
 ---
 
+# UploadField
+
+> Premium file upload field with drag-and-drop, preview cards, and optional server-side upload.
+
+## Importation
+
+```tsx
+import { UploadField } from '@caeher/react-form-tokns';
+```
+
+## Description
+
+The `UploadField` component provides a polished file upload experience aligned with the rest of the form system. It supports native file selection, drag-and-drop, thumbnail previews for images, removable uploaded items, and an optional automatic upload flow when `uploadUrl` is provided.
+
+## Props
+
+| Prop | Type | Default | Required | Description |
+|---|---|---|---|---|
+| `value` | `UploadFieldItem[]` | `[]` | No | Current selected/uploaded items |
+| `uploadUrl` | `string` | - | No | When present, files are uploaded automatically with `fetch` |
+| `uploadMethod` | `'POST' \| 'PUT' \| 'PATCH'` | `'POST'` | No | HTTP method for the upload request |
+| `uploadFieldName` | `string` | `'file'` | No | FormData field name used for the file |
+| `uploadHeaders` | `Record<string, string>` | - | No | Extra headers for the upload request |
+| `uploadData` | `Record<string, string \| Blob>` | - | No | Additional fields appended to FormData |
+| `mapUploadResponse` | `function` | - | No | Maps the server response into the final `UploadFieldItem` |
+| `multiple` | `boolean` | `false` | No | Enables selecting multiple files |
+| `maxFiles` | `number` | - | No | Maximum number of files to keep in the field |
+| `previewStrategy` | `'auto' \| 'image-only' \| 'none'` | `'auto'` | No | Controls preview generation behavior |
+| `removable` | `boolean` | `true` | No | Allows removing individual files |
+
+## Eventos
+
+`onChange` emits the standard synthetic event shape used by this library:
+
+```ts
+{
+  target: {
+    name,
+    value: UploadFieldItem[],
+    files: File[],
+    uploaded: boolean
+  },
+  persist: () => {}
+}
+```
+
+## Uso BÃ¡sico
+
+```tsx
+<UploadField
+  label="Assets"
+  name="assets"
+  multiple
+  accept="image/*,.pdf,.zip"
+/>
+```
+
+## Subida Server Side
+
+```tsx
+<UploadField
+  label="Gallery"
+  name="gallery"
+  multiple
+  uploadUrl="/api/uploads"
+  uploadFieldName="asset"
+  mapUploadResponse={(response, file, item) => ({
+    ...item,
+    remoteUrl: response.url,
+    previewUrl: response.thumbnailUrl ?? item.previewUrl,
+  })}
+/>
+```
+
+## Notas de ImplementaciÃ³n
+
+- Uses `forwardRef` and `useId` like the rest of the form system.
+- Keeps the hidden native file input synchronized for normal form submission flows.
+- Automatically infers remote URLs from common response keys like `url`, `fileUrl`, or `location`.
+
+
+---
+
 # Popover
 
 > A primitive for floating overlays.
@@ -983,3 +1358,4 @@ A set of functions to convert between HSV, RGB, HSL, and Hex color formats. Used
 
 
 ---
+

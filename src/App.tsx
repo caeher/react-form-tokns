@@ -22,12 +22,17 @@ import {
   TextField,
   TextareaField,
   SelectField,
+  ComboboxField,
+  MultiSelectField,
   CheckboxField,
   RadioGroupField,
   SwitchField,
   CalendarField,
   ToggleField,
   NumberField,
+  PhoneField,
+  CurrencyField,
+  SearchField,
   InputOtpField,
   ProgressField,
   TimeField,
@@ -43,6 +48,8 @@ function App() {
     email: '',
     description: '',
     role: 'developer',
+    assignee: 'felix',
+    techStack: ['react', 'typescript'] as (string | number)[],
     terms: false,
     notifications: 'email',
     darkMode: true,
@@ -52,6 +59,9 @@ function App() {
     // New components
     formatting: ['bold'] as (string | number)[],
     quantity: 5,
+    phone: '+1 415 555 2671',
+    budget: 2400.5,
+    knowledgeSearch: '',
     otp: '',
     progress: 65,
     startTime: '09:00',
@@ -65,7 +75,7 @@ function App() {
     | {
       target: {
         name: string;
-        value: string | number | (string | number)[] | UploadFieldItem[];
+        value: string | number | null | (string | number)[] | UploadFieldItem[];
         type?: string;
         checked?: boolean;
       };
@@ -237,6 +247,35 @@ function App() {
                 />
 
                 <div className="grid gap-6 sm:grid-cols-2">
+                  <ComboboxField
+                    label="Assigned Lead"
+                    name="assignee"
+                    value={formData.assignee}
+                    onChange={handleChange}
+                    hint="Search by collaborator or specialty."
+                    options={[
+                      { label: 'Felix Tran', value: 'felix', icon: Code, description: 'Frontend systems owner', keywords: ['react', 'design system'] },
+                      { label: 'Ari West', value: 'ari', icon: Palette, description: 'Interface and brand direction', keywords: ['ux', 'visual'] },
+                      { label: 'Mina Sol', value: 'mina', icon: Briefcase, description: 'Delivery and product operations', keywords: ['pm', 'ops'] },
+                    ]}
+                  />
+                  <MultiSelectField
+                    label="Tech Stack"
+                    name="techStack"
+                    value={formData.techStack}
+                    onChange={handleChange}
+                    hint="Select the tools required for this project."
+                    maxSelections={4}
+                    options={[
+                      { label: 'React', value: 'react', icon: Code, description: 'Component runtime', keywords: ['ui', 'frontend'] },
+                      { label: 'TypeScript', value: 'typescript', icon: Code, description: 'Typed application layer', keywords: ['ts', 'types'] },
+                      { label: 'Tailwind CSS', value: 'tailwind', icon: Palette, description: 'Utility-first styling', keywords: ['styles', 'css'] },
+                      { label: 'Figma', value: 'figma', icon: Layers, description: 'Design collaboration', keywords: ['design', 'handoff'] },
+                    ]}
+                  />
+                </div>
+
+                <div className="grid gap-6 sm:grid-cols-2">
                   <NumberField
                     label="Quantity"
                     name="quantity"
@@ -254,6 +293,34 @@ function App() {
                     format="hex"
                   />
                 </div>
+
+                <div className="grid gap-6 sm:grid-cols-2">
+                  <PhoneField
+                    label="Support Line"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    defaultCountry="US"
+                    hint="Stored as a complete international number."
+                  />
+                  <CurrencyField
+                    label="Monthly Budget"
+                    name="budget"
+                    value={formData.budget}
+                    onChange={handleChange}
+                    currency="USD"
+                    hint="Arrow keys also adjust the amount."
+                  />
+                </div>
+
+                <SearchField
+                  label="Knowledge Base Search"
+                  name="knowledgeSearch"
+                  value={formData.knowledgeSearch}
+                  onChange={handleChange}
+                  placeholder="Search docs, snippets, or support tickets..."
+                  hint="Includes a built-in clear action."
+                />
 
                 <InputOtpField
                   label="Verification Code"
