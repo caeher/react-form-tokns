@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/caeher/form-maker/compare/v1.4.1...v1.4.2) (2026-05-05)
+
+
+### Bug Fixes
+
+* tailwindcss style ([48b5bc2](https://github.com/caeher/form-maker/commit/48b5bc28a8c84a7964cb16f304e5f54ed2bb7361))
+
 ## [1.4.1](https://github.com/caeher/form-maker/compare/v1.4.0...v1.4.1) (2026-05-05)
 
 
