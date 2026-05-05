@@ -34,7 +34,7 @@ export function FieldLabel({
       {...componentProps}
       className={`text-sm font-medium ${
         disabled ? 'text-slate-500' : 'text-slate-200'
-      } ${inline ? inlineClassName : ''} ${inline ? 'w-full min-w-0' : ''} ${className}`}
+      } ${inline ? inlineClassName : ''} ${inline ? 'w-full min-w-0 sm:w-auto' : ''} ${className}`}
     >
       {children}
     </Component>

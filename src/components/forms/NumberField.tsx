@@ -88,18 +88,28 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(({
   }, []);
 
   const inputContent = (
-    <div className={`flex flex-col gap-1.5 ${inline ? 'flex-1' : ''}`}>
-      <div className="flex">
+    <div className={`flex min-w-0 flex-col gap-1.5 ${inline ? 'flex-1' : ''}`}>
+      <div
+        className={`flex overflow-hidden rounded-xl border bg-slate-900/50 transition-all focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-slate-950 ${
+          disabled
+            ? 'border-white/5'
+            : error
+              ? 'border-red-500/50 focus-within:border-red-500 focus-within:ring-red-500/50'
+              : 'border-white/10 hover:border-white/20 focus-within:border-cyan-400 focus-within:ring-cyan-500/50'
+        }`}
+      >
         <button
           type="button"
           disabled={disabled || (min !== undefined && currentValue <= min)}
           onPointerDown={() => startTimer(-1)}
           onPointerUp={stopTimer}
           onPointerLeave={stopTimer}
-          className={`flex items-center justify-center w-11 h-11 rounded-l-xl border border-r-0 transition-colors ${
+          className={`flex h-11 w-11 items-center justify-center border-r transition-colors ${
             disabled 
-              ? 'border-white/5 text-slate-600 bg-slate-900/30 cursor-not-allowed' 
-              : 'border-white/10 bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
+              ? 'cursor-not-allowed border-white/5 bg-slate-900/30 text-slate-600' 
+              : error
+                ? 'border-red-500/50 bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
+                : 'border-white/10 bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
           }`}
         >
           <Minus size={18} />
@@ -113,11 +123,8 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(({
           value={currentValue}
           disabled={disabled}
           readOnly
-          className={`w-full h-11 text-center bg-slate-900/50 border-y px-2 text-sm text-slate-50 transition-all focus:outline-none ${
-            disabled ? 'border-white/5 cursor-not-allowed' : 
-            error
-              ? 'border-red-500/50 focus:border-red-500'
-              : 'border-white/10 focus:border-cyan-400'
+          className={`h-11 w-full min-w-0 bg-slate-900/50 px-2 text-center text-sm text-slate-50 transition-all focus:outline-none ${
+            disabled ? 'cursor-not-allowed' : ''
           }`}
           aria-invalid={!!error}
           aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
@@ -129,10 +136,12 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(({
           onPointerDown={() => startTimer(1)}
           onPointerUp={stopTimer}
           onPointerLeave={stopTimer}
-          className={`flex items-center justify-center w-11 h-11 rounded-r-xl border border-l-0 transition-colors ${
+          className={`flex h-11 w-11 items-center justify-center border-l transition-colors ${
             disabled 
-              ? 'border-white/5 text-slate-600 bg-slate-900/30 cursor-not-allowed' 
-              : 'border-white/10 bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
+              ? 'cursor-not-allowed border-white/5 bg-slate-900/30 text-slate-600' 
+              : error
+                ? 'border-red-500/50 bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
+                : 'border-white/10 bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
           }`}
         >
           <Plus size={18} />

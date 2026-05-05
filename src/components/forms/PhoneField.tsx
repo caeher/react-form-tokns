@@ -227,21 +227,29 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(({
   };
 
   const phoneContent = (
-    <div className={`flex flex-col gap-1.5 ${inline ? 'flex-1' : ''}`}>
-      <div className="flex overflow-hidden rounded-xl">
+    <div className={`flex min-w-0 flex-col gap-1.5 ${inline ? 'flex-1' : ''}`}>
+      <div
+        className={`flex overflow-hidden rounded-xl border bg-slate-900/50 transition-all focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-slate-950 ${
+          disabled
+            ? 'border-white/5'
+            : error
+              ? 'border-red-500/50 focus-within:border-red-500 focus-within:ring-red-500/50'
+              : 'border-white/10 hover:border-white/20 focus-within:border-cyan-400 focus-within:ring-cyan-500/50'
+        }`}
+      >
         <div className="w-36 shrink-0" onMouseDown={(event) => event.stopPropagation()}>
           <Popover
             matchTriggerWidth
             disabled={disabled}
             trigger={
               <div
-                className={`flex h-11 items-center justify-between border border-r-0 bg-slate-900/50 px-3 text-sm ${
+                className={`flex h-11 items-center justify-between border-r bg-slate-900/50 px-3 text-sm ${
                   disabled
                     ? 'cursor-not-allowed border-white/5 text-slate-600'
                     : error
                       ? 'border-red-500/50 text-slate-100'
                       : 'border-white/10 text-slate-100'
-                } rounded-l-xl`}
+                }`}
               >
                 <div className="min-w-0">
                   <p className="truncate font-medium">{selectedCountry.code}</p>
@@ -300,7 +308,7 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(({
           />
         </div>
 
-        <div className="relative flex-1">
+        <div className="relative min-w-0 flex-1">
           <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
             <Phone size={16} />
           </span>
@@ -317,12 +325,8 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(({
               const nextDigits = event.target.value.replace(/\D/g, '');
               emitChange(nextDigits, selectedCountry);
             }}
-            className={`h-11 w-full rounded-r-xl border border-l-0 bg-slate-900/50 pl-10 pr-4 text-sm text-slate-50 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-950 ${
-              disabled
-                ? 'cursor-not-allowed border-white/5'
-                : error
-                  ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/50'
-                  : 'border-white/10 focus:border-cyan-400 focus:ring-cyan-500/50 hover:border-white/20'
+            className={`h-11 w-full min-w-0 bg-slate-900/50 pl-10 pr-4 text-sm text-slate-50 placeholder:text-slate-500 focus:outline-none ${
+              disabled ? 'cursor-not-allowed' : ''
             }`}
             aria-invalid={!!error}
             aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}

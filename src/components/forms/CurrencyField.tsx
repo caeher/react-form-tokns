@@ -199,10 +199,18 @@ export const CurrencyField = forwardRef<HTMLInputElement, CurrencyFieldProps>(({
   };
 
   const currencyContent = (
-    <div className={`flex flex-col gap-1.5 ${inline ? 'flex-1' : ''}`}>
-      <div className="flex overflow-hidden rounded-xl">
+    <div className={`flex min-w-0 flex-col gap-1.5 ${inline ? 'flex-1' : ''}`}>
+      <div
+        className={`flex overflow-hidden rounded-xl border bg-slate-900/50 transition-all focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-slate-950 ${
+          disabled
+            ? 'border-white/5'
+            : error
+              ? 'border-red-500/50 focus-within:border-red-500 focus-within:ring-red-500/50'
+              : 'border-white/10 hover:border-white/20 focus-within:border-cyan-400 focus-within:ring-cyan-500/50'
+        }`}
+      >
         <div
-          className={`flex h-11 items-center gap-2 rounded-l-xl border border-r-0 bg-slate-900/50 px-3 text-sm ${
+          className={`flex h-11 items-center gap-2 border-r bg-slate-900/50 px-3 text-sm ${
             disabled
               ? 'border-white/5 text-slate-600'
               : error
@@ -250,12 +258,8 @@ export const CurrencyField = forwardRef<HTMLInputElement, CurrencyFieldProps>(({
               adjustValue(-1);
             }
           }}
-          className={`h-11 w-full border border-l-0 bg-slate-900/50 px-4 text-sm text-slate-50 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-950 ${
-            disabled
-              ? 'cursor-not-allowed border-white/5'
-              : error
-                ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/50'
-                : 'border-white/10 focus:border-cyan-400 focus:ring-cyan-500/50 hover:border-white/20'
+          className={`h-11 w-full min-w-0 bg-slate-900/50 px-4 text-sm text-slate-50 placeholder:text-slate-500 focus:outline-none ${
+            disabled ? 'cursor-not-allowed' : ''
           }`}
           aria-invalid={!!error}
           aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
