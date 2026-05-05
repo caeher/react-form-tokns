@@ -8,14 +8,11 @@ Form Maker is an evolution of standard form controls, focusing on deep accessibi
 
 ## Library Usage
 
-When consuming the published package, import both the components and the generated stylesheet:
+When consuming the published package, importing the library is enough. The build injects its generated styles automatically:
 
 ```tsx
-import '@caeher/react-form-tokns/styles.css'
 import { TextField } from '@caeher/react-form-tokns'
 ```
-
-Without that CSS import, the components render but Tailwind-generated styles from the library will not be applied.
 
 ## Tech Stack
 
