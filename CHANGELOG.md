@@ -1,3 +1,17 @@
+# [1.3.0](https://github.com/caeher/form-maker/compare/v1.2.0...v1.3.0) (2026-05-04)
+
+
+### Bug Fixes
+
+* min width overflow ([842a93f](https://github.com/caeher/form-maker/commit/842a93f6cd3b0c33d7c46ec49b6c7de762fbffdc))
+* restructuring components ([1fa8bce](https://github.com/caeher/form-maker/commit/1fa8bce2b69fa7a9caca23034523e4ce5be83b12))
+* update ProgressField.md ([7460d4d](https://github.com/caeher/form-maker/commit/7460d4d536742a4ab70d58c2ac1b78190b05dfdc))
+
+
+### Features
+
+* add UploadField ([08031f6](https://github.com/caeher/form-maker/commit/08031f6862817f7ea52a0df30dccd6db097a3bf4))
+
 # [1.2.0](https://github.com/caeher/form-maker/compare/v1.1.0...v1.2.0) (2026-05-02)
 
 
