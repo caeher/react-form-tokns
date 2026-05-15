@@ -18,10 +18,5 @@
     "src/lib/**/*",
     "src/components/**/*"
   ],
-  "exclude": [
-    "src/App.tsx",
-    "src/main.tsx",
-    "src/App.css",
-    "src/vite-env.d.ts"
   ]
 }

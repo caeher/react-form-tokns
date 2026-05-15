@@ -4,14 +4,16 @@ import {
   SelectField, 
   CalendarField, 
   SwitchField, 
-  PhoneField,
-  Mail,
-  User,
-  Layout,
-  Briefcase,
-  Bell,
-  Code
-} from './components/forms';
+  PhoneField
+} from '@caeher/react-form-tokns';
+import { 
+  Mail, 
+  User, 
+  Layout, 
+  Briefcase, 
+  Bell, 
+  Code 
+} from 'lucide-react';
 
 function App() {
   const [formData, setFormData] = useState({

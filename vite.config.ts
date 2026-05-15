@@ -39,6 +39,12 @@ export default defineConfig(({ mode }) => {
 
   // Development mode (app demo)
   return {
+    root: 'playground',
     plugins: [react(), tailwindcss()],
+    resolve: {
+      alias: {
+        '@caeher/react-form-tokns': resolve(__dirname, 'src/lib/index.ts'),
+      },
+    },
   }
 })
