@@ -9,7 +9,7 @@ interface FieldStateOptions {
 export const fieldControlHeightClass = 'min-h-[42px]';
 export const fieldControlFixedHeightClass = 'h-[42px]';
 
-const baseFieldSurface = 'border bg-white dark:bg-slate-950/40 transition-all';
+const baseFieldSurface = 'border border-(--field-border) bg-(--field-bg) transition-all';
 
 const focusModeClasses: Record<FieldFocusMode, string> = {
   focus: 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-950',

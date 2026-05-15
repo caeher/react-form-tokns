@@ -109,10 +109,8 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(({
           onPointerLeave={stopTimer}
           className={`flex h-full w-[42px] items-center justify-center border-r transition-colors ${
             disabled 
-              ? 'cursor-not-allowed bg-slate-900/30 text-slate-600' 
-              : error
-                ? 'bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
-                : 'bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
+              ? 'cursor-not-allowed bg-slate-100 dark:bg-slate-900/30 text-slate-400 dark:text-slate-600' 
+              : 'bg-slate-50 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 active:bg-slate-200 dark:active:bg-white/10'
           } ${getFieldDividerClass({ disabled, error: !!error })}`}
         >
           <Minus size={18} />
@@ -126,8 +124,8 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(({
           value={currentValue}
           disabled={disabled}
           readOnly
-          className={`h-full w-full min-w-0 bg-slate-900/50 px-2 text-center text-sm text-slate-50 transition-all focus:outline-none ${
-            disabled ? 'cursor-not-allowed' : ''
+          className={`h-full w-full min-w-0 bg-transparent dark:bg-slate-900/50 px-2 text-center text-sm text-slate-900 dark:text-slate-50 transition-all focus:outline-none ${
+            disabled ? 'cursor-not-allowed text-slate-400 dark:text-slate-600' : ''
           }`}
           aria-invalid={!!error}
           aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
@@ -141,10 +139,8 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(({
           onPointerLeave={stopTimer}
           className={`flex h-full w-[42px] items-center justify-center border-l transition-colors ${
             disabled 
-              ? 'cursor-not-allowed bg-slate-900/30 text-slate-600' 
-              : error
-                ? 'bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
-                : 'bg-slate-900/50 text-slate-300 hover:bg-white/5 active:bg-white/10'
+              ? 'cursor-not-allowed bg-slate-100 dark:bg-slate-900/30 text-slate-400 dark:text-slate-600' 
+              : 'bg-slate-50 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-100 active:bg-slate-200 dark:active:bg-white/10'
           } ${getFieldDividerClass({ disabled, error: !!error })}`}
         >
           <Plus size={18} />

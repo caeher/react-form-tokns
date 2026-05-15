@@ -126,7 +126,7 @@ export const ColorPickerField = forwardRef<HTMLInputElement, ColorPickerFieldPro
               />
             </div>
             {showInput && (
-              <span className={`min-w-0 truncate font-mono ${disabled ? 'text-slate-500' : 'text-slate-200'}`}>
+              <span className={`min-w-0 truncate font-mono ${disabled ? 'text-slate-400 dark:text-slate-600' : 'text-slate-700 dark:text-slate-200'}`}>
                 {currentColor}
               </span>
             )}
@@ -203,12 +203,12 @@ export const ColorPickerField = forwardRef<HTMLInputElement, ColorPickerFieldPro
 
             {/* Presets */}
             {presets.length > 0 && (
-              <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5">
+              <div className="flex flex-wrap gap-2 pt-2 border-t border-slate-200 dark:border-white/5">
                 {presets.map((preset) => (
                   <button
                     key={preset}
                     type="button"
-                    className="h-5 w-5 rounded-full border border-white/10 transition-transform hover:scale-125"
+                    className="h-5 w-5 rounded-full border border-slate-200 dark:border-white/10 transition-transform hover:scale-125"
                     style={{ backgroundColor: preset }}
                     onClick={() => {
                       const p = parseColor(preset);

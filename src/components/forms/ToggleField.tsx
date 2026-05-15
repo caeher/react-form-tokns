@@ -78,7 +78,7 @@ export const ToggleField = forwardRef<HTMLDivElement, ToggleFieldProps>(({
 
   return (
     <FieldWrapper className={className} ref={ref}>
-      <div className={`inline-flex w-fit overflow-hidden rounded-xl bg-slate-900/30 ${getFieldSurfaceClass({
+      <div className={`inline-flex w-fit overflow-hidden rounded-xl bg-slate-50 dark:bg-slate-900/30 ${getFieldSurfaceClass({
         disabled,
         error: !!error,
         focusMode: 'focus-within',
@@ -94,9 +94,9 @@ export const ToggleField = forwardRef<HTMLDivElement, ToggleFieldProps>(({
               onClick={() => handleToggle(option.value)}
               className={`flex items-center transition-all ${sizeClasses[size]} ${
                 isActive 
-                  ? 'bg-cyan-500/20 text-cyan-400 font-semibold' 
-                  : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
-              } ${index !== 0 ? 'border-l border-white/10' : ''}`}
+                  ? 'bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 font-semibold' 
+                  : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-200'
+              } ${index !== 0 ? 'border-l border-slate-200 dark:border-white/10' : ''}`}
             >
               {Icon && <Icon size={iconSizes[size]} />}
               {option.label && <span>{option.label}</span>}

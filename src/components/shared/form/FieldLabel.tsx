@@ -33,7 +33,7 @@ export function FieldLabel({
     <Component
       {...componentProps}
       className={`text-sm font-medium ${
-        disabled ? 'text-slate-500' : 'text-slate-900 dark:text-slate-200'
+        disabled ? 'text-slate-400 dark:text-slate-600' : 'text-slate-900 dark:text-slate-200'
       } ${inline ? inlineClassName : ''} ${inline ? 'w-full min-w-0 sm:w-auto' : ''} ${className}`}
     >
       {children}

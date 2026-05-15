@@ -66,18 +66,18 @@ export const RadioGroupField = forwardRef<HTMLInputElement, RadioGroupFieldProps
                   aria-invalid={!!error}
                   {...props}
                 />
-                <div className={`flex h-5 w-5 items-center justify-center rounded-full border bg-slate-900/50 transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-slate-950 ${
-                  disabled ? 'border-white/5 opacity-50' :
+                <div className={`flex h-5 w-5 items-center justify-center rounded-full border border-(--field-border) bg-(--field-bg) transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white dark:peer-focus-visible:ring-offset-slate-950 ${
+                  disabled ? 'opacity-50' :
                   error
                     ? 'border-red-500/50 peer-checked:border-red-500 peer-focus-visible:ring-red-500/50'
-                    : 'border-white/10 group-hover:border-white/20 peer-checked:border-cyan-400 peer-focus-visible:ring-cyan-500/50'
+                    : 'group-hover:border-slate-400 dark:group-hover:border-white/20 peer-checked:border-cyan-500 dark:peer-checked:border-cyan-400 peer-focus-visible:ring-cyan-500/50'
                 }`}>
                   <div className={`h-2.5 w-2.5 rounded-full transition-all ${
                     isChecked ? (error ? 'bg-red-500 scale-100' : (disabled ? 'bg-slate-600 scale-100' : 'bg-cyan-400 scale-100')) : 'scale-0'
                   }`} />
                 </div>
               </div>
-              <span className={`text-sm ${disabled ? 'text-slate-500' : 'text-slate-200'}`}>{option.label}</span>
+              <span className={`text-sm ${disabled ? 'text-slate-400 dark:text-slate-500' : 'text-slate-700 dark:text-slate-200'}`}>{option.label}</span>
             </label>
           );
         })}

@@ -131,8 +131,8 @@ export const TimeField = forwardRef<HTMLInputElement, TimeFieldProps>(({
               onClick={() => handleSelect(type, item)}
               className={`h-8 w-10 flex items-center justify-center rounded-lg text-sm transition-all ${
                 isSelected 
-                  ? 'bg-cyan-500/20 text-cyan-400 font-bold' 
-                  : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
+                  ? 'bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 font-bold' 
+                  : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-200'
               }`}
             >
               {typeof item === 'number' ? String(item).padStart(2, '0') : item}
@@ -164,7 +164,7 @@ export const TimeField = forwardRef<HTMLInputElement, TimeFieldProps>(({
                 focusMode: 'group-focus',
               })} ${Icon && iconPosition === 'left' ? 'pl-10' : ''} ${Icon && iconPosition === 'right' ? 'pr-10' : ''}`}
             >
-              <span className={`block min-w-0 truncate ${currentTime ? (disabled ? 'text-slate-400' : 'text-slate-50') : 'text-slate-500'}`}>
+              <span className={`block min-w-0 truncate ${currentTime ? (disabled ? 'text-slate-400 dark:text-slate-600' : 'text-slate-900 dark:text-slate-50') : 'text-slate-400 dark:text-slate-500'}`}>
                 {displayTime()}
               </span>
             </div>

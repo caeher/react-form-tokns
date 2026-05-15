@@ -178,7 +178,7 @@ export const CalendarGrid = ({
         <button
           type="button"
           onClick={() => onViewDateChange(today(getLocalTimeZone()))}
-          className="text-[11px] font-medium text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider"
+          className="text-[11px] font-medium text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors uppercase tracking-wider"
         >
           Go to Today
         </button>

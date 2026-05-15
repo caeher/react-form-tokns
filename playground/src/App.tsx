@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   TextField, 
   SelectField, 
@@ -39,9 +39,16 @@ function App() {
     }));
   };
 
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDark]);
+
   const toggleTheme = () => {
     setIsDark(!isDark);
-    document.documentElement.classList.toggle('dark');
   };
 
   return (
@@ -127,7 +134,7 @@ function App() {
                   />
                 </div>
 
-                <div className="pt-6 border-t border-white/5 space-y-4">
+                <div className="pt-6 border-t border-slate-200 dark:border-white/5 space-y-4">
                   <SwitchField
                     inline
                     label="Subscribe to newsletter"
@@ -146,7 +153,7 @@ function App() {
                   />
                 </div>
 
-                <div className="pt-6 border-t border-white/5">
+                <div className="pt-6 border-t border-slate-200 dark:border-white/5">
                   <CheckboxField
                     label="I agree to the terms and conditions"
                     name="terms"

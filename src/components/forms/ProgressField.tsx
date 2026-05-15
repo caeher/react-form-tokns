@@ -92,7 +92,7 @@ export const ProgressField = forwardRef<HTMLInputElement, ProgressFieldProps>(({
     <div className={`flex flex-col gap-1.5 ${inline ? 'flex-1' : ''}`}>
       <div className="flex items-center gap-3">
         <div
-          className={`relative flex-1 ${sizeClasses[size]} rounded-full bg-slate-800 border border-white/5 overflow-hidden ${isInteractive && !disabled ? 'cursor-pointer' : ''}`}
+          className={`relative flex-1 ${sizeClasses[size]} rounded-full bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-white/5 overflow-hidden ${isInteractive && !disabled ? 'cursor-pointer' : ''}`}
           role={isInteractive ? undefined : 'progressbar'}
           aria-valuenow={isInteractive ? undefined : currentValue}
           aria-valuemin={isInteractive ? undefined : min}

@@ -482,12 +482,12 @@ export const UploadField = forwardRef<HTMLInputElement, UploadFieldProps>(({
           error: !!error,
         })} ${
           isDragging && !disabled && !error
-            ? 'border-cyan-400 bg-cyan-500/10 shadow-[0_0_0_1px_rgba(34,211,238,0.2)] focus:border-cyan-400'
+            ? 'border-cyan-500 dark:border-cyan-400 bg-cyan-500/5 dark:bg-cyan-500/10 shadow-[0_0_0_1px_rgba(34,211,238,0.2)] focus:border-cyan-500 dark:focus:border-cyan-400'
             : disabled
-              ? 'bg-slate-900/30 opacity-50'
+              ? 'bg-slate-100 dark:bg-slate-900/30 opacity-50'
               : error
                 ? 'bg-red-500/5'
-                : 'hover:bg-slate-900/70'
+                : 'hover:bg-slate-50 dark:hover:bg-slate-900/70'
         }`}
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/5 to-transparent" />
@@ -496,20 +496,20 @@ export const UploadField = forwardRef<HTMLInputElement, UploadFieldProps>(({
             <div className="flex items-start gap-3 min-w-0">
               <div className={`flex h-11 w-11 items-center justify-center rounded-2xl border ${
                 disabled
-                  ? 'border-white/5 bg-slate-900/40 text-slate-600'
+                  ? 'border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-900/40 text-slate-400 dark:text-slate-600'
                   : error
-                    ? 'border-red-500/30 bg-red-500/10 text-red-300'
-                    : 'border-cyan-400/20 bg-cyan-400/10 text-cyan-300'
+                    ? 'border-red-500/20 dark:border-red-500/30 bg-red-500/5 dark:bg-red-500/10 text-red-500 dark:text-red-300'
+                    : 'border-cyan-500/20 dark:border-cyan-400/20 bg-cyan-500/5 dark:bg-cyan-400/10 text-cyan-600 dark:text-cyan-300'
               }`}>
                 {isServerMode ? <CloudUpload size={20} /> : <Upload size={20} />}
               </div>
               <div className="min-w-0 space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <p className={`text-sm font-medium ${disabled ? 'text-slate-500' : 'text-slate-100'}`}>
+                  <p className={`text-sm font-medium ${disabled ? 'text-slate-400 dark:text-slate-500' : 'text-slate-900 dark:text-slate-100'}`}>
                     Drop files here or browse
                   </p>
                   {isServerMode && (
-                    <span className="inline-flex items-center gap-1 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-2 py-0.5 text-[11px] font-medium text-cyan-300">
+                    <span className="inline-flex items-center gap-1 rounded-full border border-cyan-500/20 dark:border-cyan-400/20 bg-cyan-500/5 dark:bg-cyan-400/10 px-2 py-0.5 text-[11px] font-medium text-cyan-600 dark:text-cyan-300">
                       <Server size={12} />
                       Auto upload
                     </span>
@@ -531,8 +531,8 @@ export const UploadField = forwardRef<HTMLInputElement, UploadFieldProps>(({
               }}
               className={`inline-flex w-full items-center justify-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium transition-colors sm:w-auto ${
                 disabled || !canAddMore
-                  ? 'cursor-not-allowed border-white/5 bg-slate-900/30 text-slate-600'
-                  : 'border-white/10 bg-white/5 text-slate-100 hover:border-cyan-400/30 hover:bg-cyan-400/10 hover:text-cyan-200'
+                  ? 'cursor-not-allowed border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-900/30 text-slate-400 dark:text-slate-600'
+                  : 'border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-700 dark:text-slate-100 hover:border-cyan-500/30 dark:hover:border-cyan-400/30 hover:bg-cyan-500/5 dark:hover:bg-cyan-400/10 hover:text-cyan-600 dark:hover:text-cyan-200'
               }`}
             >
               <Upload size={16} />
@@ -557,9 +557,9 @@ export const UploadField = forwardRef<HTMLInputElement, UploadFieldProps>(({
                 return (
                   <div
                     key={item.id}
-                    className="flex items-center gap-3 rounded-2xl border border-white/8 bg-slate-950/50 p-3"
+                    className="flex items-center gap-3 rounded-2xl border border-slate-200 dark:border-white/8 bg-slate-50/50 dark:bg-slate-950/50 p-3"
                   >
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5">
                       {item.previewUrl && shouldCreatePreview(item.type, previewStrategy) ? (
                         <img
                           src={item.previewUrl}
@@ -573,7 +573,7 @@ export const UploadField = forwardRef<HTMLInputElement, UploadFieldProps>(({
 
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
-                        <p className="truncate text-sm font-medium text-slate-100" title={item.name}>
+                        <p className="truncate text-sm font-medium text-slate-900 dark:text-slate-100" title={item.name}>
                           {displayName}
                         </p>
                         {StatusIcon && (
@@ -581,15 +581,15 @@ export const UploadField = forwardRef<HTMLInputElement, UploadFieldProps>(({
                             size={16}
                             className={`shrink-0 ${
                               item.status === 'uploading'
-                                ? 'animate-spin text-cyan-300'
+                                ? 'animate-spin text-cyan-600 dark:text-cyan-300'
                                 : item.status === 'uploaded'
-                                  ? 'text-emerald-300'
-                                  : 'text-red-300'
+                                  ? 'text-emerald-600 dark:text-emerald-300'
+                                  : 'text-red-600 dark:text-red-300'
                             }`}
                           />
                         )}
                       </div>
-                      <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400">
+                      <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500 dark:text-slate-400">
                         {showFileSize && <span>{formatBytes(item.size)}</span>}
                         {item.type && <span>{item.type}</span>}
                         {!item.type && <span>Unknown format</span>}
@@ -598,7 +598,7 @@ export const UploadField = forwardRef<HTMLInputElement, UploadFieldProps>(({
                             href={item.remoteUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="text-cyan-300 transition-colors hover:text-cyan-200"
+                            className="text-cyan-600 dark:text-cyan-300 transition-colors hover:text-cyan-700 dark:hover:text-cyan-200"
                             onClick={(event) => event.stopPropagation()}
                           >
                             Open file
@@ -606,7 +606,7 @@ export const UploadField = forwardRef<HTMLInputElement, UploadFieldProps>(({
                         )}
                       </div>
                       {item.error && (
-                        <p className="mt-1 text-xs font-medium text-red-300">{item.error}</p>
+                        <p className="mt-1 text-xs font-medium text-red-600 dark:text-red-300">{item.error}</p>
                       )}
                     </div>
 
@@ -620,8 +620,8 @@ export const UploadField = forwardRef<HTMLInputElement, UploadFieldProps>(({
                         }}
                         className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border transition-colors ${
                           disabled
-                            ? 'cursor-not-allowed border-white/5 text-slate-600'
-                            : 'border-white/10 text-slate-400 hover:border-red-400/30 hover:bg-red-500/10 hover:text-red-300'
+                            ? 'cursor-not-allowed border-slate-200 dark:border-white/5 text-slate-300 dark:text-slate-600'
+                            : 'border-slate-200 dark:border-white/10 text-slate-400 hover:border-red-500/30 dark:hover:border-red-400/30 hover:bg-red-500/5 dark:hover:bg-red-500/10 hover:text-red-600 dark:hover:text-red-300'
                         }`}
                         aria-label={`Remove ${item.name}`}
                       >
@@ -633,8 +633,8 @@ export const UploadField = forwardRef<HTMLInputElement, UploadFieldProps>(({
               })}
             </div>
           ) : (
-            <div className="flex items-center gap-3 rounded-2xl border border-white/8 bg-slate-950/35 px-4 py-3 text-sm text-slate-400">
-              <FileImage size={18} className="text-slate-500" />
+            <div className="flex items-center gap-3 rounded-2xl border border-slate-200 dark:border-white/8 bg-slate-50 dark:bg-slate-950/35 px-4 py-3 text-sm text-slate-500 dark:text-slate-400">
+              <FileImage size={18} className="text-slate-400 dark:text-slate-500" />
               <span>Selected files will appear here with preview and upload status.</span>
             </div>
           )}

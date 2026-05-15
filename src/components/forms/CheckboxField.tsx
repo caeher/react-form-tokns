@@ -48,14 +48,14 @@ export const CheckboxField = forwardRef<HTMLInputElement, CheckboxFieldProps>(({
         aria-describedby={error ? `${checkboxId}-error` : hint ? `${checkboxId}-hint` : undefined}
         {...props}
       />
-      <div className={`flex h-5 w-5 items-center justify-center rounded border bg-white dark:bg-slate-900 transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white dark:peer-focus-visible:ring-offset-slate-950 peer-checked:[&_svg]:opacity-100 ${
-        disabled ? 'border-slate-200 dark:border-slate-800 opacity-50' :
+      <div className={`flex h-5 w-5 items-center justify-center rounded border border-(--field-border) bg-(--field-bg) transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white dark:peer-focus-visible:ring-offset-slate-950 peer-checked:[&_svg]:opacity-100 ${
+        disabled ? 'opacity-50' :
         error
           ? 'border-red-500/50 peer-checked:border-red-500 peer-checked:bg-red-500 peer-focus-visible:ring-red-500/50'
-          : 'border-slate-300 dark:border-slate-700 group-hover:border-slate-400 dark:group-hover:border-slate-600 peer-checked:border-cyan-500 peer-checked:bg-cyan-500 peer-focus-visible:ring-cyan-500/50'
+          : 'group-hover:border-slate-400 dark:group-hover:border-slate-600 peer-checked:border-cyan-500 peer-checked:bg-cyan-500 peer-focus-visible:ring-cyan-500/50'
       }`}>
         <CheckIcon
-          className="pointer-events-none h-3.5 w-3.5 opacity-0 transition-opacity text-white dark:text-slate-950"
+          className="pointer-events-none h-3.5 w-3.5 opacity-0 transition-opacity text-white"
           strokeWidth={4}
         />
       </div>

@@ -246,24 +246,22 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(({
             disabled={disabled}
             trigger={
               <div
-                className={`flex h-full items-center justify-between border-r bg-slate-900/50 px-3 text-sm ${
+                className={`flex h-full items-center justify-between border-r bg-slate-50 dark:bg-slate-900/50 px-3 text-sm ${
                   disabled
-                    ? 'cursor-not-allowed text-slate-600'
-                    : error
-                      ? 'text-slate-100'
-                      : 'text-slate-100'
+                    ? 'cursor-not-allowed text-slate-400 dark:text-slate-600'
+                    : 'text-slate-700 dark:text-slate-100'
                 } ${getFieldDividerClass({ disabled, error: !!error })}`}
               >
                 <div className="flex min-w-0 items-center gap-1.5 truncate">
                   <span className="truncate font-medium leading-none">{selectedCountry.code}</span>
-                  <span className="truncate text-xs leading-none text-slate-400">{selectedCountry.dialCode}</span>
+                  <span className="truncate text-xs leading-none text-slate-500 dark:text-slate-400">{selectedCountry.dialCode}</span>
                 </div>
-                <ChevronDown size={16} className={disabled ? 'text-slate-700' : 'text-slate-400'} />
+                <ChevronDown size={16} className={disabled ? 'text-slate-300 dark:text-slate-700' : 'text-slate-400 dark:text-slate-500'} />
               </div>
             }
             content={(close) => (
               <div className="max-h-80 overflow-hidden">
-                <div className="border-b border-white/10 p-3">
+                <div className="border-b border-slate-200 dark:border-white/10 p-3">
                   <div className="relative">
                     <Search
                       size={16}
@@ -273,7 +271,7 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(({
                       value={countryQuery}
                       onChange={(event) => setCountryQuery(event.target.value)}
                       placeholder={countrySearchPlaceholder}
-                      className={`w-full rounded-lg py-2 pl-9 pr-3 text-sm text-slate-100 placeholder:text-slate-500 ${getFieldSurfaceClass({})}`}
+                      className={`w-full rounded-lg py-2 pl-9 pr-3 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 ${getFieldSurfaceClass({})}`}
                     />
                   </div>
                 </div>
@@ -287,8 +285,8 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(({
                         type="button"
                         className={`flex w-full items-center justify-between px-3 py-2 text-left transition-colors ${
                           isActive
-                            ? 'bg-cyan-500/15 text-cyan-300'
-                            : 'text-slate-300 hover:bg-white/5 hover:text-slate-50'
+                            ? 'bg-cyan-500/10 dark:bg-cyan-500/15 text-cyan-600 dark:text-cyan-300'
+                            : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-50'
                         }`}
                         onClick={() => {
                           handleCountrySelect(countryOption);
@@ -297,7 +295,7 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(({
                       >
                         <div className="min-w-0">
                           <p className="truncate text-sm font-medium">{countryOption.label}</p>
-                          <p className="truncate text-xs text-slate-400">
+                          <p className="truncate text-xs text-slate-500 dark:text-slate-400">
                             {countryOption.code} {countryOption.dialCode}
                           </p>
                         </div>
@@ -313,7 +311,7 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(({
 
         <div className="relative flex h-full min-w-0 flex-1 items-center">
           <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
-            <Phone size={16} />
+            <Phone size={16} className="text-slate-400 dark:text-slate-500" />
           </span>
           <input
             ref={inputRef}
@@ -328,8 +326,8 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(({
               const nextDigits = event.target.value.replace(/\D/g, '');
               emitChange(nextDigits, selectedCountry);
             }}
-            className={`h-full w-full min-w-0 bg-slate-900/50 pl-10 pr-4 text-sm leading-none text-slate-50 placeholder:text-slate-500 focus:outline-none ${
-              disabled ? 'cursor-not-allowed' : ''
+            className={`h-full w-full min-w-0 bg-transparent dark:bg-slate-900/50 pl-10 pr-4 text-sm leading-none text-slate-900 dark:text-slate-50 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none ${
+              disabled ? 'cursor-not-allowed text-slate-400 dark:text-slate-600' : ''
             }`}
             aria-invalid={!!error}
             aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}

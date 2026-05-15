@@ -56,21 +56,21 @@ function renderOption(option: ComboboxOption, disabled: boolean): ReactNode {
 
   return (
     <div className="flex min-w-0 items-start gap-3">
-      <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5">
+      <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5">
         {option.image ? (
           <img src={option.image} alt="" className="h-full w-full rounded-lg object-cover" />
         ) : Icon ? (
-          <Icon size={16} className={disabled ? 'text-slate-600' : 'text-slate-300'} />
+          <Icon size={16} className={disabled ? 'text-slate-400 dark:text-slate-600' : 'text-slate-500 dark:text-slate-300'} />
         ) : (
-          <Search size={16} className={disabled ? 'text-slate-700' : 'text-slate-500'} />
+          <Search size={16} className={disabled ? 'text-slate-300 dark:text-slate-700' : 'text-slate-400 dark:text-slate-500'} />
         )}
       </div>
       <div className="min-w-0">
-        <p className={`truncate text-sm font-medium ${disabled ? 'text-slate-500' : 'text-slate-100'}`}>
+        <p className={`truncate text-sm font-medium ${disabled ? 'text-slate-400 dark:text-slate-500' : 'text-slate-900 dark:text-slate-100'}`}>
           {option.label}
         </p>
         {option.description && (
-          <p className="truncate text-xs text-slate-400">{option.description}</p>
+          <p className="truncate text-xs text-slate-500 dark:text-slate-400">{option.description}</p>
         )}
       </div>
     </div>
@@ -85,11 +85,11 @@ function renderTriggerOption(option: ComboboxOption, disabled: boolean): ReactNo
       {option.image ? (
         <img src={option.image} alt="" className="h-5 w-5 shrink-0 rounded-full object-cover" />
       ) : Icon ? (
-        <Icon size={16} className={`${disabled ? 'text-slate-600' : 'text-slate-400'} shrink-0`} />
+        <Icon size={16} className={`${disabled ? 'text-slate-300 dark:text-slate-700' : 'text-slate-500 dark:text-slate-400'} shrink-0`} />
       ) : (
-        <Search size={16} className={`${disabled ? 'text-slate-700' : 'text-slate-500'} shrink-0`} />
+        <Search size={16} className={`${disabled ? 'text-slate-300 dark:text-slate-700' : 'text-slate-500 dark:text-slate-400'} shrink-0`} />
       )}
-      <span className={`truncate ${disabled ? 'text-slate-400' : 'text-slate-50'}`}>
+      <span className={`truncate ${disabled ? 'text-slate-400 dark:text-slate-600' : 'text-slate-900 dark:text-slate-50'}`}>
         {option.label}
       </span>
     </div>
@@ -161,7 +161,7 @@ export const ComboboxField = forwardRef<HTMLSelectElement, ComboboxFieldProps>((
           trigger={
             <div
               className={`flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-left text-sm ${
-                disabled ? 'text-slate-600' : 'text-slate-100'
+                disabled ? 'text-slate-400 dark:text-slate-600' : 'text-slate-900 dark:text-slate-100'
               } ${fieldControlHeightClass} ${getFieldSurfaceClass({
                 disabled,
                 error: !!error,
@@ -172,13 +172,13 @@ export const ComboboxField = forwardRef<HTMLSelectElement, ComboboxFieldProps>((
                 {selectedOption ? (
                   renderTriggerOption(selectedOption, disabled)
                 ) : (
-                  <span className="truncate text-slate-400">{placeholder}</span>
+                  <span className="truncate text-slate-400 dark:text-slate-500">{placeholder}</span>
                 )}
               </div>
               <div className="ml-3 flex shrink-0 items-center gap-2">
                 {clearable && currentValue !== '' && !disabled && (
                   <span
-                    className="rounded-full p-1 text-slate-500 transition-colors hover:bg-white/5 hover:text-slate-200"
+                    className="rounded-full p-1 text-slate-400 dark:text-slate-500 transition-colors hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-200"
                     onClick={(event) => {
                       event.stopPropagation();
                       handleSelect('');
@@ -195,7 +195,7 @@ export const ComboboxField = forwardRef<HTMLSelectElement, ComboboxFieldProps>((
           }
           content={(close) => (
             <div className="max-h-80 overflow-hidden">
-              <div className="border-b border-white/10 p-3">
+              <div className="border-b border-slate-200 dark:border-white/10 p-3">
                 <div className="relative">
                   <Search
                     size={16}
@@ -205,7 +205,7 @@ export const ComboboxField = forwardRef<HTMLSelectElement, ComboboxFieldProps>((
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
                     placeholder={searchPlaceholder}
-                    className={`w-full rounded-lg py-2 pl-9 pr-3 text-sm text-slate-100 placeholder:text-slate-500 ${getFieldSurfaceClass({})}`}
+                    className={`w-full rounded-lg py-2 pl-9 pr-3 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 ${getFieldSurfaceClass({})}`}
                   />
                 </div>
               </div>
@@ -219,8 +219,8 @@ export const ComboboxField = forwardRef<HTMLSelectElement, ComboboxFieldProps>((
                       type="button"
                       className={`flex w-full items-center justify-between gap-3 px-3 py-2 text-left transition-colors ${
                         isSelected
-                          ? 'bg-cyan-500/15 text-cyan-300'
-                          : 'text-slate-300 hover:bg-white/5 hover:text-slate-50'
+                          ? 'bg-cyan-500/10 dark:bg-cyan-500/15 text-cyan-600 dark:text-cyan-300'
+                          : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-50'
                       }`}
                       onClick={() => {
                         handleSelect(option.value);

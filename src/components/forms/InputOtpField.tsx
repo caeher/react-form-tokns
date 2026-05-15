@@ -113,7 +113,7 @@ export const InputOtpField = forwardRef<HTMLInputElement, InputOtpFieldProps>(({
         {digits.map((digit, i) => (
           <div key={i} className="flex items-center">
             {i > 0 && i === length / 2 && (
-              <div className="mx-0.5 h-px w-2 bg-slate-700 sm:mx-1 sm:w-3" />
+              <div className="mx-0.5 h-px w-2 bg-slate-300 dark:bg-slate-700 sm:mx-1 sm:w-3" />
             )}
             <input
               ref={(el) => {
@@ -131,7 +131,7 @@ export const InputOtpField = forwardRef<HTMLInputElement, InputOtpFieldProps>(({
               onChange={(e) => handleChange(i, e.target.value)}
               onKeyDown={(e) => handleKeyDown(i, e)}
               onPaste={handlePaste}
-              className={`w-[42px] rounded-xl text-center font-mono text-base font-semibold text-slate-50 sm:text-lg ${fieldControlFixedHeightClass} ${getFieldSurfaceClass({
+              className={`w-[42px] rounded-xl text-center font-mono text-base font-semibold text-slate-900 dark:text-slate-50 sm:text-lg ${fieldControlFixedHeightClass} ${getFieldSurfaceClass({
                 disabled,
                 error: !!error,
               })} ${disabled ? 'opacity-50' : ''}`}

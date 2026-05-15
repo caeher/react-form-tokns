@@ -97,7 +97,7 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(({
             }
             onChange?.(event);
           }}
-          className={`w-full rounded-xl py-2.5 pl-10 pr-11 text-sm text-slate-50 placeholder:text-slate-500 ${fieldControlHeightClass} ${getFieldSurfaceClass({
+          className={`w-full rounded-xl py-2.5 pl-10 pr-11 text-sm text-slate-900 dark:text-slate-50 placeholder:text-slate-400 dark:placeholder:text-slate-500 ${fieldControlHeightClass} ${getFieldSurfaceClass({
             disabled,
             error: !!error,
           })}`}
@@ -116,7 +116,7 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(({
                 onClear?.();
                 inputRef.current?.focus();
               }}
-              className="rounded-full p-1 text-slate-500 transition-colors hover:bg-white/5 hover:text-slate-200"
+              className="rounded-full p-1 text-slate-400 dark:text-slate-500 transition-colors hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-200"
               aria-label="Clear search"
             >
               <X size={14} />

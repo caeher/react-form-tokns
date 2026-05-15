@@ -126,8 +126,8 @@ export const DatetimeField = forwardRef<HTMLInputElement, DatetimeFieldProps>(({
               }}
               className={`h-7 w-9 flex items-center justify-center rounded-lg text-xs transition-all ${
                 isSelected 
-                  ? 'bg-cyan-500/20 text-cyan-400 font-bold' 
-                  : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
+                  ? 'bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 font-bold' 
+                  : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-200'
               }`}
             >
               {typeof item === 'number' ? String(item).padStart(2, '0') : item}
@@ -162,7 +162,7 @@ export const DatetimeField = forwardRef<HTMLInputElement, DatetimeFieldProps>(({
         trigger={
           <div className="relative">
             {Icon && iconPosition === 'left' && (
-              <div className={`absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none ${disabled ? 'text-slate-600' : 'text-slate-400'}`}>
+              <div className={`absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none ${disabled ? 'text-slate-300 dark:text-slate-700' : 'text-slate-500 dark:text-slate-400'}`}>
                 <Icon size={18} />
               </div>
             )}
@@ -175,12 +175,12 @@ export const DatetimeField = forwardRef<HTMLInputElement, DatetimeFieldProps>(({
                 focusMode: 'group-focus',
               })} ${Icon && iconPosition === 'left' ? 'pl-10' : ''} ${Icon && iconPosition === 'right' ? 'pr-10' : ''}`}
             >
-              <span className={`block min-w-0 truncate ${currentValue ? (disabled ? 'text-slate-400' : 'text-slate-50') : 'text-slate-500'}`}>
+              <span className={`block min-w-0 truncate ${currentValue ? (disabled ? 'text-slate-400 dark:text-slate-600' : 'text-slate-900 dark:text-slate-50') : 'text-slate-400 dark:text-slate-500'}`}>
                 {displayDatetime()}
               </span>
             </div>
             {Icon && iconPosition === 'right' && (
-              <div className={`absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none ${disabled ? 'text-slate-600' : 'text-slate-400'}`}>
+              <div className={`absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none ${disabled ? 'text-slate-300 dark:text-slate-700' : 'text-slate-500 dark:text-slate-400'}`}>
                 <Icon size={18} />
               </div>
             )}
@@ -196,7 +196,7 @@ export const DatetimeField = forwardRef<HTMLInputElement, DatetimeFieldProps>(({
               minDate={minDate}
               maxDate={maxDate}
             />
-            <div className="flex flex-wrap justify-center gap-4 border-t border-white/5 bg-slate-900/30 p-3 sm:p-4 select-none">
+            <div className="flex flex-wrap justify-center gap-4 border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-900/30 p-3 sm:p-4 select-none">
               {renderTimeColumn('Hrs', hours, use24Hour ? parsedTime.hours : (parsedTime.hours % 12 || 12), 'h')}
               {renderTimeColumn('Min', minutesArr, parsedTime.minutes, 'm')}
               {!use24Hour && renderTimeColumn('AM/PM', ['AM', 'PM'], parsedTime.hours >= 12 ? 'PM' : 'AM', 'ampm')}

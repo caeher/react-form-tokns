@@ -2,6 +2,18 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+:root {
+  --field-bg: #ffffff;
+  --field-border: #e2e8f0;
+  --field-text: #0f172a;
+}
+
+.dark {
+  --field-bg: #0f172a;
+  --field-border: #1e293b;
+  --field-text: #f8fafc;
+}
+
 html,
 body,
 #root {

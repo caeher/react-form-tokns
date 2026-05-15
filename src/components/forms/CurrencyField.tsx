@@ -213,15 +213,13 @@ export const CurrencyField = forwardRef<HTMLInputElement, CurrencyFieldProps>(({
         })}`}
       >
         <div
-          className={`flex h-full items-center gap-2 border-r bg-slate-900/50 px-3 text-sm ${
+          className={`flex h-full items-center gap-2 border-r bg-slate-50 dark:bg-slate-900/50 px-3 text-sm ${
             disabled
-              ? 'text-slate-600'
-              : error
-                ? 'text-slate-100'
-                : 'text-slate-100'
+              ? 'text-slate-400 dark:text-slate-600'
+              : 'text-slate-700 dark:text-slate-100'
           } ${getFieldDividerClass({ disabled, error: !!error })}`}
         >
-          <Landmark size={16} className={disabled ? 'text-slate-700' : 'text-slate-500'} />
+          <Landmark size={16} className={disabled ? 'text-slate-300 dark:text-slate-700' : 'text-slate-400 dark:text-slate-500'} />
           <span className="font-medium">{currencyMarker}</span>
         </div>
         <input
@@ -261,8 +259,8 @@ export const CurrencyField = forwardRef<HTMLInputElement, CurrencyFieldProps>(({
               adjustValue(-1);
             }
           }}
-          className={`h-full w-full min-w-0 bg-slate-900/50 px-4 text-sm text-slate-50 placeholder:text-slate-500 focus:outline-none ${
-            disabled ? 'cursor-not-allowed' : ''
+          className={`h-full w-full min-w-0 bg-transparent dark:bg-slate-900/50 px-4 text-sm text-slate-900 dark:text-slate-50 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none ${
+            disabled ? 'cursor-not-allowed text-slate-400 dark:text-slate-600' : ''
           }`}
           aria-invalid={!!error}
           aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
