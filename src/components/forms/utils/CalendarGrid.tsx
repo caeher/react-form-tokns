@@ -84,14 +84,14 @@ export const CalendarGrid = ({
           <button 
             type="button"
             onClick={() => onViewDateChange(viewDate.subtract({ years: 1 }))}
-            className="p-1 hover:bg-slate-100 dark:hover:bg-white/5 rounded-md text-slate-500 dark:text-slate-400 transition-colors"
+            className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md text-slate-500 dark:text-slate-400 transition-colors"
           >
             <ChevronsLeft size={16} />
           </button>
           <button 
             type="button"
             onClick={() => onViewDateChange(viewDate.subtract({ months: 1 }))}
-            className="p-1 hover:bg-slate-100 dark:hover:bg-white/5 rounded-md text-slate-500 dark:text-slate-400 transition-colors"
+            className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md text-slate-500 dark:text-slate-400 transition-colors"
           >
             <ChevronLeft size={16} />
           </button>
@@ -122,14 +122,14 @@ export const CalendarGrid = ({
           <button 
             type="button"
             onClick={() => onViewDateChange(viewDate.add({ months: 1 }))}
-            className="p-1 hover:bg-slate-100 dark:hover:bg-white/5 rounded-md text-slate-500 dark:text-slate-400 transition-colors"
+            className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md text-slate-500 dark:text-slate-400 transition-colors"
           >
             <ChevronRight size={16} />
           </button>
           <button 
             type="button"
             onClick={() => onViewDateChange(viewDate.add({ years: 1 }))}
-            className="p-1 hover:bg-slate-100 dark:hover:bg-white/5 rounded-md text-slate-500 dark:text-slate-400 transition-colors"
+            className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md text-slate-500 dark:text-slate-400 transition-colors"
           >
             <ChevronsRight size={16} />
           </button>
@@ -159,7 +159,7 @@ export const CalendarGrid = ({
               onClick={() => onDateSelect(date)}
               className={`
                 relative aspect-square w-full text-xs rounded-lg transition-all flex items-center justify-center
-                ${isSelected ? 'bg-cyan-500 text-white dark:text-slate-950 font-bold' : 'hover:bg-slate-100 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300'}
+                ${isSelected ? 'bg-cyan-500 text-white font-bold' : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300'}
                 ${!isCurrentMonth ? 'opacity-20' : ''}
                 ${isTodayDate && !isSelected ? 'text-cyan-600 dark:text-cyan-400 ring-1 ring-inset ring-cyan-500/30' : ''}
                 ${isDisabled ? 'opacity-10 cursor-not-allowed line-through' : ''}
@@ -174,7 +174,7 @@ export const CalendarGrid = ({
         })}
       </div>
 
-      <div className="mt-4 pt-3 border-t border-slate-200 dark:border-white/5 flex justify-center">
+      <div className="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 flex justify-center">
         <button
           type="button"
           onClick={() => onViewDateChange(today(getLocalTimeZone()))}

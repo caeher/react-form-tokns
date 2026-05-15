@@ -9,7 +9,7 @@ interface FieldStateOptions {
 export const fieldControlHeightClass = 'min-h-[42px]';
 export const fieldControlFixedHeightClass = 'h-[42px]';
 
-const baseFieldSurface = 'border bg-white dark:bg-slate-900/50 transition-all';
+const baseFieldSurface = 'border bg-white dark:bg-slate-950/40 transition-all';
 
 const focusModeClasses: Record<FieldFocusMode, string> = {
   focus: 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-950',
@@ -45,17 +45,17 @@ export function getFieldSurfaceClass({
     return `${baseFieldSurface} ${focusModeClasses[focusMode]} border-red-500/50 ${errorFocusState[focusMode]}`;
   }
 
-  return `${baseFieldSurface} ${focusModeClasses[focusMode]} border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20 ${defaultFocusState[focusMode]}`;
+  return `${baseFieldSurface} ${focusModeClasses[focusMode]} border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 ${defaultFocusState[focusMode]}`;
 }
 
 export function getFieldDividerClass({ disabled = false, error = false }: Omit<FieldStateOptions, 'focusMode'>) {
   if (disabled) {
-    return 'border-slate-200 dark:border-white/5';
+    return 'border-slate-200 dark:border-slate-800';
   }
 
   if (error) {
     return 'border-red-500/50';
   }
 
-  return 'border-slate-200 dark:border-white/10';
+  return 'border-slate-200 dark:border-slate-800';
 }

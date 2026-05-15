@@ -77,7 +77,7 @@ function App() {
         <div className="grid gap-8 lg:grid-cols-12">
           {/* Playground Form */}
           <div className="lg:col-span-7">
-            <section className={`rounded-3xl border ${isDark ? 'border-white/10 bg-white/[0.02]' : 'border-slate-200 bg-white'} p-6 shadow-2xl ${isDark ? 'shadow-slate-950/50' : 'shadow-slate-200'} backdrop-blur-xl sm:p-8`}>
+            <section className={`rounded-3xl border ${isDark ? 'border-slate-800 bg-slate-900/50' : 'border-slate-200 bg-white'} p-6 shadow-2xl ${isDark ? 'shadow-black/50' : 'shadow-slate-200'} backdrop-blur-xl sm:p-8`}>
               <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid gap-6 sm:grid-cols-2">
                   <TextField
@@ -160,7 +160,7 @@ function App() {
 
           {/* State Preview */}
           <div className="lg:col-span-5">
-            <div className="sticky top-8 rounded-3xl border border-cyan-500/20 bg-cyan-500/[0.02] p-6 backdrop-blur-md">
+            <div className={`sticky top-8 rounded-3xl border ${isDark ? 'border-cyan-500/20 bg-slate-900/50' : 'border-cyan-500/20 bg-cyan-500/[0.02]'} p-6 backdrop-blur-md`}>
               <h3 className="text-sm font-semibold uppercase tracking-widest text-cyan-400 mb-4 flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
                 Live Data Preview

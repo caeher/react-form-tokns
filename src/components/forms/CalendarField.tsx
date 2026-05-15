@@ -93,7 +93,7 @@ export const CalendarField = forwardRef<HTMLInputElement, CalendarFieldProps>(({
         trigger={
           <div className="relative">
             {Icon && iconPosition === 'left' && (
-              <div className={`absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none ${disabled ? 'text-slate-400 dark:text-slate-600' : 'text-slate-400 dark:text-slate-500'}`}>
+              <div className={`absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none ${disabled ? 'text-slate-300 dark:text-slate-700' : 'text-slate-500 dark:text-slate-400'}`}>
                 <Icon size={18} />
               </div>
             )}
@@ -106,12 +106,12 @@ export const CalendarField = forwardRef<HTMLInputElement, CalendarFieldProps>(({
                 focusMode: 'group-focus',
               })} ${Icon && iconPosition === 'left' ? 'pl-10' : ''} ${Icon && iconPosition === 'right' ? 'pr-10' : ''}`}
             >
-              <span className={`block min-w-0 truncate ${currentDate ? (disabled ? 'text-slate-400' : 'text-slate-900 dark:text-slate-50') : 'text-slate-400 dark:text-slate-500'}`}>
+              <span className={`block min-w-0 truncate ${currentDate ? (disabled ? 'text-slate-400 dark:text-slate-600' : 'text-slate-900 dark:text-slate-100') : 'text-slate-400 dark:text-slate-500'}`}>
                 {currentDate ? currentDate.toString() : placeholder}
               </span>
             </div>
             {Icon && iconPosition === 'right' && (
-              <div className={`absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none ${disabled ? 'text-slate-400 dark:text-slate-600' : 'text-slate-400 dark:text-slate-500'}`}>
+              <div className={`absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none ${disabled ? 'text-slate-300 dark:text-slate-700' : 'text-slate-500 dark:text-slate-400'}`}>
                 <Icon size={18} />
               </div>
             )}
