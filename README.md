@@ -14,6 +14,17 @@ Form Maker is an evolution of standard form controls, focusing on deep accessibi
 npm install @caeher/react-form-tokns
 ```
 
+### Tailwind CSS Setup
+
+This library is built with **Tailwind CSS v4**. To ensure the library's styles are correctly applied in your project, you must tell Tailwind to scan the package for utility classes.
+
+Add the `@source` directive to your main CSS file (e.g., `app.css` or `index.css`):
+
+```css
+@import "tailwindcss";
+@source "../node_modules/@caeher/react-form-tokns";
+```
+
 ### Library Usage
 
 This library follows a **controlled component** pattern. Each field expects a `value` and an `onChange` handler that receives a synthetic event object. This allows for seamless integration with state management libraries or standard React state.
