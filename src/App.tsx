@@ -1,457 +1,152 @@
-import { useState, type ChangeEvent } from 'react';
-import {
+import { useState } from 'react';
+import { 
+  TextField, 
+  SelectField, 
+  CalendarField, 
+  SwitchField, 
+  PhoneField,
   Mail,
   User,
-  Lock,
-  Search,
-  MessageSquare,
-  Globe,
-  Bell,
-  CheckCircle,
   Layout,
-  Code,
-  Palette,
   Briefcase,
-  Bold,
-  Italic,
-  Underline,
-  Type,
-  Layers
-} from 'lucide-react';
-import {
-  TextField,
-  TextareaField,
-  SelectField,
-  ComboboxField,
-  MultiSelectField,
-  CheckboxField,
-  RadioGroupField,
-  SwitchField,
-  CalendarField,
-  ToggleField,
-  NumberField,
-  PhoneField,
-  CurrencyField,
-  SearchField,
-  InputOtpField,
-  ProgressField,
-  TimeField,
-  DatetimeField,
-  ColorPickerField,
-  UploadField,
-  type UploadFieldItem
+  Bell,
+  Code
 } from './components/forms';
 
 function App() {
   const [formData, setFormData] = useState({
-    username: '',
+    fullName: '',
     email: '',
-    description: '',
     role: 'developer',
-    assignee: 'felix',
-    techStack: ['react', 'typescript'] as (string | number)[],
-    terms: false,
-    notifications: 'email',
-    darkMode: true,
-    birthDate: '1995-05-15', // Standard date
-    appointment: '2024-07-10 15:30:00', // DB Format
-    inlineSwitch: true,
-    // New components
-    formatting: ['bold'] as (string | number)[],
-    quantity: 5,
-    phone: '+1 415 555 2671',
-    budget: 2400.5,
-    knowledgeSearch: '',
-    otp: '',
-    progress: 65,
-    startTime: '09:00',
-    meeting: '2024-07-15 14:00',
-    accentColor: '#06b6d4',
-    assets: [] as UploadFieldItem[]
+    birthDate: '1995-05-15',
+    phone: '',
+    newsletter: true,
+    notifications: false
   });
 
-  type AppChangeEvent =
-    | ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-    | {
-      target: {
-        name: string;
-        value: string | number | null | (string | number)[] | UploadFieldItem[];
-        type?: string;
-        checked?: boolean;
-      };
-      persist: () => void;
-    };
-
-  const handleChange = (e: AppChangeEvent) => {
-    const t = e.target;
-    if (t && 'type' in t && t.type === 'checkbox' && 'checked' in t) {
-      setFormData((prev) => ({
-        ...prev,
-        [t.name]: t.checked
-      }));
-      return;
-    }
-    const { name, value } = t;
-    setFormData((prev) => ({
+  const handleChange = (e: any) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: type === 'checkbox' ? checked : value
     }));
   };
 
   const handleSwitchChange = (name: string, checked: boolean) => {
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
       [name]: checked
     }));
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 px-4 py-10 text-slate-50 sm:px-6 sm:py-16">
-      <div className="mx-auto max-w-6xl space-y-12 sm:space-y-16">
-        {/* Header Section */}
-        <div className="flex flex-col gap-4 text-center">
-          <p className="text-sm font-medium uppercase tracking-[0.3em] text-cyan-300">
-            React Form Tonks
-          </p>
-          <h1 className="text-4xl font-semibold tracking-tight sm:text-6xl bg-gradient-to-r from-white to-slate-500 bg-clip-text text-transparent">
-            Design System Evolution
+    <main className="min-h-screen bg-slate-950 px-4 py-12 text-slate-50 sm:px-6 sm:py-20 font-sans selection:bg-cyan-500/30">
+      <div className="mx-auto max-w-4xl space-y-12">
+        {/* Header */}
+        <div className="space-y-4 text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium uppercase tracking-wider">
+            Interactive Playground
+          </div>
+          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl bg-gradient-to-b from-white to-slate-400 bg-clip-text text-transparent">
+            Form Maker Preview
           </h1>
-          <p className="mx-auto max-w-2xl text-base leading-7 text-slate-400">
-            Enhanced accessible form components with inline layouts, flexible date parsing, and deep Lucide icon integration.
+          <p className="mx-auto max-w-2xl text-lg text-slate-400">
+            Experiment with our premium accessible components in real-time. 
+            All fields are controlled and follow industrial-grade design tokens.
           </p>
         </div>
 
-        <div className="grid gap-8 xl:grid-cols-2">
-          {/* Default State Preview */}
-          <section className="flex h-full flex-col rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-slate-950/40 backdrop-blur sm:p-8">
-            <div className="mb-8 border-b border-white/10 pb-4">
-              <div className="flex items-center gap-2 mb-1">
-                <Layout size={20} className="text-cyan-400" />
-                <h2 className="text-xl font-semibold">Standard & Icon Integration</h2>
-              </div>
-              <p className="text-sm text-slate-400">Components with icons and standard vertical layout.</p>
-            </div>
-
-            <form className="space-y-6 flex-1" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid gap-6 sm:grid-cols-2">
-                <TextField
-                  label="Username"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleChange}
-                  placeholder="antigravity_dev"
-                  icon={User}
-                  hint="Unique identifier."
-                />
-                <TextField
-                  label="Email Address"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="hello@example.com"
-                  icon={Mail}
-                  iconPosition="right"
-                />
-              </div>
-
-              <CalendarField
-                label="Date of Birth"
-                name="birthDate"
-                value={formData.birthDate}
-                onChange={handleChange}
-                hint="We use this to verify your age."
-              />
-
-              <SelectField
-                label="Organization Role"
-                name="role"
-                value={formData.role}
-                onChange={handleChange}
-                options={[
-                  { label: 'Fullstack Developer', value: 'developer', icon: Code },
-                  { label: 'UI/UX Designer', value: 'designer', icon: Palette },
-                  { label: 'Project Manager', value: 'pm', icon: Briefcase },
-                  { label: 'System Admin', value: 'admin', image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Felix' }
-                ]}
-                hint="Choose your primary professional title."
-              />
-
-              <TextareaField
-                label="Message / Bio"
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                placeholder="Write something about your experience..."
-                icon={MessageSquare}
-              />
-
-              <div className="pt-4 border-t border-white/10">
-                <RadioGroupField
-                  label="Security Permissions"
-                  name="notifications"
-                  value={formData.notifications}
-                  onChange={handleChange}
-                  icon={Lock}
-                  options={[
-                    { label: 'Read-only access (Recommended)', value: 'email' },
-                    { label: 'Read and Write access', value: 'push' },
-                    { label: 'Full Administrative access', value: 'none' }
-                  ]}
-                />
-              </div>
-
-              <div className="grid gap-6 pt-4 border-t border-white/10 sm:grid-cols-2">
-                <SwitchField
-                  label="Dark Mode"
-                  name="darkMode"
-                  checked={formData.darkMode}
-                  onChange={(e) => handleSwitchChange('darkMode', e.target.checked)}
-                  icon={Bell}
-                />
-                <CheckboxField
-                  label="Agree to terms"
-                  name="terms"
-                  checked={formData.terms}
-                  onChange={handleChange}
-                  icon={CheckCircle}
-                  hint="Required for account activation."
-                />
-              </div>
-            </form>
-          </section>
-
-          <div className="space-y-8">
-            {/* New Components Preview */}
-            <section className="rounded-3xl border border-white/10 border-indigo-500/20 bg-indigo-500/[0.03] p-5 shadow-2xl shadow-slate-950/40 backdrop-blur sm:p-8">
-              <div className="mb-8 border-b border-white/10 pb-4">
-                <div className="flex items-center gap-2 mb-1">
-                  <Layers size={20} className="text-indigo-400" />
-                  <h2 className="text-xl font-semibold">Specialized Fields</h2>
+        <div className="grid gap-8 lg:grid-cols-12">
+          {/* Playground Form */}
+          <div className="lg:col-span-7">
+            <section className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 shadow-2xl shadow-slate-950/50 backdrop-blur-xl sm:p-8">
+              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                <div className="grid gap-6 sm:grid-cols-2">
+                  <TextField
+                    label="Full Name"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    placeholder="John Doe"
+                    icon={User}
+                    hint="Enter your legal name"
+                  />
+                  <TextField
+                    label="Email Address"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="john@example.com"
+                    icon={Mail}
+                  />
                 </div>
-                <p className="text-sm text-slate-400">Advanced interaction and data types.</p>
-              </div>
 
-              <div className="space-y-6">
-                <ToggleField
-                  name="formatting"
-                  value={formData.formatting}
+                <SelectField
+                  label="Professional Role"
+                  name="role"
+                  value={formData.role}
                   onChange={handleChange}
-                  multiple
                   options={[
-                    { value: 'bold', icon: Bold, hint: 'Make text bold' },
-                    { value: 'italic', icon: Italic, hint: 'Make text italic' },
-                    { value: 'underline', icon: Underline, hint: 'Underline text' },
-                    { value: 'strike', icon: Type, hint: 'Strikethrough' },
+                    { label: 'Fullstack Developer', value: 'developer', icon: Code },
+                    { label: 'Product Designer', value: 'designer', icon: Layout },
+                    { label: 'Project Manager', value: 'pm', icon: Briefcase }
                   ]}
                 />
 
                 <div className="grid gap-6 sm:grid-cols-2">
-                  <ComboboxField
-                    label="Assigned Lead"
-                    name="assignee"
-                    value={formData.assignee}
+                  <CalendarField
+                    label="Birth Date"
+                    name="birthDate"
+                    value={formData.birthDate}
                     onChange={handleChange}
-                    hint="Search by collaborator or specialty."
-                    options={[
-                      { label: 'Felix Tran', value: 'felix', icon: Code, description: 'Frontend systems owner', keywords: ['react', 'design system'] },
-                      { label: 'Ari West', value: 'ari', icon: Palette, description: 'Interface and brand direction', keywords: ['ux', 'visual'] },
-                      { label: 'Mina Sol', value: 'mina', icon: Briefcase, description: 'Delivery and product operations', keywords: ['pm', 'ops'] },
-                    ]}
                   />
-                  <MultiSelectField
-                    label="Tech Stack"
-                    name="techStack"
-                    value={formData.techStack}
-                    onChange={handleChange}
-                    hint="Select the tools required for this project."
-                    maxSelections={4}
-                    options={[
-                      { label: 'React', value: 'react', icon: Code, description: 'Component runtime', keywords: ['ui', 'frontend'] },
-                      { label: 'TypeScript', value: 'typescript', icon: Code, description: 'Typed application layer', keywords: ['ts', 'types'] },
-                      { label: 'Tailwind CSS', value: 'tailwind', icon: Palette, description: 'Utility-first styling', keywords: ['styles', 'css'] },
-                      { label: 'Figma', value: 'figma', icon: Layers, description: 'Design collaboration', keywords: ['design', 'handoff'] },
-                    ]}
-                  />
-                </div>
-
-                <div className="grid gap-6 sm:grid-cols-2">
-                  <NumberField
-                    label="Quantity"
-                    name="quantity"
-                    value={formData.quantity}
-                    onChange={handleChange}
-                    min={1}
-                    max={100}
-                    hint="Units in stock."
-                  />
-                  <ColorPickerField
-                    label="Accent Color"
-                    name="accentColor"
-                    value={formData.accentColor}
-                    onChange={handleChange}
-                    format="hex"
-                  />
-                </div>
-
-                <div className="grid gap-6 sm:grid-cols-2">
                   <PhoneField
-                    label="Support Line"
+                    label="Phone Number"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    defaultCountry="US"
-                    hint="Stored as a complete international number."
-                  />
-                  <CurrencyField
-                    label="Monthly Budget"
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleChange}
-                    currency="USD"
-                    hint="Arrow keys also adjust the amount."
                   />
                 </div>
 
-                <SearchField
-                  label="Knowledge Base Search"
-                  name="knowledgeSearch"
-                  value={formData.knowledgeSearch}
-                  onChange={handleChange}
-                  placeholder="Search docs, snippets, or support tickets..."
-                  hint="Includes a built-in clear action."
-                />
-
-                <InputOtpField
-                  label="Verification Code"
-                  name="otp"
-                  value={formData.otp}
-                  onChange={handleChange}
-                  length={6}
-                  hint="Enter the 6-digit code sent to your phone."
-                />
-
-                <div className="grid gap-6 sm:grid-cols-2">
-                  <TimeField
-                    label="Start Time"
-                    name="startTime"
-                    value={formData.startTime}
-                    onChange={handleChange}
-                    use24Hour={false}
+                <div className="pt-6 border-t border-white/5 space-y-4">
+                  <SwitchField
+                    inline
+                    label="Subscribe to newsletter"
+                    name="newsletter"
+                    checked={formData.newsletter}
+                    onChange={(e) => handleSwitchChange('newsletter', e.target.checked)}
+                    icon={Mail}
                   />
-                  <DatetimeField
-                    label="Project Meeting"
-                    name="meeting"
-                    value={formData.meeting}
-                    onChange={handleChange}
+                  <SwitchField
+                    inline
+                    label="Enable push notifications"
+                    name="notifications"
+                    checked={formData.notifications}
+                    onChange={(e) => handleSwitchChange('notifications', e.target.checked)}
+                    icon={Bell}
                   />
                 </div>
-
-                <UploadField
-                  label="Project Assets"
-                  name="assets"
-                  value={formData.assets}
-                  onChange={handleChange}
-                  multiple
-                  maxFiles={4}
-                  accept="image/*,.pdf,.zip,.fig"
-                  hint="Supports local selection now, and server-side upload when `uploadUrl` is provided."
-                />
-
-                <ProgressField
-                  label="Setup Completion"
-                  name="progress"
-                  value={formData.progress}
-                  onChange={handleChange}
-                  variant="striped"
-                  color="cyan"
-                  hint="Arrastra la barra para ajustar el progreso."
-                />
-              </div>
+              </form>
             </section>
+          </div>
 
-            {/* Inline Layout Preview */}
-            <section className="rounded-3xl border border-white/10 border-cyan-500/20 bg-cyan-500/[0.03] p-5 shadow-2xl shadow-slate-950/40 backdrop-blur sm:p-8">
-              <div className="mb-8 border-b border-white/10 pb-4">
-                <div className="flex items-center gap-2 mb-1">
-                  <Layout size={20} className="text-cyan-400" />
-                  <h2 className="text-xl font-semibold">Inline Layouts</h2>
-                </div>
-                <p className="text-sm text-slate-400">Horizontal alignment for compact forms.</p>
+          {/* State Preview */}
+          <div className="lg:col-span-5">
+            <div className="sticky top-8 rounded-3xl border border-cyan-500/20 bg-cyan-500/[0.02] p-6 backdrop-blur-md">
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-cyan-400 mb-4 flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
+                Live Data Preview
+              </h3>
+              <pre className="text-[13px] font-mono leading-relaxed text-slate-300 overflow-x-auto">
+                {JSON.stringify(formData, null, 2)}
+              </pre>
+              <div className="mt-8 pt-6 border-t border-white/5">
+                <p className="text-xs text-slate-500 italic">
+                  Change values in the form to see the state update automatically.
+                </p>
               </div>
-
-              <div className="space-y-6">
-                <TextField
-                  inline
-                  label="Search Project"
-                  placeholder="Type to search..."
-                  icon={Search}
-                />
-
-                <CalendarField
-                  inline
-                  label="Appointment"
-                  name="appointment"
-                  value={formData.appointment}
-                  onChange={handleChange}
-                  hint="Formatted from DB string."
-                />
-
-                <SelectField
-                  inline
-                  label="Region"
-                  options={[
-                    { label: 'North America', value: 'na', icon: Globe },
-                    { label: 'Europe', value: 'eu', icon: Globe },
-                    { label: 'Asia Pacific', value: 'ap', icon: Globe }
-                  ]}
-                />
-
-                <SwitchField
-                  inline
-                  label="Beta Access"
-                  checked={formData.inlineSwitch}
-                  onChange={(e) => handleSwitchChange('inlineSwitch', e.target.checked)}
-                />
-              </div>
-            </section>
-
-            {/* Error State Preview */}
-            <section className="rounded-3xl border border-white/10 border-red-500/20 bg-red-500/[0.03] p-5 shadow-2xl shadow-slate-950/40 backdrop-blur sm:p-8">
-              <div className="mb-8 border-b border-white/10 pb-4">
-                <h2 className="text-xl font-semibold text-red-400">Error States</h2>
-                <p className="text-sm text-slate-400">Visual feedback for validation failures.</p>
-              </div>
-
-              <div className="space-y-6">
-                <TextField
-                  label="Email"
-                  defaultValue="invalid-format"
-                  error="This email address is not properly formatted."
-                  icon={Mail}
-                />
-
-                <InputOtpField
-                  label="OTP"
-                  error="Invalid or expired code."
-                  length={4}
-                />
-
-                <NumberField
-                  label="Stock"
-                  error="Cannot exceed limit."
-                  value={150}
-                  max={100}
-                />
-
-                <UploadField
-                  label="Brand Assets"
-                  error="At least one approved file is required."
-                  hint="Upload logos, visual references, or product sheets."
-                  accept="image/*,.pdf"
-                />
-              </div>
-            </section>
+            </div>
           </div>
         </div>
       </div>

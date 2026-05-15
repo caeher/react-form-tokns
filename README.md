@@ -6,13 +6,132 @@ A high-performance, accessible, and themeable form component library built with 
 
 Form Maker is an evolution of standard form controls, focusing on deep accessibility (ARIA, focus management), robust data parsing (dates/times), and premium techno-industrial aesthetics. Every component follows a strict architectural pattern ensuring consistency across the entire system.
 
-## Library Usage
+## Getting Started
 
-When consuming the published package, importing the library is enough. The build injects its generated styles automatically:
+### Installation
+
+```bash
+npm install @caeher/react-form-tokns
+```
+
+### Library Usage
+
+This library follows a **controlled component** pattern. Each field expects a `value` and an `onChange` handler that receives a synthetic event object. This allows for seamless integration with state management libraries or standard React state.
+
+The library also supports **inline layouts** via the `inline` prop, allowing you to switch between vertical and horizontal alignments effortlessly.
+
+## Playground
+
+Put the library into practice with this comprehensive example. Copy and paste this into your project to see the components in action:
 
 ```tsx
-import { TextField } from '@caeher/react-form-tokns'
+import { useState } from 'react';
+import { 
+  TextField, 
+  SelectField, 
+  CalendarField, 
+  SwitchField, 
+  PhoneField,
+  Mail,
+  User
+} from '@caeher/react-form-tokns';
+
+export function RegistrationForm() {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    role: 'developer',
+    birthDate: '',
+    phone: '',
+    newsletter: true
+  });
+
+  const handleChange = (e: any) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form Submitted:', formData);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto p-8 space-y-6 bg-slate-900 rounded-2xl border border-white/10">
+      <h2 className="text-2xl font-bold text-white mb-6">User Registration</h2>
+      
+      <div className="grid gap-6 sm:grid-cols-2">
+        <TextField
+          label="Full Name"
+          name="fullName"
+          value={formData.fullName}
+          onChange={handleChange}
+          placeholder="John Doe"
+          icon={User}
+          hint="As it appears on your ID"
+        />
+        
+        <TextField
+          label="Email Address"
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="john@example.com"
+          icon={Mail}
+        />
+      </div>
+
+      <SelectField
+        label="Primary Role"
+        name="role"
+        value={formData.role}
+        onChange={handleChange}
+        options={[
+          { label: 'Developer', value: 'developer' },
+          { label: 'Designer', value: 'designer' },
+          { label: 'Manager', value: 'manager' }
+        ]}
+      />
+
+      <div className="grid gap-6 sm:grid-cols-2">
+        <CalendarField
+          label="Date of Birth"
+          name="birthDate"
+          value={formData.birthDate}
+          onChange={handleChange}
+        />
+        
+        <PhoneField
+          label="Phone Number"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+        />
+      </div>
+
+      <SwitchField
+        inline
+        label="Subscribe to newsletter"
+        name="newsletter"
+        checked={formData.newsletter}
+        onChange={handleChange}
+      />
+
+      <button 
+        type="submit"
+        className="w-full py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-lg transition-colors"
+      >
+        Complete Registration
+      </button>
+    </form>
+  );
+}
 ```
+
 
 ## Tech Stack
 
