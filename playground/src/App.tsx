@@ -19,7 +19,8 @@ import {
   TimeField,
   DatetimeField,
   ColorPickerField,
-  UploadField
+  UploadField,
+  type UploadFieldItem
 } from '@caeher/react-form-tokns';
 import { 
   Mail, 
@@ -32,13 +33,9 @@ import {
   Moon,
   Hash,
   DollarSign,
-  Search,
   Calendar,
-  Clock,
   Palette,
-  Upload,
   Shield,
-  Smartphone,
   Activity,
   CheckCircle2,
   AlertCircle
@@ -76,13 +73,13 @@ function App() {
     newsletter: true,
     notifications: false,
     publicProfile: true,
-    attachments: [] as any[]
+    attachments: [] as UploadFieldItem[]
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     // Handle different event structures
     const name = e.target?.name;
-    const value = e.target?.type === 'checkbox' ? e.target.checked : e.target?.value;
+    const value = e.target?.type === 'checkbox' ? (e.target as HTMLInputElement).checked : e.target?.value;
     
     if (name) {
       setFormData(prev => ({
@@ -92,7 +89,7 @@ function App() {
     }
   };
 
-  const handleCustomChange = (name: string, value: any) => {
+  const handleCustomChange = (name: string, value: unknown) => {
     setFormData(prev => ({
         ...prev,
         [name]: value
