@@ -175,7 +175,7 @@ export const Popover = ({
             }}
             className={`${!matchTriggerWidth ? 'md:w-max' : ''}`}
           >
-            <div className="rounded-xl border border-white/10 bg-slate-900/95 backdrop-blur-md shadow-2xl overflow-hidden">
+            <div className="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/95 backdrop-blur-md shadow-2xl overflow-hidden">
               {content(() => setIsOpen(false))}
             </div>
           </div>

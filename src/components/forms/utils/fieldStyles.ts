@@ -9,12 +9,12 @@ interface FieldStateOptions {
 export const fieldControlHeightClass = 'min-h-[42px]';
 export const fieldControlFixedHeightClass = 'h-[42px]';
 
-const baseFieldSurface = 'border bg-slate-900/50 transition-all';
+const baseFieldSurface = 'border bg-white dark:bg-slate-900/50 transition-all';
 
 const focusModeClasses: Record<FieldFocusMode, string> = {
-  focus: 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-950',
-  'focus-within': 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-slate-950',
-  'group-focus': 'group-focus-visible:ring-2 group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-slate-950',
+  focus: 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-950',
+  'focus-within': 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-white dark:focus-within:ring-offset-slate-950',
+  'group-focus': 'group-focus-visible:ring-2 group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-white dark:group-focus-visible:ring-offset-slate-950',
   none: '',
 };
 
@@ -38,24 +38,24 @@ export function getFieldSurfaceClass({
   focusMode = 'focus',
 }: FieldStateOptions) {
   if (disabled) {
-    return `${baseFieldSurface} ${focusModeClasses[focusMode]} cursor-not-allowed border-white/5`;
+    return `${baseFieldSurface} ${focusModeClasses[focusMode]} cursor-not-allowed border-slate-200 dark:border-white/5`;
   }
 
   if (error) {
     return `${baseFieldSurface} ${focusModeClasses[focusMode]} border-red-500/50 ${errorFocusState[focusMode]}`;
   }
 
-  return `${baseFieldSurface} ${focusModeClasses[focusMode]} border-white/10 hover:border-white/20 ${defaultFocusState[focusMode]}`;
+  return `${baseFieldSurface} ${focusModeClasses[focusMode]} border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20 ${defaultFocusState[focusMode]}`;
 }
 
 export function getFieldDividerClass({ disabled = false, error = false }: Omit<FieldStateOptions, 'focusMode'>) {
   if (disabled) {
-    return 'border-white/5';
+    return 'border-slate-200 dark:border-white/5';
   }
 
   if (error) {
     return 'border-red-500/50';
   }
 
-  return 'border-white/10';
+  return 'border-slate-200 dark:border-white/10';
 }

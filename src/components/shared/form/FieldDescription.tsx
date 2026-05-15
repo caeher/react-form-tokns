@@ -26,7 +26,7 @@ export function FieldDescription({
   return (
     <Component
       {...props}
-      className={`text-xs ${disabled ? 'text-slate-600' : 'text-slate-400'} ${className}`}
+      className={`text-xs ${disabled ? 'text-slate-600' : 'text-slate-500 dark:text-slate-400'} ${className}`}
     >
       {children}
     </Component>

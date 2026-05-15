@@ -37,7 +37,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({
     <div className={`flex flex-col gap-1.5 ${inline ? 'flex-1' : ''}`}>
       <div className="relative">
         {Icon && iconPosition === 'left' && (
-          <div className={`absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none ${disabled ? 'text-slate-600' : 'text-slate-400'}`}>
+          <div className={`absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none ${disabled ? 'text-slate-400 dark:text-slate-600' : 'text-slate-400 dark:text-slate-500'}`}>
             <Icon size={18} />
           </div>
         )}
@@ -46,7 +46,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({
           id={inputId}
           type={type}
           disabled={disabled}
-          className={`w-full rounded-xl px-4 py-2.5 text-sm text-slate-50 placeholder:text-slate-500 ${fieldControlHeightClass} ${getFieldSurfaceClass({
+          className={`w-full rounded-xl px-4 py-2.5 text-sm text-slate-900 dark:text-slate-50 placeholder:text-slate-400 dark:placeholder:text-slate-500 ${fieldControlHeightClass} ${getFieldSurfaceClass({
             disabled,
             error: !!error,
           })} ${Icon && iconPosition === 'left' ? 'pl-10' : ''} ${Icon && iconPosition === 'right' ? 'pr-10' : ''}`}
@@ -55,7 +55,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({
           {...props}
         />
         {Icon && iconPosition === 'right' && (
-          <div className={`absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none ${disabled ? 'text-slate-600' : 'text-slate-400'}`}>
+          <div className={`absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none ${disabled ? 'text-slate-400 dark:text-slate-600' : 'text-slate-400 dark:text-slate-500'}`}>
             <Icon size={18} />
           </div>
         )}

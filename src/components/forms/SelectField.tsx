@@ -63,7 +63,7 @@ export const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(({
   const renderOption = (option: SelectOption): ReactNode => (
     <div className="flex items-center gap-2.5 overflow-hidden">
       {option.icon && (
-        <option.icon size={16} className={`${disabled ? 'text-slate-600' : 'text-slate-400'} shrink-0`} />
+        <option.icon size={16} className={`${disabled ? 'text-slate-400 dark:text-slate-600' : 'text-slate-400 dark:text-slate-500'} shrink-0`} />
       )}
       {option.image && (
         <img src={option.image} alt="" className="h-4 w-4 rounded-full object-cover shrink-0" />
@@ -88,10 +88,10 @@ export const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(({
                 focusMode: 'group-focus',
               })}`}
             >
-              <div className={`flex-1 overflow-hidden ${selectedOption ? (disabled ? 'text-slate-400' : 'text-slate-50') : 'text-slate-400'}`}>
+              <div className={`flex-1 overflow-hidden ${selectedOption ? (disabled ? 'text-slate-400' : 'text-slate-900 dark:text-slate-50') : 'text-slate-400 dark:text-slate-500'}`}>
                 {selectedOption ? renderOption(selectedOption) : 'Select option...'}
               </div>
-              <svg className={`h-4 w-4 fill-current shrink-0 ml-2 ${disabled ? 'text-slate-600' : 'text-slate-400'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <svg className={`h-4 w-4 fill-current shrink-0 ml-2 ${disabled ? 'text-slate-400 dark:text-slate-600' : 'text-slate-400 dark:text-slate-500'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
               </svg>
             </div>
@@ -103,8 +103,8 @@ export const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(({
                   key={index}
                   className={`px-4 py-2 text-sm cursor-pointer transition-colors ${
                     currentValue === option.value
-                      ? 'bg-cyan-500/20 text-cyan-400'
-                      : 'text-slate-300 hover:bg-white/5 hover:text-slate-50'
+                      ? 'bg-cyan-500/20 text-cyan-600 dark:text-cyan-400'
+                      : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-50'
                   }`}
                   onClick={() => {
                     handleSelect(option.value);

@@ -20,7 +20,7 @@ export function FieldError({
   const Component = as;
 
   return (
-    <Component {...props} className={`text-xs font-medium text-red-400 ${className}`}>
+    <Component {...props} className={`text-xs font-medium text-red-500 dark:text-red-400 ${className}`}>
       {children}
     </Component>
   );
