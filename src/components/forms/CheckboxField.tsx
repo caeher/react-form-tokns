@@ -93,7 +93,7 @@ export const CheckboxField = forwardRef<HTMLInputElement, CheckboxFieldProps>(({
         disabledClassName="opacity-50 cursor-not-allowed"
       >
         <FieldLabel
-          as="span"
+          htmlFor={checkboxId}
           inline
           disabled={disabled}
           inlineClassName="pt-0 sm:pt-0.5 sm:min-w-[120px] sm:shrink-0"

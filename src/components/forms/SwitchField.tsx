@@ -34,7 +34,16 @@ export const SwitchField = forwardRef<HTMLInputElement, SwitchFieldProps>(({
   const switchId = id || generatedId;
 
   const content = (
-    <div className={`flex items-center justify-between gap-3 w-full ${inline ? '' : `rounded-xl border border-white/10 bg-slate-900/30 p-3 transition-colors ${disabled ? '' : 'hover:border-white/20 hover:bg-slate-900/50'}`}`}>
+    <label
+      htmlFor={switchId}
+      className={`flex items-center justify-between gap-3 w-full ${
+        inline
+          ? ''
+          : `rounded-xl border border-white/10 bg-slate-900/30 p-3 transition-colors ${
+              disabled ? '' : 'hover:border-white/20 hover:bg-slate-900/50'
+            }`
+      } ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+    >
       {(label || hint || Icon) && (
         <div className="flex flex-col">
           <div className={`flex items-center gap-2 ${iconPosition === 'right' ? 'flex-row-reverse justify-end' : ''}`}>
@@ -79,7 +88,7 @@ export const SwitchField = forwardRef<HTMLInputElement, SwitchFieldProps>(({
           disabled ? (checked ? 'bg-slate-600' : 'bg-slate-700') : (checked ? 'bg-white' : 'bg-slate-300')
         } ${error && !checked ? 'bg-red-200' : ''}`}></div>
       </div>
-    </div>
+    </label>
   );
 
   if (inline) {
@@ -92,7 +101,7 @@ export const SwitchField = forwardRef<HTMLInputElement, SwitchFieldProps>(({
         disabledClassName="opacity-50 cursor-not-allowed"
       >
         <FieldLabel
-          as="span"
+          htmlFor={switchId}
           inline
           disabled={disabled}
           inlineClassName="sm:min-w-[120px] sm:shrink-0"
@@ -110,9 +119,7 @@ export const SwitchField = forwardRef<HTMLInputElement, SwitchFieldProps>(({
       className={className}
       disabledClassName="opacity-50 cursor-not-allowed"
     >
-      <label htmlFor={switchId} className={disabled ? 'cursor-not-allowed' : 'cursor-pointer'}>
-        {content}
-      </label>
+      {content}
     </FieldWrapper>
   );
 });

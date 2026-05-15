@@ -4,7 +4,8 @@ import {
   SelectField, 
   CalendarField, 
   SwitchField, 
-  PhoneField
+  PhoneField,
+  CheckboxField
 } from '@caeher/react-form-tokns';
 import { 
   Mail, 
@@ -23,7 +24,8 @@ function App() {
     birthDate: '1995-05-15',
     phone: '',
     newsletter: true,
-    notifications: false
+    notifications: false,
+    terms: false
   });
 
   const handleChange = (e: any) => {
@@ -127,6 +129,15 @@ function App() {
                     checked={formData.notifications}
                     onChange={(e) => handleSwitchChange('notifications', e.target.checked)}
                     icon={Bell}
+                  />
+                </div>
+
+                <div className="pt-6 border-t border-white/5">
+                  <CheckboxField
+                    label="I agree to the terms and conditions"
+                    name="terms"
+                    checked={formData.terms}
+                    onChange={handleChange}
                   />
                 </div>
               </form>
