@@ -13,10 +13,13 @@ import {
   Layout, 
   Briefcase, 
   Bell, 
-  Code 
+  Code,
+  Sun,
+  Moon
 } from 'lucide-react';
 
 function App() {
+  const [isDark, setIsDark] = useState(true);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -28,7 +31,7 @@ function App() {
     terms: false
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -36,34 +39,45 @@ function App() {
     }));
   };
 
-  const handleSwitchChange = (name: string, checked: boolean) => {
-    setFormData(prev => ({
-      ...prev,
-      [name]: checked
-    }));
+  const toggleTheme = () => {
+    setIsDark(!isDark);
+    document.documentElement.classList.toggle('dark');
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 px-4 py-12 text-slate-50 sm:px-6 sm:py-20 font-sans selection:bg-cyan-500/30">
+    <main className={`min-h-screen transition-colors duration-300 ${isDark ? 'bg-slate-950 text-slate-50' : 'bg-slate-50 text-slate-900'} px-4 py-12 sm:px-6 sm:py-20 font-sans selection:bg-cyan-500/30`}>
       <div className="mx-auto max-w-4xl space-y-12">
         {/* Header */}
-        <div className="space-y-4 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium uppercase tracking-wider">
-            Interactive Playground
+        <div className="flex justify-between items-start">
+          <div className="space-y-4 text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium uppercase tracking-wider">
+              Interactive Playground
+            </div>
+            <h1 className={`text-4xl font-bold tracking-tight sm:text-6xl ${isDark ? 'bg-gradient-to-b from-white to-slate-400' : 'bg-gradient-to-b from-slate-900 to-slate-600'} bg-clip-text text-transparent`}>
+              Form Maker Preview
+            </h1>
+            <p className={`max-w-2xl text-lg ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+              Experiment with our premium accessible components in real-time. 
+              All fields are controlled and follow industrial-grade design tokens.
+            </p>
           </div>
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl bg-gradient-to-b from-white to-slate-400 bg-clip-text text-transparent">
-            Form Maker Preview
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg text-slate-400">
-            Experiment with our premium accessible components in real-time. 
-            All fields are controlled and follow industrial-grade design tokens.
-          </p>
+
+          <button
+            onClick={toggleTheme}
+            className={`p-3 rounded-2xl border transition-all ${
+              isDark 
+                ? 'bg-white/5 border-white/10 text-white hover:bg-white/10' 
+                : 'bg-black/5 border-black/10 text-slate-900 hover:bg-black/10'
+            }`}
+          >
+            {isDark ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-12">
           {/* Playground Form */}
           <div className="lg:col-span-7">
-            <section className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 shadow-2xl shadow-slate-950/50 backdrop-blur-xl sm:p-8">
+            <section className={`rounded-3xl border ${isDark ? 'border-white/10 bg-white/[0.02]' : 'border-slate-200 bg-white'} p-6 shadow-2xl ${isDark ? 'shadow-slate-950/50' : 'shadow-slate-200'} backdrop-blur-xl sm:p-8`}>
               <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid gap-6 sm:grid-cols-2">
                   <TextField
@@ -154,8 +168,8 @@ function App() {
               <pre className="text-[13px] font-mono leading-relaxed text-slate-300 overflow-x-auto">
                 {JSON.stringify(formData, null, 2)}
               </pre>
-              <div className="mt-8 pt-6 border-t border-white/5">
-                <p className="text-xs text-slate-500 italic">
+              <div className={`mt-8 pt-6 border-t ${isDark ? 'border-white/5' : 'border-slate-200'}`}>
+                <p className={`text-xs ${isDark ? 'text-slate-500' : 'text-slate-400'} italic`}>
                   Change values in the form to see the state update automatically.
                 </p>
               </div>
