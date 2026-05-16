@@ -1,3 +1,22 @@
+# [1.5.0](https://github.com/caeher/react-form-tokns/compare/v1.4.2...v1.5.0) (2026-05-16)
+
+
+### Bug Fixes
+
+* improve clickability and data binding for checkbox and switch fields ([ffb9806](https://github.com/caeher/react-form-tokns/commit/ffb98065ce3f8dd90cda65401a4f183c74a516de))
+* playground ([8498a97](https://github.com/caeher/react-form-tokns/commit/8498a9727702a8d00d31ea4e05981069521e3432))
+* playground style ([ddd4f58](https://github.com/caeher/react-form-tokns/commit/ddd4f58f9a5a4da92124bea8b509b51f020e726b))
+* resolve theme mixing and restore checkbox data binding ([338d5ab](https://github.com/caeher/react-form-tokns/commit/338d5abbad5ca105aa96bc0537faf4eaad47d610))
+* resolve tsconfig syntax error ([a7152d3](https://github.com/caeher/react-form-tokns/commit/a7152d313dc70d22eb3e7601635578980f791c81))
+* support dark/light theme ([34d3e9f](https://github.com/caeher/react-form-tokns/commit/34d3e9f4104a5b8ce9ae1f3b2ea726bebad15b56))
+
+
+### Features
+
+* add all field example ([86bbeb8](https://github.com/caeher/react-form-tokns/commit/86bbeb875fad809e16061e5ac7ff7ce6df2f6c7b))
+* add dark/light mode support to library components ([734fedf](https://github.com/caeher/react-form-tokns/commit/734fedfba94599f9f158fbc2513a8fa23c6380df))
+* **playground:** migrate demo to dedicated playground directory ([2689a9d](https://github.com/caeher/react-form-tokns/commit/2689a9d642f7ce96cfb070107c97e683b995914b))
+
 ## [1.4.2](https://github.com/caeher/form-maker/compare/v1.4.1...v1.4.2) (2026-05-05)
 
 
